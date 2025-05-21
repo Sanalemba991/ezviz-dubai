@@ -1,0 +1,342 @@
+---
+// src/components/ProductSlider.astro
+// Make sure to install Tailwind CSS in your Astro project first:
+// npm install -D tailwindcss @astrojs/tailwind
+// npx astro add tailwind
+
+// Product data matching the EZVIZ products in the image
+const products = [
+  {
+    id: 1,
+    name: "SD7 EZVIZ 7-Inch Wireless Smart Control Touch Monitor Screen",
+    image: "/images/demo/Demo (1).jpg", // Update path to your actual images
+    isNew: true
+  },
+  {
+    id: 2,
+    name: "HP7 2K Smart Home Video Doorphone Intercome",
+    image: "/images/demo/Demo (2).jpg",
+    isNew: false
+  },
+  {
+    id: 3,
+    name: "DP2 Peephole Wire-Free Video Doorviewer",
+    image: "/images/demo/Demo (3).jpg",
+    isNew: false
+  },
+  {
+    id: 4,
+    name: "DB2 Pro 5mp Battery-powered Video Doorbell Kit White",
+    image: "/images/demo/Demo (4).jpg",
+    isNew: false
+  },
+  {
+    id: 5,
+    name: "DB2 Pro 5mp Battery-powered Video Doorbell Kit Grey",
+    image: "/images/demo/Demo (5).jpg",
+    isNew: false
+  },
+  {
+    id: 6,
+    name: "DB2 Grey 3MP Battery-Powered Video Doorbell Kit",
+    image: "/images/demo/Demo (6).jpg",
+    isNew: false
+  }
+];
+---
+<section class="py-12">
+    <div class="container mx-auto px-4">
+      <h2 class="text-blue-500 text-sm font-medium tracking-wider mb-4">
+        <span class="mr-2">O U R</span> P R O D U C T S
+      </h2>
+      <h1 class="text-4xl font-bold text-gray-800 mb-8">LATEST PRODUCTS</h1>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <!-- Product cards would go here -->
+      </div>
+    </div>
+  </section>
+<div class="w-full max-w-7xl mx-auto px-4 py-8">
+  <!-- Product Slider Section -->
+  <div class="relative overflow-hidden">
+    <!-- Slider Container -->
+    <div id="slider-container" class="flex transition-transform duration-500 ease-in-out gap-6">
+      {products.map((product) => (
+        <div class="flex-none w-full sm:w-1/2 md:w-1/3 lg:w-1/4 relative group">
+          <!-- New Tag -->
+          {product.isNew && (
+            <div class="absolute top-2 left-2 bg-blue-400 text-white text-xs font-bold py-1 px-2 rounded z-10">
+              New
+            </div>
+          )}
+          
+          <!-- Product Card -->
+          <div class="bg-white rounded-lg shadow-sm overflow-hidden h-full flex flex-col">
+            <!-- Product Image -->
+            <div class="h-48 sm:h-56 flex items-center justify-center p-4 bg-white">
+              <img 
+                src={product.image} 
+                alt={product.name} 
+                class="max-h-full max-w-full object-contain transition-transform duration-300 group-hover:scale-105"
+              />
+            </div>
+            
+            <!-- Product Name -->
+            <div class="p-4 text-center">
+              <h3 class="text-sm font-medium text-gray-800">{product.name}</h3>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+    
+    <!-- Enhanced Navigation Arrows -->
+    <div class="flex justify-between w-full absolute top-1/2 -translate-y-1/2 pointer-events-none px-2 sm:px-4">
+      <button id="prev-button" class="transform -translate-x-2 sm:translate-x-0 transition-all duration-300 bg-white shadow-lg rounded-full p-3 hover:bg-blue-50 opacity-0 pointer-events-auto focus:outline-none focus:ring-2 focus:ring-blue-400 group">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-700 group-hover:text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7" />
+        </svg>
+      </button>
+      
+      <button id="next-button" class="transform translate-x-2 sm:translate-x-0 transition-all duration-300 bg-white shadow-lg rounded-full p-3 hover:bg-blue-50 opacity-0 pointer-events-auto focus:outline-none focus:ring-2 focus:ring-blue-400 group">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-gray-700 group-hover:text-blue-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+          <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7" />
+        </svg>
+      </button>
+    </div>
+  </div>
+  
+  <!-- Product Navigation Controls (Outside Slider) -->
+  <div class="flex items-center justify-center mt-8 gap-6">
+    <!-- Previous Button for Desktop -->
+    <button id="bottom-prev-button" class="hidden md:flex items-center gap-2 text-gray-600 hover:text-blue-600 transition-colors duration-300 group focus:outline-none">
+      <div class="bg-gray-100 group-hover:bg-blue-100 p-2 rounded-full transition-colors duration-300">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+        </svg>
+      </div>
+      <span class="font-medium">Previous</span>
+    </button>
+    
+    <!-- Dots Navigation -->
+    <div class="flex justify-center gap-3">
+      {products.map((_, index) => (
+        <button 
+          class={`w-2 h-2 rounded-full transition-all duration-300 ${index === 0 ? 'w-4 bg-blue-600' : 'bg-gray-300'}`}
+          aria-label={`Go to slide ${index + 1}`}
+          data-slide={index}
+        ></button>
+      ))}
+    </div>
+    
+    <!-- Next Button for Desktop -->
+    <button id="bottom-next-button" class="hidden md:flex items-center gap-2 text-gray-600 hover:text-blue-600 transition-colors duration-300 group focus:outline-none">
+      <span class="font-medium">Next</span>
+      <div class="bg-gray-100 group-hover:bg-blue-100 p-2 rounded-full transition-colors duration-300">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+        </svg>
+      </div>
+    </button>
+  </div>
+</div>
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    const sliderContainer = document.getElementById('slider-container');
+    const prevButton = document.getElementById('prev-button');
+    const nextButton = document.getElementById('next-button');
+    const bottomPrevButton = document.getElementById('bottom-prev-button');
+    const bottomNextButton = document.getElementById('bottom-next-button');
+    const dots = document.querySelectorAll('[data-slide]');
+    const slider = document.querySelector('.relative.overflow-hidden');
+    
+    let currentIndex = 0;
+    const productCards = Array.from(sliderContainer.children);
+    
+    // Show/hide navigation arrows on hover
+    if (slider && prevButton && nextButton) {
+      slider.addEventListener('mouseenter', () => {
+        prevButton.classList.remove('opacity-0');
+        prevButton.classList.add('opacity-100');
+        nextButton.classList.remove('opacity-0');
+        nextButton.classList.add('opacity-100');
+      });
+      
+      slider.addEventListener('mouseleave', () => {
+        prevButton.classList.remove('opacity-100');
+        prevButton.classList.add('opacity-0');
+        nextButton.classList.remove('opacity-100');
+        nextButton.classList.add('opacity-0');
+      });
+    }
+    
+    // Initialize slider
+    updateSlider();
+    
+    // Handle dot navigation
+    dots.forEach((dot, index) => {
+      dot.addEventListener('click', () => {
+        currentIndex = index;
+        updateSlider();
+      });
+    });
+    
+    // Handle arrow navigation
+    if (prevButton) {
+      prevButton.addEventListener('click', () => {
+        if (currentIndex > 0) {
+          currentIndex--;
+          updateSlider();
+        }
+      });
+    }
+    
+    if (nextButton) {
+      nextButton.addEventListener('click', () => {
+        const maxVisibleSlides = getVisibleSlidesCount();
+        if (currentIndex < productCards.length - maxVisibleSlides) {
+          currentIndex++;
+          updateSlider();
+        }
+      });
+    }
+    
+    // Handle bottom navigation buttons
+    if (bottomPrevButton) {
+      bottomPrevButton.addEventListener('click', () => {
+        if (currentIndex > 0) {
+          currentIndex--;
+          updateSlider();
+        }
+      });
+    }
+    
+    if (bottomNextButton) {
+      bottomNextButton.addEventListener('click', () => {
+        const maxVisibleSlides = getVisibleSlidesCount();
+        if (currentIndex < productCards.length - maxVisibleSlides) {
+          currentIndex++;
+          updateSlider();
+        }
+      });
+    }
+    
+    // Auto slide (optional - comment out if not needed)
+    const autoSlideInterval = setInterval(() => {
+      const maxVisibleSlides = getVisibleSlidesCount();
+      if (currentIndex < productCards.length - maxVisibleSlides) {
+        currentIndex++;
+      } else {
+        currentIndex = 0;
+      }
+      updateSlider();
+    }, 5000);
+    
+    // Get number of visible slides based on screen width
+    function getVisibleSlidesCount() {
+      const width = window.innerWidth;
+      if (width >= 1024) return 4; // lg
+      if (width >= 768) return 3;  // md
+      if (width >= 640) return 2;  // sm
+      return 1;                   // xs
+    }
+    
+    // Update slider position and active indicators
+    function updateSlider() {
+      if (!sliderContainer) return;
+      
+      const cardWidth = (productCards[0] as HTMLElement).offsetWidth;
+      const gapWidth = 24; // equivalent to Tailwind's gap-6
+      
+      // Calculate translation
+      const translationValue = currentIndex * (cardWidth + gapWidth);
+      sliderContainer.style.transform = `translateX(-${translationValue}px)`;
+      
+      // Update active dot
+      dots.forEach((dot, index) => {
+        if (index === currentIndex) {
+          dot.classList.add('w-4', 'bg-blue-600');
+          dot.classList.remove('bg-gray-300');
+        } else {
+          dot.classList.remove('w-4', 'bg-blue-600');
+          dot.classList.add('bg-gray-300');
+        }
+      });
+      
+      // Update button states
+      const isFirstSlide = currentIndex === 0;
+      const maxVisibleSlides = getVisibleSlidesCount();
+      const isLastSlide = currentIndex >= productCards.length - maxVisibleSlides;
+      
+      // Update slider arrows
+      if (prevButton) {
+        (prevButton as HTMLButtonElement).disabled = isFirstSlide;
+        prevButton.classList.toggle('cursor-not-allowed', isFirstSlide);
+        prevButton.classList.toggle('opacity-50', isFirstSlide && prevButton.classList.contains('opacity-100'));
+      }
+      
+      if (nextButton) {
+        (nextButton as HTMLButtonElement).disabled = isLastSlide;
+        nextButton.classList.toggle('cursor-not-allowed', isLastSlide);
+        nextButton.classList.toggle('opacity-50', isLastSlide && nextButton.classList.contains('opacity-100'));
+      }
+      
+      // Update bottom navigation buttons
+      if (bottomPrevButton) {
+        (bottomPrevButton as HTMLButtonElement).disabled = isFirstSlide;
+        bottomPrevButton.classList.toggle('opacity-50', isFirstSlide);
+        bottomPrevButton.classList.toggle('cursor-not-allowed', isFirstSlide);
+      }
+      
+      if (bottomNextButton) {
+        (bottomNextButton as HTMLButtonElement).disabled = isLastSlide;
+        bottomNextButton.classList.toggle('opacity-50', isLastSlide);
+        bottomNextButton.classList.toggle('cursor-not-allowed', isLastSlide);
+      }
+    }
+    
+    // Handle window resize
+    window.addEventListener('resize', () => {
+      // Ensure we don't scroll past the end when resizing
+      const maxVisibleSlides = getVisibleSlidesCount();
+      if (currentIndex > productCards.length - maxVisibleSlides) {
+        currentIndex = Math.max(0, productCards.length - maxVisibleSlides);
+      }
+      
+      updateSlider();
+    });
+    
+    // Add touch support for mobile
+    let touchStartX = 0;
+    let touchEndX = 0;
+    
+    sliderContainer.addEventListener('touchstart', (e) => {
+      touchStartX = e.changedTouches[0].screenX;
+    });
+    
+    sliderContainer.addEventListener('touchend', (e) => {
+      touchEndX = e.changedTouches[0].screenX;
+      handleSwipe();
+    });
+    
+    function handleSwipe() {
+      const swipeThreshold = 50;
+      const maxVisibleSlides = getVisibleSlidesCount();
+      
+      if (touchEndX < touchStartX - swipeThreshold) {
+        // Swipe left
+        if (currentIndex < productCards.length - maxVisibleSlides) {
+          currentIndex++;
+          updateSlider();
+        }
+      } else if (touchEndX > touchStartX + swipeThreshold) {
+        // Swipe right
+        if (currentIndex > 0) {
+          currentIndex--;
+          updateSlider();
+        }
+      }
+    }
+  });
+</script>
