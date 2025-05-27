@@ -237,8 +237,6 @@ const products = await getCollection('wifi-free');
         padding: 15px;
     }
 
-    
-
     .product-card:hover .product-badge {
         transform: scale(1.2) rotate(10deg);
         background: #3b82f6;
@@ -406,14 +404,32 @@ const products = await getCollection('wifi-free');
     }
 
     /* Enhanced Search and Filter Styles */
+   /* Enhanced Search and Filter Styles */
+    .search-glow {
+        background: transparent !important;
+        border: 2px solid rgba(59, 130, 246, 0.3) !important;
+        color: #000000 !important;
+        backdrop-filter: blur(10px);
+    }
+
     .search-glow:focus {
+        border-color: rgba(59, 130, 246, 0.8) !important;
+        background: rgba(255, 255, 255, 0.2) !important;
         animation: glow 2s ease-in-out infinite;
         transform: scale(1.02);
+        color: #000000 !important;
+    }
+
+    .search-glow::placeholder {
+        color: rgba(0, 0, 0, 0.6) !important;
     }
 
     .filter-btn {
         position: relative;
         overflow: hidden;
+        background: transparent !important;
+        border: 2px solid rgba(59, 130, 246, 0.3) !important;
+        color: #000000 !important;
         transition: all 0.3s ease;
     }
 
@@ -433,7 +449,16 @@ const products = await getCollection('wifi-free');
     }
 
     .filter-btn:hover {
+        background: rgba(59, 130, 246, 0.1) !important;
+        border-color: rgba(59, 130, 246, 0.6) !important;
+        color: rgba(59, 130, 246, 1) !important;
         transform: translateY(-2px) scale(1.05);
+    }
+
+    .filter-btn.bg-blue-600 {
+        background: rgba(59, 130, 246, 0.9) !important;
+        border-color: rgba(59, 130, 246, 0.9) !important;
+        color: white !important;
     }
 
     /* Enhanced Price Animation */
@@ -529,6 +554,39 @@ const products = await getCollection('wifi-free');
         color: #1f2937;
         transform: translateY(-2px);
     }
+
+    /* Dark mode adjustments */
+    @media (prefers-color-scheme: dark) {
+        .search-glow {
+            color: #000000 !important;
+            border-color: rgba(59, 130, 246, 0.5) !important;
+        }
+
+        .search-glow::placeholder {
+            color: rgba(156, 163, 175, 0.7) !important;
+        }
+
+        .filter-btn {
+            color: rgba(147, 197, 253, 0.8) !important;
+            border-color: rgba(59, 130, 246, 0.4) !important;
+        }
+
+        .filter-btn:hover {
+            background: rgba(59, 130, 246, 0.2) !important;
+            color: rgba(147, 197, 253, 1) !important;
+        }
+    }
+
+    /* Make filter button text black by default */
+.filter-btn {
+  color: #000 !important;
+}
+
+/* Active filter button (already styled as white text on blue) */
+.filter-btn.bg-blue-600,
+.filter-btn.text-white {
+  color: #fff !important;
+}
 </style>
 
 <Layout>
@@ -601,7 +659,7 @@ const products = await getCollection('wifi-free');
     </section>
 
     <!-- Main Content Section -->
-    <section class="relative  sm:py-32 ">
+    <section class="relative sm:py-32">
         <!-- Background Elements -->
         <div class="absolute inset-0 bg-[url('/grid-pattern.svg')] opacity-5 dark:opacity-10"></div>
 
@@ -615,7 +673,7 @@ const products = await getCollection('wifi-free');
                             type="text"
                             id="searchInput"
                             placeholder="Search cameras by model, features, or specifications..."
-                            class="search-glow w-full px-6 py-4 pl-14 pr-16 text-lg border-2 border-gray-200 dark:border-gray-700 rounded-2xl bg-white/80 dark:bg-gray-800/80 backdrop-blur-xl focus:border-blue-500 focus:outline-none focus:ring-4 focus:ring-blue-500/20 transition-all duration-300 shadow-lg hover:shadow-xl"
+                            class="search-glow w-full px-6 py-4 pl-14 pr-16 text-lg rounded-2xl backdrop-blur-xl focus:outline-none focus:ring-4 focus:ring-blue-500/20 transition-all duration-300 shadow-lg hover:shadow-xl"
                         />
                         <div class="absolute inset-y-0 left-0 flex items-center pl-5">
                             <i class="fas fa-search text-gray-400 text-xl"></i>
@@ -628,29 +686,32 @@ const products = await getCollection('wifi-free');
 
                 <!-- Filter Buttons -->
                 <div class="flex flex-wrap justify-center gap-4">
-                    <button class="filter-btn px-6 py-3 bg-blue-600 text-white rounded-full font-medium hover:bg-blue-700 transform hover:scale-105 transition-all duration-300 shadow-lg" data-filter="all">
+                    <button class="filter-btn px-6 py-3 t rounded-full font-medium transform hover:scale-105 transition-all duration-300 shadow-lg" data-filter="all">
                         <i class="fas fa-th-large mr-2"></i>All Products
                     </button>
-                    <button class="filter-btn px-6 py-3 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-full font-medium hover:bg-gray-100 dark:hover:bg-gray-700 transform hover:scale-105 transition-all duration-300 shadow-lg border border-gray-200 dark:border-gray-700" data-filter="battery">
+                    <button class="filter-btn px-6 py-3 rounded-full font-medium transform hover:scale-105 transition-all duration-300 shadow-lg" data-filter="battery">
                         <i class="fas fa-battery-full mr-2"></i>Battery Powered
                     </button>
-                    <button class="filter-btn px-6 py-3 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-full font-medium hover:bg-gray-100 dark:hover:bg-gray-700 transform hover:scale-105 transition-all duration-300 shadow-lg border border-gray-200 dark:border-gray-700" data-filter="pan-tilt">
+                    <button class="filter-btn px-6 py-3 rounded-full font-medium transform hover:scale-105 transition-all duration-300 shadow-lg" data-filter="pan-tilt">
                         <i class="fas fa-sync-alt mr-2"></i>Pan & Tilt
                     </button>
-                    <button class="filter-btn px-6 py-3 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-full font-medium hover:bg-gray-100 dark:hover:bg-gray-700 transform hover:scale-105 transition-all duration-300 shadow-lg border border-gray-200 dark:border-gray-700" data-filter="outdoor">
+                    <button class="filter-btn px-6 py-3 rounded-full font-medium transform hover:scale-105 transition-all duration-300 shadow-lg" data-filter="outdoor">
                         <i class="fas fa-cloud-sun mr-2"></i>Outdoor
                     </button>
-                    <button class="filter-btn px-6 py-3 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-full font-medium hover:bg-gray-100 dark:hover:bg-gray-700 transform hover:scale-105 transition-all duration-300 shadow-lg border border-gray-200 dark:border-gray-700" data-filter="smart">
+                    <button class="filter-btn px-6 py-3 rounded-full font-medium transform hover:scale-105 transition-all duration-300 shadow-lg" data-filter="smart">
                         <i class="fas fa-brain mr-2"></i>AI Smart
                     </button>
                 </div>
 
                 <!-- Sort Options -->
                 <div class="flex justify-between items-center">
-                    <div class="text-sm text-gray-600 dark:text-gray-400 animate-on-scroll">
+                    <div class="text-sm text-black animate-on-scroll">
                         <span id="productCount">{products.length}</span> products found
                     </div>
-                    <select id="sortSelect" class="px-4 py-2 border border-gray-200 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300 hover:border-blue-500">
+                    <select
+                        id="sortSelect"
+                        class="px-4 py-2 border-2 border-blue-300 rounded-lg bg-transparent text-black focus:outline-none focus:ring-4 focus:ring-blue-200 transition-all duration-300 hover:border-blue-500 shadow-[0_2px_8px_rgba(59,130,246,0.08)]"
+                    >
                         <option value="default">Sort by Default</option>
                         <option value="name">Sort by Name</option>
                         <option value="newest">Newest First</option>
@@ -666,7 +727,6 @@ const products = await getCollection('wifi-free');
                         href={`/products/${product.slug}`}
                         class="product-card category-item"
                         data-name={product.data.title.toLowerCase()}
-                       
                         style={`animation-delay: ${index * 100}ms`}
                     >
                         <!-- Product Image -->
@@ -885,16 +945,17 @@ const products = await getCollection('wifi-free');
                     // Remove active class from all buttons
                     filterButtons.forEach(btn => {
                         btn.classList.remove('bg-blue-600', 'text-white');
-                        btn.classList.add('bg-white', 'dark:bg-gray-800', 'text-gray-700', 'dark:text-gray-300');
+                        btn.classList.add('bg-transparent');
                     });
                     
                     // Add active class to clicked button
                     button.classList.add('bg-blue-600', 'text-white');
-                    button.classList.remove('bg-white', 'dark:bg-gray-800', 'text-gray-700', 'dark:text-gray-300');
+                    button.classList.remove('bg-transparent');
                     
                     filterProducts();
                 });
             });
+
 
             // Add ripple animation styles
             const style = document.createElement('style');
