@@ -1,6 +1,6 @@
 ---
 import Layout from "../../layouts/Layout.astro";
-import "./src/styles/global.css";
+import "../../styles/global.css";
 
 const title = "Product Categories | Surveillance Solutions";
 const description =
@@ -598,35 +598,71 @@ const categories = [
       </div>
 
       <!-- Enhanced Help Section -->
-      <div class="help-section mt-20 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl p-10 border border-gray-200 overflow-hidden relative animate-on-scroll">
-        <div class="relative z-10 text-center">
-          <h3 class="text-2xl font-semibold text-gray-900 mb-4 animate-on-scroll">
-            Expert Consultation Available
-          </h3>
-          <div class="w-16 h-1 bg-blue-600 mx-auto mb-6 animate-on-scroll"></div>
-          <p class="text-gray-600 mb-8 max-w-2xl mx-auto animate-on-scroll">
-            Get professional recommendations tailored to your security requirements from our certified surveillance specialists.
-          </p>
-          <div class="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
-              href="/contact"
-              class="animated-button inline-flex items-center justify-center rounded-lg bg-blue-600 px-6 py-3 text-base font-semibold text-white shadow-md hover:bg-blue-700 transition-all duration-300"
-            >
-              Schedule Consultation
-              <svg class="ml-2 h-5 w-5 transition-transform duration-300 group-hover:translate-x-2" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
-                <path d="M13.75 6.75L19.25 12L13.75 17.25" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-                <path d="M19 12H4.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
-              </svg>
-            </a>
-            <a
-              href="/support"
-              class="animated-button inline-flex items-center justify-center rounded-lg border border-gray-300 bg-white px-6 py-3 text-base font-semibold text-gray-900 hover:bg-gray-50 transition-all duration-300"
-            >
-              Technical Support
-            </a>
-          </div>
-        </div>
-      </div>
+      <div class="help-section mt-20 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl p-10 border border-gray-200 overflow-hidden relative">
+  <div class="relative z-10 text-center transition-all duration-1000 ease-[cubic-bezier(0.2,0,0,1)] transform [&.active]:opacity-100 [&.active]:translate-y-0 opacity-0 translate-y-8">
+    <h3 class="text-2xl font-semibold text-gray-900 mb-4 transition-all duration-700 ease-[cubic-bezier(0.2,0,0,1)] delay-100 [.active_&]:opacity-100 [.active_&]:translate-y-0 opacity-0 translate-y-5">
+      Expert Consultation Available
+    </h3>
+    <div class="w-16 h-1 bg-blue-600 mx-auto mb-6 transition-all duration-800 ease-[cubic-bezier(0.2,0,0,1)] delay-200 [.active_&]:opacity-100 [.active_&]:scale-x-100 opacity-0 scale-x-0 origin-center"></div>
+    <p class="text-gray-600 mb-8 max-w-2xl mx-auto transition-all duration-700 ease-[cubic-bezier(0.2,0,0,1)] delay-300 [.active_&]:opacity-100 [.active_&]:translate-y-0 opacity-0 translate-y-5">
+      Get professional recommendations tailored to your security requirements from our certified surveillance specialists.
+    </p>
+    <div class="flex flex-col sm:flex-row gap-4 justify-center transition-all duration-700 ease-[cubic-bezier(0.2,0,0,1)] delay-400 [.active_&]:opacity-100 [.active_&]:translate-y-0 opacity-0 translate-y-5">
+      <a
+        href="/contact"
+        class="animated-button inline-flex items-center justify-center rounded-lg bg-blue-600 px-6 py-3 text-base font-semibold text-white shadow-md hover:bg-blue-700 transition-all duration-400 hover:shadow-lg transform hover:-translate-y-1"
+      >
+        Schedule Consultation
+        <svg class="ml-2 h-5 w-5 transition-transform duration-400 group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <path d="M13.75 6.75L19.25 12L13.75 17.25" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+          <path d="M19 12H4.75" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"></path>
+        </svg>
+      </a>
+      <a
+        href="/support"
+        class="animated-button inline-flex items-center justify-center rounded-lg border border-gray-300 bg-white px-6 py-3 text-base font-semibold text-gray-900 hover:bg-gray-50 transition-all duration-400 hover:shadow-md transform hover:-translate-y-1"
+      >
+        Technical Support
+      </a>
+    </div>
+  </div>
+</div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const helpSection = document.querySelector('.help-section > div');
+  
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        setTimeout(() => {
+          entry.target.classList.add('active');
+        }, 50); // Small delay to ensure proper triggering
+        observer.unobserve(entry.target);
+      }
+    });
+  }, {
+    threshold: 0.1,
+    rootMargin: '0px 0px -100px 0px'
+  });
+  
+  if (helpSection) {
+    observer.observe(helpSection);
+  }
+
+  // Enhanced button hover effects
+  const buttons = document.querySelectorAll('.animated-button');
+  buttons.forEach(button => {
+    button.addEventListener('mouseenter', function() {
+      this.style.transform = 'translateY(-3px) scale(1.02)';
+    });
+    
+    button.addEventListener('mouseleave', function() {
+      this.style.transform = 'translateY(0) scale(1)';
+    });
+  });
+});
+</script>
     </div>
   </section>
 </Layout>

@@ -66,7 +66,5 @@ module.exports = {
     },
   },
   plugins: [require('@tailwindcss/typography'),
-  require('preline/plugin'),
 ],
-  darkMode: 'class',
 };
