@@ -1,21 +1,21 @@
 ---
 title: "C3W(ezGuard)"
 description: "Sound and Light, Dual Protection."
-image: "/images/wifi/BC1-B1.png"
+image: "/images/outdoor-wifi/C3W.png"
 images:
-  - url: "/images/wifi/BC1-B1.png"
+  - url: "/images/outdoor-wifi/C3W.png"
     caption: "Front view"
 features:
-  - "Full HD (1920×1080) and HD (1280×720) resolution options"
-  - "1/2.7” and 1/4” Progressive Scan CMOS image sensors"
-  - "2.8mm, 4mm, and 6mm lens options with up to 118° diagonal angle"
-  - "IR-cut filter with auto-switching for day & night functionality"
-  - "3D DNR and Digital WDR for improved image quality"
-  - "H.264 video compression with main profile support"
-  - "Supports microSD card storage up to 128GB"
-  - "Smart motion detection with intelligent alerts"
-  - "Weather-resistant IP66-rated housing for outdoor use"
-  - "Wi-Fi IEEE802.11 b/g/n and RJ45 Ethernet connectivity"
+  - "Full HD (1920×1080) and HD (1280×720) resolution options."
+  - "1/2.7” and 1/4” Progressive Scan CMOS image sensors."
+  - "2.8mm, 4mm, and 6mm lens options with up to 118° diagonal angle."
+  - "IR-cut filter with auto-switching for day & night functionality."
+  - "3D DNR and Digital WDR for improved image quality."
+  - "H.264 video compression with main profile support."
+  - "Supports microSD card storage up to 128GB."
+  - "Smart motion detection with intelligent alerts."
+  - "Weather-resistant IP66-rated housing for outdoor use."
+  - "Wi-Fi IEEE802.11 b/g/n and RJ45 Ethernet connectivity."
   
 specification:
   model: "CS-CV310-A0-1B2WFR"

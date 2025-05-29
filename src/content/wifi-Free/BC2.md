@@ -1,19 +1,19 @@
 ---
 title: "BC2"
 description: "Wi-Fi Smart Home Battery Camera."
-image: "/images/wifi/Outdoor.png"
+image: "/images/wifi-free/BC2.png"
 images:
-  - url: "/images/wifi/Outdoor.png"
+  - url: "/images/wifi-free/BC2.png"
     caption: "Front view"
 
 features:
-  - "Smart Alarm with Customized Alert Area"
-  - "Two-Way Talk for real-time communication"
-  - "IR-cut Filter for Day & Night Auto Switching"
-  - "3D Digital Noise Reduction (DNR)"
-  - "Supports MicroSD Card (up to 256GB) & Cloud Storage"
-  - "Wireless (Wi-Fi) connectivity with secure encryption"
-  - "Battery-powered (2000mAh) for flexible placement"
+  - "Smart Alarm with Customized Alert Area."
+  - "Two-Way Talk for real-time communication."
+  - "IR-cut Filter for Day & Night Auto Switching."
+  - "3D Digital Noise Reduction (DNR)."
+  - "Supports MicroSD Card (up to 256GB) & Cloud Storage."
+  - "Wireless (Wi-Fi) connectivity with secure encryption."
+  - "Battery-powered (2000mAh) for flexible placement."
 specification:
   model: "CS-BC2 (A0-2C2WPFB)"
   image_sensor: "	1/2.8” 2-Megapixel Progressive Scan CMOS Sensor"

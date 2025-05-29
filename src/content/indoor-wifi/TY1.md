@@ -1,9 +1,9 @@
 ---
 title: "TY1 4MP"
 description: "Smart Wi-Fi Pan & Tilt Camera with 4MP resolution."
-image: "/images/wifi/BC1-B1.png"
+image: "/images/indoor-wifi/TY1.png"
 images:
-  - url: "/images/wifi/BC1-B1.png"
+  - url: "/images/indoor-wifi/TY1.png"
     caption: "Front view"
 features:
   - Quad HD resolution 2560 × 1440 for clear and detailed video  
@@ -18,7 +18,7 @@ features:
   - Powered by DC 5V/2A via Micro USB, max power consumption 5W, with IR night vision range up to 10 meters   
 
 specification:
-  model: "CS-H6c-R100-8B4WF"
+  model: "CS-TY1-C0-8B4WF"
   image_sensor: "F2.2@1/3 Progressive Scan CMOS"
   lens: "4mm, view angle: 124°(Diagonal), 85° (Horizontal), 55°(Vertical)"
   resolution: "2560 × 1440"
