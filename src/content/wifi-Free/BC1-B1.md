@@ -14,8 +14,14 @@ features:
   - "125dB Base Station Alarm"
   - "IP66 Weatherproof Rating"
   - "12,900mAh Battery or DC Power"
-
-
+specification:
+  model: "CS-BC1-B1"
+  image_sensor: "1/2.8” 2-Megapixel Progressive Scan CMOS Sensor"
+  lens: "2.8 mm @ F1.6; 128° (Diagonal), 108° (Horizontal)"
+  resolution: "FHD 1920 x 1080"
+  ip_range: "IP66"
+  weight: "1304 g"
+  storage: "Support MicroSD card up to 256 GB"
 
 price: "Contact Sales"
 ---

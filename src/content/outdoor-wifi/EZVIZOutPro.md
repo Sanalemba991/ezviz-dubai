@@ -23,7 +23,7 @@ specification:
   model: "CS-C3TN (3MP)"
   image_sensor: "1/2.7”Progressive Scan CMOS."
   lens: "2.8 mm @ F2.0, view angle: 109° (Horizontal), 126°(Diagonal)."
-  resolution:
+  resolution: "2304 × 1296"
   weight: "253 g"
   ip_range: "IP67"
   storage: "Micro SD card slot (Max. 256 GB)"
