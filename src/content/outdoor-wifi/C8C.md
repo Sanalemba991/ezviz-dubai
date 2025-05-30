@@ -1,6 +1,6 @@
 ---
 title: "C8C"
-description: "Break the sight boundaries."
+description: "Break the sight boundaries completely free."
 image: "/images/outdoor-wifi/C8C.png"
 images:
   - url: "/images/outdoor-wifi/C8C.png"

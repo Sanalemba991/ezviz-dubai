@@ -1,4 +1,5 @@
 ---
+slug: CB3
 title: "CB3"
 description: "Standalone Smart Home Battery Camera."
 image: "/images/wifi-free/CB3.png"

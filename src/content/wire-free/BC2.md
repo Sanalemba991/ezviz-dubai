@@ -1,6 +1,7 @@
 ---
+slug: "BC2"
 title: "BC2"
-description: "Wi-Fi Smart Home Battery Camera."
+description: "The decor that protects your home with Wi-Fi Smart Home Battery Camera technology."
 image: "/images/wifi-free/BC2.png"
 images:
   - url: "/images/wifi-free/BC2.png"

@@ -1,6 +1,6 @@
 ---
 title: "C4W"
-description: "Outdoor Guardian with Active Defense."
+description: "Outdoor Guardian with Defense."
 image: "/images/outdoor-wifi/C4W.png"
 images:
   - url: "/images/outdoor-wifi/C4W.png"

@@ -724,7 +724,7 @@ const products = await getCollection('outdoor-wifi');
             <div id="products" class="products-grid grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                 {products.map((product, index) => (
                     <a 
-                        href={`/products/${product.slug}`}
+                        href={`/outdoor-wifi/${product.slug}`}
                         class="product-card category-item"
                         data-name={product.data.title.toLowerCase()}
                         style={`animation-delay: ${index * 100}ms`}

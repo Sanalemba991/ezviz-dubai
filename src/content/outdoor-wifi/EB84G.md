@@ -1,6 +1,6 @@
 ---
 title: "EB8 4G"
-description: "Pan & Tilt 4G Battery Camera."
+description: "Pan & Tilt 4G Battery Camera Outdoor Surveillance."
 image: "/images/outdoor-wifi/EB8 4G.png"
 images:
   - url: "/images/outdoor-wifi/EB8 4G.png"

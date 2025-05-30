@@ -1,6 +1,6 @@
 ---
 title: "H9c Dual 2K"
-description: "Dual-Lens Pan & Tilt Wi-Fi Camera."
+description: "Dual-Lens Pan & Tilt Wi-Fi Security Camera System"
 image: "/images/outdoor-wifi/H9cDual2K.png"
 images:
   - url: "/images/outdoor-wifi/H9cDual2K.png"

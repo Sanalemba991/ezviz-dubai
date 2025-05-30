@@ -1,6 +1,6 @@
 ---
 title: "C6W"
-description: "The decor that protects your home."
+description: "The decor that protects your home with vision and security."
 image: "/images/indoor-wifi/C6W.png"
 images:
   - url: "/images/indoor-wifi/C6W.png"

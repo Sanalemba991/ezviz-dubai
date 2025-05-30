@@ -1,6 +1,6 @@
 ---
 title: "EZVIZ OutPro (C3TN 2K)"
-description: "Simple in use, but powerful in action."
+description: "Simple in use, but powerful in action and impact."
 image: "/images/outdoor-wifi/OutproEzviz.png"
 images:
   - url: "/images/outdoor-wifi/OutproEzviz.png"

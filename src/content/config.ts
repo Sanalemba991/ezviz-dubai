@@ -77,7 +77,7 @@ const indoorWifiFreeCollection = defineCollection({
 });
 
 export const collections = {
-  'wifi-free': wifiFreeCollection,
+  'wire-free': wifiFreeCollection,
   'outdoor-wifi': outdoorWifiFreeCollection,
   'indoor-wifi': indoorWifiFreeCollection,
 };

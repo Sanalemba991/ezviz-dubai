@@ -1,6 +1,6 @@
 ---
 title: "C8W"
-description: "2K+ Pan & Tilt Wi-Fi Camera."
+description: "2K+ Pan & Tilt Wi-Fi Wireless Security Camera with Night Vision"
 image: "/images/outdoor-wifi/C8W.png"
 images:
   - url: "/images/outdoor-wifi/C8W.png"

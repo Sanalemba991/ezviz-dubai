@@ -1,4 +1,5 @@
 ---
+slug: HB8
 title: "HB8"
 description: "Battery-Powered Pan & Tilt Wi-Fi Camera."
 image: "/images/wifi-free/HB8.png"

@@ -1,4 +1,5 @@
 ---
+slug: EB3
 title: "EB3"
 description: "Standalone Smart Home Battery Camera."
 image: "/images/wifi-free/EB3.png"

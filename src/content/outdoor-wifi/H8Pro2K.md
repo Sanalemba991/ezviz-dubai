@@ -1,6 +1,6 @@
 ---
 title: "H8 Pro 2K"
-description: "Pan & Tilt Wi-Fi Camera in 2K."
+description: "Pan & Tilt Wi-Fi Camera in 2K Resolution"
 image: "/images/outdoor-wifi/H8Pro2K.png"
 images:
   - url: "/images/outdoor-wifi/H8Pro2K.png"

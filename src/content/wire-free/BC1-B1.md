@@ -1,4 +1,5 @@
 ---
+slug: BC1-B1
 title: "BC1-B1"
 description: "Battery Camera Kit with year-long protection."
 image: "/images/wifi-free/BC1-B1.png"
