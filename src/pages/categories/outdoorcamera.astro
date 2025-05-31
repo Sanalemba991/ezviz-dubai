@@ -587,6 +587,19 @@ const products = await getCollection('outdoor-wifi');
 .filter-btn.text-white {
   color: #fff !important;
 }
+
+/* Add this to your <style> block */
+.animated-button.explore-btn {
+    border: 1.5px solid #ffffff !important;
+    background: transparent !important;
+    color: #ffff !important;
+    transition: background 0.3s, color 0.3s, border-color 0.3s;
+}
+.animated-button.explore-btn:hover {
+    background: #2563eb !important; /* blue-600 */
+    color: #fff !important;
+    border-color: #2563eb !important;
+}
 </style>
 
 <Layout>
@@ -608,14 +621,14 @@ const products = await getCollection('outdoor-wifi');
                             Revolutionary battery-powered surveillance with AI-driven detection, crystal-clear 4K recording, and seamless smart home integration.
                         </p>
                         <div class="flex flex-col sm:flex-row gap-4">
-                            <button class="animated-button inline-flex items-center justify-center bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg font-medium text-base transition-all duration-300 shadow-lg hover:shadow-xl">
-                                <i class="fas fa-play mr-2"></i>
-                                Watch Demo
-                            </button>
-                            <button onclick="document.getElementById('products').scrollIntoView({behavior: 'smooth'})" class="animated-button inline-flex items-center justify-center border border-slate-300 hover:border-white text-white px-8 py-3 rounded-lg font-medium text-base hover:bg-white hover:text-slate-900 transition-all duration-300">
-                                Explore Products
-                                <i class="fas fa-arrow-down ml-2"></i>
-                            </button>
+                    
+                            <button 
+    onclick="document.getElementById('products').scrollIntoView({behavior: 'smooth'})"
+    class="animated-button explore-btn inline-flex items-center justify-center border border-slate-300 px-8 py-3 rounded-lg font-medium text-base transition-all duration-300"
+>
+    Explore Products
+    <i class="fas fa-arrow-down ml-2"></i>
+</button>
                         </div>
 
                         <!-- Stats -->
@@ -685,21 +698,21 @@ const products = await getCollection('outdoor-wifi');
                 </div>
 
                 <!-- Filter Buttons -->
-                <div class="flex flex-wrap justify-center gap-4">
+               <div class="flex flex-wrap justify-center gap-4">
                     <button class="filter-btn px-6 py-3 t rounded-full font-medium transform hover:scale-105 transition-all duration-300 shadow-lg" data-filter="all">
                         <i class="fas fa-th-large mr-2"></i>All Products
                     </button>
-                    <button class="filter-btn px-6 py-3 rounded-full font-medium transform hover:scale-105 transition-all duration-300 shadow-lg" data-filter="battery">
-                        <i class="fas fa-battery-full mr-2"></i>Battery Powered
+                    <button class="filter-btn px-6 py-3 rounded-full font-medium transform hover:scale-105 transition-all duration-300 shadow-lg" data-filter="b">
+                        <i class="fas fa-battery-full mr-2"></i>B Series
                     </button>
-                    <button class="filter-btn px-6 py-3 rounded-full font-medium transform hover:scale-105 transition-all duration-300 shadow-lg" data-filter="pan-tilt">
-                        <i class="fas fa-sync-alt mr-2"></i>Pan & Tilt
+                    <button class="filter-btn px-6 py-3 rounded-full font-medium transform hover:scale-105 transition-all duration-300 shadow-lg" data-filter="c">
+                        <i class="fas fa-sync-alt mr-2"></i>C Series
                     </button>
-                    <button class="filter-btn px-6 py-3 rounded-full font-medium transform hover:scale-105 transition-all duration-300 shadow-lg" data-filter="outdoor">
-                        <i class="fas fa-cloud-sun mr-2"></i>Outdoor
+                    <button class="filter-btn px-6 py-3 rounded-full font-medium transform hover:scale-105 transition-all duration-300 shadow-lg" data-filter="e">
+                        <i class="fas fa-cloud-sun mr-2"></i>E Series
                     </button>
-                    <button class="filter-btn px-6 py-3 rounded-full font-medium transform hover:scale-105 transition-all duration-300 shadow-lg" data-filter="smart">
-                        <i class="fas fa-brain mr-2"></i>AI Smart
+                    <button class="filter-btn px-6 py-3 rounded-full font-medium transform hover:scale-105 transition-all duration-300 shadow-lg" data-filter="h">
+                        <i class="fas fa-brain mr-2"></i>H Series
                     </button>
                 </div>
 
@@ -786,7 +799,7 @@ const products = await getCollection('outdoor-wifi');
         </div>
     </section>
 
-    <script is:inline>
+ <script is:inline>
         document.addEventListener("DOMContentLoaded", function () {
             // Enhanced scroll animations with intersection observer
             const animateElements = document.querySelectorAll('.animate-on-scroll');
@@ -878,16 +891,31 @@ const products = await getCollection('outdoor-wifi');
                 const searchTerm = searchInput.value.toLowerCase();
                 const activeFilter = document.querySelector('.filter-btn.bg-blue-600')?.dataset.filter || 'all';
 
+                // Only allow names that start with b, c, e, or h
+                const allowed = ['b', 'c', 'e', 'h'];
+
                 productItems.forEach((item, index) => {
                     const name = item.dataset.name || '';
                     const category = item.dataset.category || '';
-                    
-                    const matchesSearch = name.includes(searchTerm);
-                    const matchesFilter = activeFilter === 'all' || category.includes(activeFilter);
-                    
-                    if (matchesSearch && matchesFilter) {
+
+                    // Check if product name starts with allowed letter
+                    const startsWithAllowed = allowed.some(letter => name.startsWith(letter));
+
+                    let show = false;
+
+                    if (activeFilter === 'all') {
+                        // Show all allowed products matching search
+                        show = startsWithAllowed && name.includes(searchTerm);
+                    } else if (allowed.includes(activeFilter)) {
+                        // Show only products starting with the selected letter and matching search
+                        show = name.startsWith(activeFilter) && name.includes(searchTerm);
+                    } else {
+                        // Fallback for other filters (like "battery", "pan-tilt", etc.)
+                        show = name.includes(searchTerm) && category.includes(activeFilter);
+                    }
+
+                    if (show) {
                         item.style.display = 'block';
-                        // Stagger animation for filtered results
                         item.style.animation = `fadeInUp 0.6s ease-out forwards`;
                         item.style.animationDelay = `${index * 50}ms`;
                     } else {
@@ -899,17 +927,19 @@ const products = await getCollection('outdoor-wifi');
             }
 
             // Enhanced search input animations
-            searchInput.addEventListener('focus', () => {
-                searchInput.parentElement.style.transform = 'scale(1.02)';
-                searchInput.parentElement.style.boxShadow = '0 20px 40px rgba(59, 130, 246, 0.2)';
-            });
+            if (searchInput) {
+                searchInput.addEventListener('focus', () => {
+                    searchInput.parentElement.style.transform = 'scale(1.02)';
+                    searchInput.parentElement.style.boxShadow = '0 20px 40px rgba(59, 130, 246, 0.2)';
+                });
 
-            searchInput.addEventListener('blur', () => {
-                searchInput.parentElement.style.transform = 'scale(1)';
-                searchInput.parentElement.style.boxShadow = '0 10px 25px rgba(0, 0, 0, 0.1)';
-            });
+                searchInput.addEventListener('blur', () => {
+                    searchInput.parentElement.style.transform = 'scale(1)';
+                    searchInput.parentElement.style.boxShadow = '0 10px 25px rgba(0, 0, 0, 0.1)';
+                });
 
-            searchInput.addEventListener('input', filterProducts);
+                searchInput.addEventListener('input', filterProducts);
+            }
 
             // Enhanced filter buttons with ripple effect
             const filterButtons = document.querySelectorAll('.filter-btn');
@@ -954,7 +984,6 @@ const products = await getCollection('outdoor-wifi');
                 });
             });
 
-
             // Add ripple animation styles
             const style = document.createElement('style');
             style.textContent = `
@@ -969,118 +998,131 @@ const products = await getCollection('outdoor-wifi');
 
             // Enhanced sort functionality
             const sortSelect = document.getElementById('sortSelect');
-            sortSelect.addEventListener('change', () => {
-                const sortValue = sortSelect.value;
-                const productContainer = document.getElementById('products');
-                const products = Array.from(productItems);
+            if (sortSelect) {
+                sortSelect.addEventListener('change', () => {
+                    const sortValue = sortSelect.value;
+                    const productContainer = document.getElementById('products');
+                    const products = Array.from(productItems);
 
-                // Add loading animation
-                productContainer.style.opacity = '0.5';
-                productContainer.style.transform = 'scale(0.95)';
+                    // Add loading animation
+                    productContainer.style.opacity = '0.5';
+                    productContainer.style.transform = 'scale(0.95)';
 
-                setTimeout(() => {
-                    products.sort((a, b) => {
-                        switch(sortValue) {
-                            case 'name':
-                                return a.dataset.name.localeCompare(b.dataset.name);
-                            case 'newest':
-                                return Math.random() - 0.5;
-                            case 'popular':
-                                return Math.random() - 0.5;
-                            default:
-                                return 0;
-                        }
-                    });
+                    setTimeout(() => {
+                        products.sort((a, b) => {
+                            switch(sortValue) {
+                                case 'name':
+                                    return a.dataset.name.localeCompare(b.dataset.name);
+                                case 'newest':
+                                    return Math.random() - 0.5;
+                                case 'popular':
+                                    return Math.random() - 0.5;
+                                default:
+                                    return 0;
+                            }
+                        });
 
-                    // Re-append sorted products with animation
-                    products.forEach((product, index) => {
-                        product.style.animation = `fadeInUp 0.6s ease-out forwards`;
-                        product.style.animationDelay = `${index * 50}ms`;
-                        productContainer.appendChild(product);
-                    });
+                        // Re-append sorted products with animation
+                        products.forEach((product, index) => {
+                            product.style.animation = `fadeInUp 0.6s ease-out forwards`;
+                            product.style.animationDelay = `${index * 50}ms`;
+                            productContainer.appendChild(product);
+                        });
 
-                    productContainer.style.opacity = '1';
-                    productContainer.style.transform = 'scale(1)';
-                }, 300);
-            });
+                        productContainer.style.opacity = '1';
+                        productContainer.style.transform = 'scale(1)';
+                    }, 300);
+                });
+            }
 
             // Enhanced voice search functionality
-            document.querySelector('.fa-microphone').parentElement.addEventListener('click', () => {
-                if ('webkitSpeechRecognition' in window) {
-                    const recognition = new webkitSpeechRecognition();
-                    recognition.continuous = false;
-                    recognition.interimResults = false;
-                    recognition.lang = 'en-US';
+            const micButton = document.querySelector('.fa-microphone');
+            if (micButton && micButton.parentElement) {
+                micButton.parentElement.addEventListener('click', () => {
+                    if ('webkitSpeechRecognition' in window) {
+                        const recognition = new webkitSpeechRecognition();
+                        recognition.continuous = false;
+                        recognition.interimResults = false;
+                        recognition.lang = 'en-US';
 
-                    recognition.onstart = () => {
-                        searchInput.placeholder = 'Listening... Speak now!';
-                        const micIcon = document.querySelector('.fa-microphone');
-                        micIcon.classList.add('text-red-500');
-                        micIcon.style.animation = 'pulse 1s infinite';
-                        searchInput.style.borderColor = '#ef4444';
-                    };
+                        recognition.onstart = () => {
+                            if (searchInput) {
+                                searchInput.placeholder = 'Listening... Speak now!';
+                                micButton.classList.add('text-red-500');
+                                micButton.style.animation = 'pulse 1s infinite';
+                                searchInput.style.borderColor = '#ef4444';
+                            }
+                        };
 
-                    recognition.onresult = (event) => {
-                        const transcript = event.results[0][0].transcript;
-                        searchInput.value = transcript;
-                        
-                        // Animate the text appearing
-                        searchInput.style.animation = 'slideInRight 0.5s ease-out';
-                        filterProducts();
-                    };
+                        recognition.onresult = (event) => {
+                            const transcript = event.results[0][0].transcript;
+                            if (searchInput) {
+                                searchInput.value = transcript;
+                                // Animate the text appearing
+                                searchInput.style.animation = 'slideInRight 0.5s ease-out';
+                                filterProducts();
+                            }
+                        };
 
-                    recognition.onend = () => {
-                        searchInput.placeholder = 'Search cameras by model, features, or specifications...';
-                        const micIcon = document.querySelector('.fa-microphone');
-                        micIcon.classList.remove('text-red-500');
-                        micIcon.style.animation = '';
-                        searchInput.style.borderColor = '';
-                    };
+                        recognition.onend = () => {
+                            if (searchInput) {
+                                searchInput.placeholder = 'Search cameras by model, features, or specifications...';
+                                micButton.classList.remove('text-red-500');
+                                micButton.style.animation = '';
+                                searchInput.style.borderColor = '';
+                            }
+                        };
 
-                    recognition.start();
-                } else {
-                    // Show animated alert
-                    const alert = document.createElement('div');
-                    alert.innerHTML = `
-                        <div style="
-                            position: fixed;
-                            top: 50%;
-                            left: 50%;
-                            transform: translate(-50%, -50%);
-                            background: white;
-                            padding: 2rem;
-                            border-radius: 12px;
-                            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
-                            z-index: 1000;
-                            animation: scaleIn 0.3s ease-out;
-                        ">
-                            <i class="fas fa-exclamation-triangle text-3xl text-yellow-500 mb-4"></i>
-                            <p>Voice search is not supported in this browser.</p>
-                            <button onclick="this.parentElement.parentElement.remove()" 
-                                    style="margin-top: 1rem; padding: 0.5rem 1rem; background: #3b82f6; color: white; border: none; border-radius: 6px; cursor: pointer;">
-                                OK
-                            </button>
-                        </div>
-                        <div style="
-                            position: fixed;
-                            top: 0;
-                            left: 0;
-                            width: 100%;
-                            height: 100%;
-                            background: rgba(0,0,0,0.5);
-                            z-index: 999;
-                        " onclick="this.parentElement.remove()"></div>
-                    `;
-                    document.body.appendChild(alert);
-                }
-            });
+                        recognition.start();
+                    } else {
+                        // Show animated alert
+                        const alert = document.createElement('div');
+                        alert.innerHTML = `
+                            <div style="
+                                position: fixed;
+                                top: 50%;
+                                left: 50%;
+                                transform: translate(-50%, -50%);
+                                background: white;
+                                padding: 2rem;
+                                border-radius: 12px;
+                                box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+                                z-index: 1000;
+                                animation: scaleIn 0.3s ease-out;
+                            ">
+                                <i class="fas fa-exclamation-triangle text-3xl text-yellow-500 mb-4"></i>
+                                <p>Voice search is not supported in this browser.</p>
+                                <button onclick="this.parentElement.parentElement.remove()" 
+                                        style="margin-top: 1rem; padding: 0.5rem 1rem; background: #3b82f6; color: white; border: none; border-radius: 6px; cursor: pointer;">
+                                    OK
+                                </button>
+                            </div>
+                            <div style="
+                                position: fixed;
+                                top: 0;
+                                left: 0;
+                                width: 100%;
+                                height: 100%;
+                                background: rgba(0,0,0,0.5);
+                                z-index: 999;
+                            " onclick="this.parentElement.remove()"></div>
+                        `;
+                        document.body.appendChild(alert);
+                    }
+                });
+            }
 
             // Clear filters function with animation
             window.clearFilters = function() {
-                searchInput.value = '';
-                searchInput.style.animation = 'slideInLeft 0.5s ease-out';
-                document.querySelector('[data-filter="all"]').click();
-                sortSelect.value = 'default';
+                if (searchInput) {
+                    searchInput.value = '';
+                    searchInput.style.animation = 'slideInLeft 0.5s ease-out';
+                }
+                
+                const allButton = document.querySelector('[data-filter="all"]');
+                if (allButton) allButton.click();
+                
+                if (sortSelect) sortSelect.value = 'default';
                 
                 // Animate all products back in
                 productItems.forEach((item, index) => {
@@ -1092,16 +1134,18 @@ const products = await getCollection('outdoor-wifi');
                 updateProductCount();
             };
 
-            // Enhanced parallax effect
+            // Enhanced parallax effect - Fixed to not interfere with layout
             let ticking = false;
             function updateParallax() {
                 const scrolled = window.pageYOffset;
                 const heroElements = document.querySelectorAll('.floating-element');
                 
                 heroElements.forEach((element, index) => {
-                    const speed = 0.5 + (index * 0.1);
-                    const yPos = -(scrolled * speed);
-                    element.style.transform = `translateY(${yPos}px) scale(${1 + scrolled * 0.0001})`;
+                    if (element && element.style) {
+                        const speed = 0.5 + (index * 0.1);
+                        const yPos = -(scrolled * speed);
+                        element.style.transform = `translateY(${yPos}px) scale(${1 + scrolled * 0.0001})`;
+                    }
                 });
                 
                 ticking = false;
@@ -1158,21 +1202,38 @@ const products = await getCollection('outdoor-wifi');
                 });
             });
 
-            // Loading animation for page initialization
-            setTimeout(() => {
-                document.body.style.opacity = '1';
-                document.body.style.transform = 'translateY(0)';
-            }, 100);
-
-            // Initialize
-            updateProductCount();
+            // FIXED: Better loading animation that doesn't interfere with layout
+            const mainContent = document.querySelector('main') || document.body;
             
-            // Add initial body styles for loading animation
-            document.body.style.cssText += `
-                opacity: 0;
-                transform: translateY(20px);
-                transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-            `;
+            // Set initial state for loading animation
+            if (mainContent) {
+                mainContent.style.opacity = '0';
+                mainContent.style.transform = 'translateY(20px)';
+                mainContent.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
+                
+                // Show content after initialization
+                setTimeout(() => {
+                    mainContent.style.opacity = '1';
+                    mainContent.style.transform = 'translateY(0)';
+                }, 100);
+            }
+
+            // Initialize product count
+            if (productCount) {
+                updateProductCount();
+            }
+
+            // Ensure all elements are properly visible
+            setTimeout(() => {
+                // Force visibility of all layout elements
+                const layoutElements = document.querySelectorAll('header, nav, main, footer, section');
+                layoutElements.forEach(el => {
+                    if (el) {
+                        el.style.visibility = 'visible';
+                        el.style.opacity = '1';
+                    }
+                });
+            }, 200);
         });
     </script>
 </Layout>
