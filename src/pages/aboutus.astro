@@ -511,19 +511,19 @@ import "../styles/global.css";
       </div>
     </section>
 
- <section class="help-section bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl p-10 border border-gray-200 overflow-hidden relative">
-  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center relative z-10 transition-all duration-1000 ease-[cubic-bezier(0.2,0,0,1)] transform [&.active]:opacity-100 [&.active]:translate-y-0 opacity-0 translate-y-8">
-    <h2 class="text-3xl font-semibold text-gray-900 mb-4 transition-all duration-700 ease-[cubic-bezier(0.2,0,0,1)] delay-100 [.active_&]:opacity-100 [.active_&]:translate-y-0 opacity-0 translate-y-5">
+ <section class="help-section bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl p-4 sm:p-8 md:p-10 border border-gray-200 overflow-hidden relative mx-2 sm:mx-4 md:mx-auto">
+  <div class="max-w-4xl mx-auto px-2 sm:px-4 lg:px-8 text-center relative z-10 transition-all duration-1000 ease-[cubic-bezier(0.2,0,0,1)] transform [&.active]:opacity-100 [&.active]:translate-y-0 opacity-0 translate-y-8">
+    <h2 class="text-2xl sm:text-3xl font-semibold text-gray-900 mb-4 transition-all duration-700 ease-[cubic-bezier(0.2,0,0,1)] delay-100 [.active_&]:opacity-100 [.active_&]:translate-y-0 opacity-0 translate-y-5">
       Ready to Secure Your Property?
     </h2>
-    <div class="w-16 h-1 bg-blue-600 mx-auto mb-6 transition-all duration-800 ease-[cubic-bezier(0.2,0,0,1)] delay-200 [.active_&]:opacity-100 [.active_&]:scale-x-100 opacity-0 scale-x-0 origin-center"></div>
-    <p class="text-gray-600 mb-8 leading-relaxed transition-all duration-700 ease-[cubic-bezier(0.2,0,0,1)] delay-300 [.active_&]:opacity-100 [.active_&]:translate-y-0 opacity-0 translate-y-5">
+    <div class="w-12 sm:w-16 h-1 bg-blue-600 mx-auto mb-6 transition-all duration-800 ease-[cubic-bezier(0.2,0,0,1)] delay-200 [.active_&]:opacity-100 [.active_&]:scale-x-100 opacity-0 scale-x-0 origin-center"></div>
+    <p class="text-gray-600 mb-8 leading-relaxed transition-all duration-700 ease-[cubic-bezier(0.2,0,0,1)] delay-300 [.active_&]:opacity-100 [.active_&]:translate-y-0 opacity-0 translate-y-5 text-base sm:text-lg">
       Contact our security experts for a comprehensive consultation and customized EZVIZ solution tailored to your specific requirements.
     </p>
     <div class="flex flex-col sm:flex-row gap-4 justify-center transition-all duration-700 ease-[cubic-bezier(0.2,0,0,1)] delay-400 [.active_&]:opacity-100 [.active_&]:translate-y-0 opacity-0 translate-y-5">
       <a
         href="/contact"
-        class="animated-button inline-flex items-center justify-center rounded-lg bg-blue-600 px-6 py-3 text-base font-semibold text-white shadow-md hover:bg-blue-700 transition-all duration-400 hover:shadow-lg transform hover:-translate-y-1"
+        class="animated-button inline-flex items-center justify-center rounded-lg bg-blue-600 px-4 sm:px-6 py-3 text-base font-semibold text-white shadow-md hover:bg-blue-700 transition-all duration-400 hover:shadow-lg transform hover:-translate-y-1 w-full sm:w-auto"
       >
         Schedule Consultation
         <svg class="ml-2 h-5 w-5 transition-transform duration-400 group-hover:translate-x-1" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -533,13 +533,40 @@ import "../styles/global.css";
       </a>
       <a
         href="tel:+971 55 422 1947"
-        class="animated-button inline-flex items-center justify-center rounded-lg border border-gray-300 bg-white px-6 py-3 text-base font-semibold text-gray-900 hover:bg-gray-50 transition-all duration-400 hover:shadow-md transform hover:-translate-y-1"
+        class="animated-button inline-flex items-center justify-center rounded-lg border border-gray-300 bg-white px-4 sm:px-6 py-3 text-base font-semibold text-gray-900 hover:bg-gray-50 transition-all duration-400 hover:shadow-md transform hover:-translate-y-1 w-full sm:w-auto"
       >
         Call +971 55 422 1947
       </a>
     </div>
-  </div>
+ 
 </section>
+
+<style is:global>
+/* Responsive fix for help-section */
+.help-section {
+  margin-left: 0 !important;
+  margin-right: 0 !important;
+  margin-bottom: 80px;
+}
+@media (min-width: 640px) {
+  .help-section {
+    margin-left: 1rem !important;
+    margin-right: 1rem !important;
+  }
+}
+@media (min-width: 768px) {
+  .help-section {
+    margin-left: 100px !important;
+    margin-right: 100px !important;
+  }
+}
+@media (min-width: 1024px) {
+  .help-section {
+    margin-left: 200px !important;
+    margin-right: 200px !important;
+  }
+}
+</style>
 
 <script>
 document.addEventListener('DOMContentLoaded', function() {

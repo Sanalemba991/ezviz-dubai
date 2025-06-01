@@ -5,8 +5,9 @@ import "../../styles/global.css";
 
 const products = await getCollection('outdoor-wifi');
 ---
-
-<style>
+<Layout>
+    <style>
+        
     /* Enhanced Animations */
     @keyframes fadeInUp {
         from {
@@ -588,11 +589,10 @@ const products = await getCollection('outdoor-wifi');
   color: #fff !important;
 }
 
-/* Add this to your <style> block */
 .animated-button.explore-btn {
-    border: 1.5px solid #ffffff !important;
+    border: 1.5px solid #3b82f6 !important;
     background: transparent !important;
-    color: #ffff !important;
+    color: #fff !important;
     transition: background 0.3s, color 0.3s, border-color 0.3s;
 }
 .animated-button.explore-btn:hover {
@@ -601,13 +601,6 @@ const products = await getCollection('outdoor-wifi');
     border-color: #2563eb !important;
 }
 </style>
-
-<Layout>
-    <!-- Additional meta tags -->
-    <meta name="robots" content="index, follow" slot="head" />
-    <meta name="keywords" content="Wi-Fi cameras, surveillance, security, battery cameras, smart home, EZVIZ, Dubai" slot="head" />
-
-    <!-- Professional Banner Section -->
     <section class="hero-banner">
         <div class="w-full relative z-10">
             <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -615,13 +608,13 @@ const products = await getCollection('outdoor-wifi');
                     <!-- Left Content -->
                     <div class="text-white hero-content">
                         <h1 class="text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-                            Outdoor Wifi <span class="text-blue-400">Security Cameras</span>
+                            Outdoor-Wifi <span class="text-blue-400">Security Cameras</span>
                         </h1>
                         <p class="text-lg text-slate-200 mb-8 leading-relaxed max-w-lg animate-on-scroll">
                             Revolutionary battery-powered surveillance with AI-driven detection, crystal-clear 4K recording, and seamless smart home integration.
                         </p>
                         <div class="flex flex-col sm:flex-row gap-4">
-                    
+        
                             <button 
     onclick="document.getElementById('products').scrollIntoView({behavior: 'smooth'})"
     class="animated-button explore-btn inline-flex items-center justify-center border border-slate-300 px-8 py-3 rounded-lg font-medium text-base transition-all duration-300"
@@ -698,7 +691,7 @@ const products = await getCollection('outdoor-wifi');
                 </div>
 
                 <!-- Filter Buttons -->
-               <div class="flex flex-wrap justify-center gap-4">
+                <div class="flex flex-wrap justify-center gap-4">
                     <button class="filter-btn px-6 py-3 t rounded-full font-medium transform hover:scale-105 transition-all duration-300 shadow-lg" data-filter="all">
                         <i class="fas fa-th-large mr-2"></i>All Products
                     </button>
@@ -799,7 +792,7 @@ const products = await getCollection('outdoor-wifi');
         </div>
     </section>
 
- <script is:inline>
+    <script is:inline>
         document.addEventListener("DOMContentLoaded", function () {
             // Enhanced scroll animations with intersection observer
             const animateElements = document.querySelectorAll('.animate-on-scroll');
@@ -825,25 +818,78 @@ const products = await getCollection('outdoor-wifi');
 
             // Product cards animation observer
             const productCards = document.querySelectorAll('.product-card');
-            const cardObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.animationPlayState = 'running';
-                        // Add micro bounce effect
-                        setTimeout(() => {
-                            entry.target.style.transform = 'translateY(-5px)';
-                            setTimeout(() => {
-                                entry.target.style.transform = 'translateY(0)';
-                            }, 150);
-                        }, 300);
-                    }
-                });
-            }, { threshold: 0.2 });
+            const isMobile = window.innerWidth <= 768;
 
-            productCards.forEach(card => {
-                card.style.animationPlayState = 'paused';
-                cardObserver.observe(card);
-            });
+            if (isMobile) {
+                // On mobile: No animation on initial load, but filtered products will fade in
+                productCards.forEach(card => {
+                    card.style.opacity = '1';
+                    card.style.animation = 'none';
+                    card.style.transition = 'none';
+                });
+
+                // Override filterProducts for mobile to use fade-in on filtered results
+                function filterProducts() {
+                    const searchTerm = searchInput.value.toLowerCase();
+                    const activeFilter = document.querySelector('.filter-btn.bg-blue-600')?.dataset.filter || 'all';
+
+                    productItems.forEach((item, index) => {
+                        const name = item.dataset.name || '';
+                        const category = item.dataset.category || '';
+
+                        // Only allow names that start with b, c, e, or h
+                        const allowed = ['b', 'c', 'e', 'h'];
+                        const startsWithAllowed = allowed.some(letter => name.startsWith(letter));
+
+                        // Filter logic
+                        let show = false;
+
+                        if (activeFilter === 'all') {
+                            show = startsWithAllowed && name.includes(searchTerm);
+                        } else if (allowed.includes(activeFilter)) {
+                            show = name.startsWith(activeFilter) && name.includes(searchTerm);
+                        } else {
+                            show = name.includes(searchTerm);
+                        }
+
+                        if (show) {
+                            item.style.display = 'block';
+                            item.style.opacity = '0';
+                            item.style.animation = 'none';
+                            setTimeout(() => {
+                                item.style.transition = 'opacity 0.7s';
+                                item.style.opacity = '1';
+                            }, 10);
+                        } else {
+                            item.style.display = 'none';
+                            item.style.opacity = '0';
+                        }
+                    });
+
+                    updateProductCount();
+                }
+            } else {
+                // On desktop: keep animation as before
+                const cardObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.style.animationPlayState = 'running';
+                            // Add micro bounce effect
+                            setTimeout(() => {
+                                entry.target.style.transform = 'translateY(-5px)';
+                                setTimeout(() => {
+                                    entry.target.style.transform = 'translateY(0)';
+                                }, 150);
+                            }, 300);
+                        }
+                    });
+                }, { threshold: 0.2 });
+
+                productCards.forEach(card => {
+                    card.style.animationPlayState = 'paused';
+                    cardObserver.observe(card);
+                });
+            }
 
             // Search functionality with enhanced animations
             const searchInput = document.getElementById('searchInput');
@@ -891,16 +937,15 @@ const products = await getCollection('outdoor-wifi');
                 const searchTerm = searchInput.value.toLowerCase();
                 const activeFilter = document.querySelector('.filter-btn.bg-blue-600')?.dataset.filter || 'all';
 
-                // Only allow names that start with b, c, e, or h
-                const allowed = ['b', 'c', 'e', 'h'];
-
                 productItems.forEach((item, index) => {
                     const name = item.dataset.name || '';
                     const category = item.dataset.category || '';
 
-                    // Check if product name starts with allowed letter
+                    // Only allow names that start with b, c, e, or h
+                    const allowed = ['b', 'c', 'e', 'h'];
                     const startsWithAllowed = allowed.some(letter => name.startsWith(letter));
 
+                    // Filter logic
                     let show = false;
 
                     if (activeFilter === 'all') {
@@ -910,8 +955,8 @@ const products = await getCollection('outdoor-wifi');
                         // Show only products starting with the selected letter and matching search
                         show = name.startsWith(activeFilter) && name.includes(searchTerm);
                     } else {
-                        // Fallback for other filters (like "battery", "pan-tilt", etc.)
-                        show = name.includes(searchTerm) && category.includes(activeFilter);
+                        // Fallback (should not happen)
+                        show = name.includes(searchTerm);
                     }
 
                     if (show) {

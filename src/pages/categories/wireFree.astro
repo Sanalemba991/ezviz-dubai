@@ -818,25 +818,78 @@ const products = await getCollection('wire-free');
 
             // Product cards animation observer
             const productCards = document.querySelectorAll('.product-card');
-            const cardObserver = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.style.animationPlayState = 'running';
-                        // Add micro bounce effect
-                        setTimeout(() => {
-                            entry.target.style.transform = 'translateY(-5px)';
-                            setTimeout(() => {
-                                entry.target.style.transform = 'translateY(0)';
-                            }, 150);
-                        }, 300);
-                    }
-                });
-            }, { threshold: 0.2 });
+            const isMobile = window.innerWidth <= 768;
 
-            productCards.forEach(card => {
-                card.style.animationPlayState = 'paused';
-                cardObserver.observe(card);
-            });
+            if (isMobile) {
+                // On mobile: No animation on initial load, but filtered products will fade in
+                productCards.forEach(card => {
+                    card.style.opacity = '1';
+                    card.style.animation = 'none';
+                    card.style.transition = 'none';
+                });
+
+                // Override filterProducts for mobile to use fade-in on filtered results
+                function filterProducts() {
+                    const searchTerm = searchInput.value.toLowerCase();
+                    const activeFilter = document.querySelector('.filter-btn.bg-blue-600')?.dataset.filter || 'all';
+
+                    productItems.forEach((item, index) => {
+                        const name = item.dataset.name || '';
+                        const category = item.dataset.category || '';
+
+                        // Only allow names that start with b, c, e, or h
+                        const allowed = ['b', 'c', 'e', 'h'];
+                        const startsWithAllowed = allowed.some(letter => name.startsWith(letter));
+
+                        // Filter logic
+                        let show = false;
+
+                        if (activeFilter === 'all') {
+                            show = startsWithAllowed && name.includes(searchTerm);
+                        } else if (allowed.includes(activeFilter)) {
+                            show = name.startsWith(activeFilter) && name.includes(searchTerm);
+                        } else {
+                            show = name.includes(searchTerm);
+                        }
+
+                        if (show) {
+                            item.style.display = 'block';
+                            item.style.opacity = '0';
+                            item.style.animation = 'none';
+                            setTimeout(() => {
+                                item.style.transition = 'opacity 0.7s';
+                                item.style.opacity = '1';
+                            }, 10);
+                        } else {
+                            item.style.display = 'none';
+                            item.style.opacity = '0';
+                        }
+                    });
+
+                    updateProductCount();
+                }
+            } else {
+                // On desktop: keep animation as before
+                const cardObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            entry.target.style.animationPlayState = 'running';
+                            // Add micro bounce effect
+                            setTimeout(() => {
+                                entry.target.style.transform = 'translateY(-5px)';
+                                setTimeout(() => {
+                                    entry.target.style.transform = 'translateY(0)';
+                                }, 150);
+                            }, 300);
+                        }
+                    });
+                }, { threshold: 0.2 });
+
+                productCards.forEach(card => {
+                    card.style.animationPlayState = 'paused';
+                    cardObserver.observe(card);
+                });
+            }
 
             // Search functionality with enhanced animations
             const searchInput = document.getElementById('searchInput');
