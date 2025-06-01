@@ -101,25 +101,25 @@
 
 <script>
   document.addEventListener('DOMContentLoaded', function() {
-    const section = document.getElementById('ezviz-section');
     const animatedElements = document.querySelectorAll('.animation-trigger');
 
     const observer = new IntersectionObserver((entries) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) {
-          animatedElements.forEach(el => {
-            el.classList.add('animate-now');
-          });
+          entry.target.classList.add('animate-now');
           observer.unobserve(entry.target);
         }
       });
     }, {
-      threshold: 0.2,
-      rootMargin: '0px 0px -100px 0px'
+      threshold: 0.15,
+      rootMargin: '0px 0px -50px 0px'
     });
 
-    if (section) {
-      observer.observe(section);
+    if (window.innerWidth < 768) {
+      // Fallback: always show on mobile
+      animatedElements.forEach(el => el.classList.add('animate-now'));
+    } else {
+      animatedElements.forEach(el => observer.observe(el));
     }
   });
 </script>
