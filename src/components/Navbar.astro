@@ -701,8 +701,8 @@
 
     if (
       mobileMenu &&
-      !mobileMenu.contains(event.target) &&
-      !mobileButton?.contains(event.target)
+      !mobileMenu.contains(event.target as Node) &&
+      !mobileButton?.contains(event.target as Node)
     ) {
       mobileMenu.classList.add("hidden");
     }
