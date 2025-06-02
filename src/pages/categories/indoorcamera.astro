@@ -6,7 +6,7 @@ import Whatsapp from "../../components/Whatsapp";
 
 const products = await getCollection('indoor-wifi');
 ---
-<Layout>
+<Layout>    
     <style>
         
     /* Enhanced Animations */
@@ -791,7 +791,7 @@ const products = await getCollection('indoor-wifi');
                 </button>
             </div>
         </div>
-         <Whatsapp client:load />
+    >
     </section>
 
     <script is:inline>
@@ -1283,4 +1283,5 @@ const products = await getCollection('indoor-wifi');
             }, 200);
         });
     </script>
+    <Whatsapp client:load />
 </Layout>
