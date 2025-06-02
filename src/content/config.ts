@@ -75,8 +75,26 @@ const indoorWifiFreeCollection = defineCollection({
     price: z.string().optional(),
   }),
 });
-
+const blogCollection = defineCollection({
+  type: "content",
+  schema: ({ image }) => z.object({
+    id: z.number(),
+    title: z.string(),
+    description: z.string(),
+    contents: z.array(z.string()),
+    author: z.string(),
+    role: z.string().optional(),
+    authorImage: image(),
+    authorImageAlt: z.string(),
+    pubDate: z.date(),
+    cardImage: image(),
+    cardImageAlt: z.string(),
+    readTime: z.number(),
+    tags: z.array(z.string()).optional(),
+  }),
+});
 export const collections = {
+   'blog': blogCollection,
   'wire-free': wifiFreeCollection,
   'outdoor-wifi': outdoorWifiFreeCollection,
   'indoor-wifi': indoorWifiFreeCollection,
