@@ -2,6 +2,89 @@
 import Layout from "../layouts/Layout.astro";
 import "../styles/global.css";
 import Whatsapp from "../components/Whatsapp";
+const title = "Authorized Ezviz Camera Supplier & Distributor in Dubai, Sharjah & UAE | Contact Us";
+const description = "Contact Ezviz Dubai  - Your trusted Ezviz camera distributor in UAE. Get expert support for CCTV solutions in Dubai, Sharjah & across UAE.";
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site).toString();
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "ContactPage",
+  "name": title,
+  "description": description,
+  "url": canonicalUrl,
+  "breadcrumb": {
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": `${Astro.site}`
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Contact",
+        "item": canonicalUrl
+      }
+    ]
+  },
+  "mainEntity": {
+    "@type": "Organization",
+    "name": "Ezviz Dubai",
+    "url": "https://ezviz-dubai.com",
+    "logo": {
+      "@type": "ImageObject",
+      "url": `${Astro.url.origin}/unvdubai.png`,
+      "width": 1000,
+      "height": 375
+    },
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "telephone": "+971552929644",
+      "contactType": ["sales", "customer service"],
+      "email": "sales@ezviz-dubai.com", 
+      "areaServed": ["AE"],
+      "availableLanguage": ["English", "Arabic"],
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "25th St - Naif - Dubai - United Arab Emirates", // Replace
+        "addressLocality": "Dubai",
+        "addressRegion": "Dubai",
+        "postalCode": "123241", 
+        "addressCountry": "AE"
+      }
+    },
+  
+  }
+};
+
+// Open Graph Metadata
+const openGraph = {
+  title: title,
+  description: description,
+  url: canonicalUrl,
+  siteName: "UNV Dubai ",
+  images: [
+    {
+      url: `${Astro.url.origin}/images/og-contact.jpg`, // Replace with actual image
+      width: 1200,
+      height: 630,
+      alt: "Contact UNV Authorized Distributor in Dubai"
+    }
+  ],
+  locale: "en_US",
+  type: "website"
+};
+
+// Twitter Card Metadata
+const twitterCard = {
+  card: "summary_large_image",
+  title: title,
+  description: description,
+  site: "@YourTwitterHandle",
+  creator: "@YourTwitterHandle", 
+  image: `${Astro.url.origin}/images/twitter-contact.jpg` 
+};
 ---
 
 <style is:global>

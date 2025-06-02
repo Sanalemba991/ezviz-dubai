@@ -31,7 +31,7 @@ const formatDate = (date: Date) => {
 };
 
 // SEO meta data
-const title = `${post.data.title} | UNV Dubai Blog`;
+const title = `${post.data.title} | Ezviz Dubai Blog`;
 const description = post.data.description;
 const canonicalUrl = new URL(`/blog/${post.slug}`, Astro.site);
 
@@ -40,6 +40,37 @@ const allPosts = await getCollection("blog");
 const relatedPosts = allPosts
   .filter(p => p.slug !== post.slug)
   .slice(0, 3);
+  
+// JSON-LD Structured Data
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": post.data.title,
+  "description": description,
+  "url": canonicalUrl.toString(),
+  "image": `${Astro.site}${post.data.cardImage.src}`,
+  "datePublished": post.data.pubDate,
+  "dateModified": post.data.pubDate, // Update if you have modified date
+  "author": {
+    "@type": "Person",
+    "name": post.data.author || "Ezviz Dubai",
+    "url": Astro.site
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Ezviz Dubai",
+    "logo": {
+      "@type": "ImageObject",
+      "url": `${Astro.site}/images/unvdubai.png` // Update with your logo path
+    }
+  },
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": canonicalUrl.toString()
+  },
+  "keywords": post.data.tags?.join(", ") || "",
+  "articleBody": post.data.contents.join(" ")
+};
 ---
 
 <Layout
