@@ -5,7 +5,7 @@ import Hero from "../components/Hero.astro";
 import Details from "../components/Details.astro";
 import Ezviz from "../components/Ezviz.astro";
 import Products from "../components/Products.astro";
-//import Whatsapp from "../components/Whatsapp.astro";
+import Whatsapp from "../components/Whatsapp";
 ---
 
 <Layout>
@@ -13,5 +13,5 @@ import Products from "../components/Products.astro";
   <Products />
   <Details />
   <Ezviz />
-
+   <Whatsapp client:load />
 </Layout>

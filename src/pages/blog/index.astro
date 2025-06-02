@@ -2,6 +2,7 @@
 import Layout from "../../layouts/Layout.astro";
 import { getCollection } from "astro:content";
 import "../../styles/global.css";
+import Whatsapp from "../../components/Whatsapp";
 
 // Fetch blog posts dynamically from the 'blog' collection
 const allPosts = await getCollection("blog");
@@ -194,6 +195,7 @@ const canonicalUrl = new URL("/blog", Astro.site);
       <!-- View All Button -->
      
     </div>
+       <Whatsapp client:load />
   </main>
 </Layout>
 

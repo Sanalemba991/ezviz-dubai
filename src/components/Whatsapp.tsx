@@ -1,15 +1,14 @@
-// import { FloatingWhatsApp } from 'react-floating-whatsapp'
-// import logo from '../assets/images/dg.png';
+import { FloatingWhatsApp } from 'react-floating-whatsapp'
 
-// const Whatsapp = () => {
-    
-//     return <FloatingWhatsApp  
-//     accountName='UNV Dubai' 
-//     phoneNumber='+971552929644' 
-//     avatar={logoUrl} 
-//     statusMessage="Live chat now"
-//     chatMessage="Welcome to UNV Dubai 🤝. How can we help?"
-//     />
-// }
+const Whatsapp = () => {
+   
+    return <FloatingWhatsApp  
+    accountName='Ezviz Dubai' 
+    phoneNumber='+971552929644' 
+ 
+    statusMessage="Live chat now"
+    chatMessage="Welcome to Ezviz Dubai 🤝. How can we help?"
+    />
+}
 
-// export default Whatsapp;
+export default Whatsapp;

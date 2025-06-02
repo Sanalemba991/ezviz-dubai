@@ -1,6 +1,7 @@
 ---
 import Layout from "../layouts/Layout.astro";
 import "../styles/global.css";
+import Whatsapp from "../components/Whatsapp";
 ---
 
 <style is:global>
@@ -538,6 +539,7 @@ import "../styles/global.css";
         Call +971 55 422 1947
       </a>
     </div>
+    
  
 </section>
 
@@ -591,6 +593,7 @@ document.addEventListener('DOMContentLoaded', function() {
   }
 });
 </script>
+ <Whatsapp client:load />
   </main>
 </Layout>
 

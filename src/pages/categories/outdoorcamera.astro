@@ -2,6 +2,7 @@
 import Layout from "../../layouts/Layout.astro";
 import { getCollection } from 'astro:content';
 import "../../styles/global.css";
+import Whatsapp from "../../components/Whatsapp";
 
 const products = await getCollection('outdoor-wifi');
 ---
@@ -790,6 +791,7 @@ const products = await getCollection('outdoor-wifi');
                 </button>
             </div>
         </div>
+         <Whatsapp client:load />
     </section>
 
     <script is:inline>
