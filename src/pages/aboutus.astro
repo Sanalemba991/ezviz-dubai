@@ -19,8 +19,8 @@ const structuredData = {
       "url": "https://ezviz-dubai.com",
       "logo": {
         "@type": "ImageObject",
-        "@id": `${Astro.url.origin}/unvdubai.png`,
-        "url": `${Astro.url.origin}/unvdubai.png`,
+        "@id": `${Astro.url.origin}/images/logo.png`,
+        "url": `${Astro.url.origin}/images/logo.png`,
        
         "caption": "Ezviz Dubai Distributor",
         "inLanguage": "en-US",
@@ -210,7 +210,11 @@ const structuredData = {
   }
 </style>
 
-<Layout>
+<Layout
+ title={title} 
+  description={description} 
+  structuredData={structuredData}
+  canonical={canonicalUrl.toString()}>
   <main class="bg-white overflow-x-hidden">
     <!-- Hero Section -->
     <section class="relative bg-slate-900 text-white w-full px-0 overflow-hidden">

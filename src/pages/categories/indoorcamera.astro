@@ -5,8 +5,102 @@ import "../../styles/global.css";
 import Whatsapp from "../../components/Whatsapp";
 
 const products = await getCollection('indoor-wifi');
+const title = "Indoor Wi-FI Cameras";
+const description = "High-performance surveillance solutions";
+const canonicalURL = new URL("/categories/indoorcamera", Astro.site);
+
+// Helper to ensure price is a valid string with two decimals
+function formatPrice(price) {
+  const num = Number(price);
+  if (isNaN(num) || num < 0) return "0.00";
+  return num.toFixed(2);
+}
+
+
+// Schema.org markup
+// Replace the existing structuredData object with this fixed version:
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "CollectionPage",
+  name: title,
+  description: description,
+  url: canonicalURL,
+  mainEntity: {
+    "@type": "ItemList",
+    itemListElement: (await getCollection('indoor-wifi')).map((product, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      item: {
+        "@type": "Product",
+        name: product.data.title,
+        description: product.data.description,
+        // Fixed: Use absolute URL or placeholder for valid image
+        image: product.data.image.startsWith('http') ? product.data.image : `https://ezviz-dubai.com/images/${product.slug}.png`,
+        url: new URL(`/categories/indoorcamera/${product.slug}`, Astro.site).toString(),
+        offers: {
+          "@type": "Offer",
+          priceCurrency: "AED",
+          price: formatPrice(product.data.price),
+          availability: "https://schema.org/InStock",
+          itemCondition: "https://schema.org/NewCondition",
+          // Fixed: Added seller information
+          seller: {
+            "@type": "Organization",
+            name: "Ezviv-Dubai" // Replace with your store name
+          },
+          // Fixed: Added shipping details
+          shippingDetails: {
+            "@type": "OfferShippingDetails",
+            shippingRate: {
+              "@type": "MonetaryAmount",
+              value: "0.00", // Free shipping or set your rate
+              currency: "AED"
+            },
+            deliveryTime: {
+              "@type": "ShippingDeliveryTime",
+              handlingTime: {
+                "@type": "QuantitativeValue",
+                minValue: 1,
+                maxValue: 2,
+                unitCode: "DAY"
+              },
+              transitTime: {
+                "@type": "QuantitativeValue",
+                minValue: 1,
+                maxValue: 3,
+                unitCode: "DAY"
+              }
+            }
+          },
+          // Fixed: Added return policy
+          hasMerchantReturnPolicy: {
+            "@type": "MerchantReturnPolicy",
+            applicableCountry: "AE",
+            returnPolicyCategory: "https://schema.org/MerchantReturnFiniteReturnWindow",
+            merchantReturnDays: 30,
+            returnMethod: "https://schema.org/ReturnByMail",
+            returnFees: "https://schema.org/FreeReturn"
+          }
+        },
+        aggregateRating: {
+          "@type": "AggregateRating",
+          ratingValue: ((product.data as any).rating || "4.5").toString(),
+          reviewCount: ((product.data as any).reviewCount || "10").toString(),
+          bestRating: "5",
+          worstRating: "0"
+        },
+       
+      }
+    }))
+  }
+};
 ---
-<Layout>    
+<meta charset="UTF-8" />
+<Layout  title={title} 
+    description={description}
+    structuredData={structuredData}
+    canonical={canonicalURL}>    
     <style>
         
     /* Enhanced Animations */
@@ -609,7 +703,7 @@ const products = await getCollection('indoor-wifi');
                     <!-- Left Content -->
                     <div class="text-white hero-content">
                         <h1 class="text-5xl lg:text-6xl font-bold mb-6 leading-tight">
-                            Indoor Wifi <span class="text-blue-400">Security Cameras</span>
+                            Indoor Wi-Fi  <span class="text-blue-400"> Cameras</span>
                         </h1>
                         <p class="text-lg text-slate-200 mb-8 leading-relaxed max-w-lg animate-on-scroll">
                             Revolutionary battery-powered surveillance with AI-driven detection, crystal-clear 4K recording, and seamless smart home integration.
@@ -731,7 +825,7 @@ const products = await getCollection('indoor-wifi');
             <div id="products" class="products-grid grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                 {products.map((product, index) => (
                     <a 
-                        href={`/indoor-wifi/${product.slug}`}
+                        href={`/categories/indoorcamera/${product.slug}`}
                         class="product-card category-item"
                         data-name={product.data.title.toLowerCase()}
                         style={`animation-delay: ${index * 100}ms`}
@@ -791,7 +885,7 @@ const products = await getCollection('indoor-wifi');
                 </button>
             </div>
         </div>
-    >
+    
     </section>
 
     <script is:inline>

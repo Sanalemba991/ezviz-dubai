@@ -7,7 +7,7 @@ role: "Strategic Marketing Manager"
 authorImage: "/public/images/shajid.png"
 authorImageAlt: "Shajid professional photo"
 pubDate: 2024-05-06
-cardImage: "/public/images/digish.png"
+cardImage: "/public/images/blog/6.png"
 cardImageAlt: "Dashboard showing cloud surveillance camera feeds"
 readTime: 6
 tags: ["cloud surveillance", "remote monitoring", "smart security"]

@@ -61,7 +61,7 @@ const structuredData = {
     "name": "Ezviz Dubai",
     "logo": {
       "@type": "ImageObject",
-      "url": `${Astro.site}/images/unvdubai.png` // Update with your logo path
+      "url": `${Astro.site}/images/logo.png` // Update with your logo path
     }
   },
   "mainEntityOfPage": {
@@ -72,11 +72,12 @@ const structuredData = {
   "articleBody": post.data.contents.join(" ")
 };
 ---
-
+<meta charset="UTF-8" />
 <Layout
   title={title}
   description={description}
   canonical={canonicalUrl.toString()}
+  structuredData={structuredData}
 >
   <!-- Animated Navigation Header -->
   <header class="sticky top-0 z-50 bg-white/80 backdrop-blur-lg border-b border-gray-200/50 transition-all duration-500 ease-out" data-animate>
@@ -201,27 +202,26 @@ const structuredData = {
             <Content />
           </div>
           
-          <!-- Article Contents/Summary -->
           {post.data.contents && (
-            <div class="mt-16 p-8 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl border border-blue-200/50 shadow-lg transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] hover:shadow-xl" data-animate data-animate-delay="700">
-              <h3 class="text-2xl font-bold text-gray-900 mb-6 flex items-center group">
-                <svg class="w-6 h-6 mr-3 text-blue-600 transition-transform duration-700 ease-out group-hover:rotate-180" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"/>
-                </svg>
-                <span class="bg-gradient-to-r from-gray-900 to-blue-800 bg-clip-text text-transparent transition-all duration-500 ease-out">Key Points Covered</span>
-              </h3>
-              <ul class="space-y-4">
-                {post.data.contents.map((content, index) => (
-                  <li class="flex items-start group hover:bg-white/50 p-3 rounded-lg transition-all duration-500 ease-out" data-animate data-animate-delay={700 + (index * 100)}>
-                    <svg class="w-6 h-6 text-blue-600 mt-0.5 mr-3 flex-shrink-0 transition-transform duration-500 ease-out group-hover:scale-110" fill="currentColor" viewBox="0 0 20 20">
-                      <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
-                    </svg>
-                    <span class="text-gray-700 font-medium transition-colors duration-300 ease-in-out">{content}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          )}
+  <div class="mt-8 md:mt-16 p-6 md:p-8 bg-gradient-to-br from-blue-50 to-indigo-50 rounded-xl md:rounded-2xl border border-blue-200/50 shadow-lg transition-all duration-700 ease-[cubic-bezier(0.22,1,0.36,1)] hover:shadow-xl">
+    <h3 class="text-xl md:text-2xl font-bold text-gray-900 mb-4 md:mb-6 flex items-center group">
+      <svg class="w-5 h-5 md:w-6 md:h-6 mr-2 md:mr-3 text-blue-600 transition-transform duration-700 ease-out group-hover:rotate-180" fill="currentColor" viewBox="0 0 20 20">
+        <path fill-rule="evenodd" d="M3 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1zm0 4a1 1 0 011-1h12a1 1 0 110 2H4a1 1 0 01-1-1z" clip-rule="evenodd"/>
+      </svg>
+      <span class="bg-gradient-to-r from-gray-900 to-blue-800 bg-clip-text text-transparent transition-all duration-500 ease-out">Key Points Covered</span>
+    </h3>
+    <ul class="space-y-3 md:space-y-4">
+      {post.data.contents.map((content, index) => (
+        <li class="flex items-start group hover:bg-white/50 p-2 md:p-3 rounded-md md:rounded-lg transition-all duration-500 ease-out" data-animate data-animate-delay={700 + (index * 100)}>
+          <svg class="w-5 h-5 md:w-6 md:h-6 text-blue-600 mt-0.5 mr-2 md:mr-3 flex-shrink-0 transition-transform duration-500 ease-out group-hover:scale-110" fill="currentColor" viewBox="0 0 20 20">
+            <path fill-rule="evenodd" d="M16.707 5.293a1 1 0 010 1.414l-8 8a1 1 0 01-1.414 0l-4-4a1 1 0 011.414-1.414L8 12.586l7.293-7.293a1 1 0 011.414 0z" clip-rule="evenodd"/>
+          </svg>
+          <span class="text-sm md:text-base text-gray-700 font-medium transition-colors duration-300 ease-in-out">{content}</span>
+        </li>
+      ))}
+    </ul>
+  </div>
+)}
         </article>
         
         <!-- Enhanced Share Section -->

@@ -21,8 +21,8 @@ const structuredData = {
       "url": "https://ezviz-dubai.com",
       "logo": {
         "@type": "ImageObject",
-        "@id": `${Astro.url.origin}/unvdubai.png`,
-        "url": `${Astro.url.origin}/unvdubai.png`,
+        "@id": `${Astro.url.origin}/images/logo.png`,
+        "url": `${Astro.url.origin}/images/logo.png`,
   
         "caption": "ezvizdubai",
         "inLanguage": "en-US",
@@ -47,8 +47,8 @@ const structuredData = {
     },
     {
       "@type": "ImageObject",
-      "@id": `${Astro.url.origin}/unvdubai.png`,
-      "url": `${Astro.url.origin}/unvdubai.png`,
+      "@id": `${Astro.url.origin}/images/logo.png`,
+      "url": `${Astro.url.origin}/images/logo.png`,
       "width": 200,
       "height": 200,
       "inLanguage": "en-US"
@@ -68,7 +68,7 @@ const structuredData = {
         "@id": "https://ezviz-dubai.com/#website"
       },
       "primaryImageOfPage": {
-        "@id": `${Astro.url.origin}/unvdubai.png`,
+        "@id": `${Astro.url.origin}/images/logo.png`,
       },
       "inLanguage": "en-US"
     },
@@ -106,9 +106,18 @@ const structuredData = {
   ]
 };
 ---
+<meta charset="UTF-8" />
 
-
-<Layout>
+<Layout
+  title={title} 
+  description={description} 
+  structuredData={structuredData}
+  canonicalUrl={Astro.url.href}
+  ogTitle={title}
+  ogDescription={description}
+  ogImage={`${Astro.url.origin}/images/logo.png`}
+  ogUrl={Astro.url.href}
+  twitterCard="summary_large_image">
   <Hero />
   <Products />
   <Details />

@@ -3,44 +3,44 @@
 const products = [
   {
     id: 1,
-    name: "SD7 EZVIZ 7-Inch Wireless Smart Control Touch Monitor Screen",
-    image: "/images/demo/Demo (1).jpg",
-    slug: "sd7-ezviz-7-inch-wireless-smart-control-touch-monitor-screen",
+    name: "BC2",
+    image: "/images/wifi-free/BC2.png",
+    link: "/categories/wireFree/BC2",
     isNew: true
   },
   {
     id: 2,
-    name: "HP7 2K Smart Home Video Doorphone Intercome",
-    image: "/images/demo/Demo (2).jpg",
-    slug: "hp7-2k-smart-home-video-doorphone-intercome",
+    name: "BC1-B1",
+    image: "/images/wifi-free/BC1-B1.png",
+    link: "/categories/wireFree/BC1-B1",
     isNew: false
   },
   {
     id: 3,
-    name: "DP2 Peephole Wire-Free Video Doorviewer",
-    image: "/images/demo/Demo (3).jpg",
-    slug: "dp2-peephole-wire-free-video-doorviewer",
+    name: "C3W Color Night Vision",
+    image: "/images/outdoor-wifi/C3Wcolor.png",
+    link: "/categories/outdoorcamera/c3wcolornight",
     isNew: false
   },
   {
     id: 4,
-    name: "DB2 Pro 5mp Battery-powered Video Doorbell Kit White",
-    image: "/images/demo/Demo (4).jpg",
-    slug: "db2-pro-5mp-battery-powered-video-doorbell-kit-white",
+    name: "LC1C",
+    image: "/images/outdoor-wifi/LC1C.png",
+    link: "/categories/outdoorcamera/lc1c",
     isNew: false
   },
   {
     id: 5,
-    name: "DB2 Pro 5mp Battery-powered Video Doorbell Kit Grey",
-    image: "/images/demo/Demo (5).jpg",
-    slug: "db2-pro-5mp-battery-powered-video-doorbell-kit-grey",
+    name: "C6W",
+    image: "/images/indoor-wifi/C6W.png",
+    link: "/categories/indoorcamera/c6w",
     isNew: false
   },
   {
     id: 6,
-    name: "DB2 Grey 3MP Battery-Powered Video Doorbell Kit",
-    image: "/images/demo/Demo (6).jpg",
-    slug: "db2-grey-3mp-battery-powered-video-doorbell-kit",
+    name: "C1C-B",
+    image: "/images/indoor-wifi/C1C-B.png",
+    link: "/categories/indoorcamera/c1c-b",
     isNew: false
   }
 ];
@@ -75,9 +75,9 @@ const products = [
                   </div>
                 )}
                 
-                <div 
+                <a 
                   class="bg-white rounded-xl shadow-sm hover:shadow-xl transition-all duration-300 overflow-hidden h-full flex flex-col border border-gray-100 cursor-pointer hover:border-blue-200 hover:-translate-y-1 group-hover:bg-gray-50"
-                  data-product-slug={product.slug}
+                  href={product.link}
                 >
                   <div class="h-56 flex items-center justify-center p-6 bg-gradient-to-br from-gray-50 to-white">
                     <img 
@@ -99,7 +99,7 @@ const products = [
                       </span>
                     </div>
                   </div>
-                </div>
+                </a>
               </div>
             ))}
           </div>
@@ -140,15 +140,6 @@ const products = [
     createDots();
     updateSlider();
     updateDots();
-    
-    // Handle product card clicks for navigation
-    productsSlider.addEventListener('click', (e) => {
-      const productCard = e.target.closest('[data-product-slug]');
-      if (productCard) {
-        const slug = productCard.dataset.productSlug;
-        window.location.href = `/${slug}`;
-      }
-    });
     
     // Handle arrow navigation
     prevArrow.addEventListener('click', () => {

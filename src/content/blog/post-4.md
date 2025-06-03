@@ -7,7 +7,7 @@ role: "Strategic Marketing Manager"
 authorImage: "/public/images/shajid.png"
 authorImageAlt: "Shajid in a professional setting"
 pubDate: 2024-03-15
-cardImage: "/public/images/digish.png"
+cardImage: "/public/images/blog/4.png"
 cardImageAlt: "Modern security camera on building exterior"
 readTime: 3
 tags: ["security", "smart cameras", "surveillance"]

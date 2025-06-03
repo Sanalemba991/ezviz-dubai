@@ -7,7 +7,7 @@ role: "Strategic Marketing Manager"
 authorImage: "/public/images/shajid.png"
 authorImageAlt: "Professional headshot of Shajid"
 pubDate: 2024-04-10
-cardImage: "/public/images/digish.png"
+cardImage: "/public/images/blog/5.png"
 cardImageAlt: "High-resolution security camera monitoring urban infrastructure"
 readTime: 4
 tags: ["intelligent surveillance", "security strategy", "business protection"]

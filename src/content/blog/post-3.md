@@ -7,7 +7,7 @@ role: "Strategic Marketing Manager"
 authorImage: "/public/images/shajid.png"
 authorImageAlt: "Avatar Description"
 pubDate: 2024-02-06
-cardImage: "/public/images/digish.png"
+cardImage: "/public/images/blog/3.png"
 cardImageAlt: "Side view worker wearing gloves"
 readTime: 7
 tags: ["procurement", "affordable", "efficiency" ]

@@ -7,7 +7,7 @@ role: "Strategic Marketing Manager"
 authorImage: "/public/images/shajid.png"
 authorImageAlt: "Avatar Description"
 pubDate: 2024-02-06
-cardImage: "/public/images/digish.png"
+cardImage: "/public/images/blog/2.png"
 cardImageAlt: "Ezviz distribution in Dubai"
 readTime: 5
 tags: ["safety", "security", "management" ]

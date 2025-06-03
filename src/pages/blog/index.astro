@@ -53,17 +53,19 @@ const structuredData = {
       "name": "Ezviz Dubai",
       "logo": {
         "@type": "ImageObject",
-        "url": `${Astro.site}/images/unvdubai.png` // Update with your logo path
+        "url": `${Astro.site}/images/logo.png` // Update with your logo path
       }
     }
   }))
 };
 ---
-
+<meta charset="UTF-8" />
 <Layout
-  title={title}
+    title={title}
   description={description}
   canonical={canonicalUrl.toString()}
+
+  structuredData={structuredData}
 >
   <!-- Professional Banner Section -->
   <section class="relative bg-gradient-to-br from-slate-900 via-blue-900 to-slate-800 overflow-hidden">

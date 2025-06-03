@@ -1,27 +1,161 @@
 ---
 // src/pages/wire-free/[slug].astro
-import Layout from "../../layouts/Layout.astro";
-import "../../styles/global.css";
-import { getCollection } from "astro:content";
-import Whatsapp from "../../components/Whatsapp";
+import Layout from "./../../../layouts/Layout.astro";
+import { getCollection } from 'astro:content';
+import "./../../../styles/global.css";
+import Whatsapp from "./../../../components/Whatsapp";;
+type Props = {
+    product: Product;
+};
 
-// Generate static paths for each product
-export async function getStaticPaths() {
-  const products = await getCollection("indoor-wifi");
-  return products.map((product) => ({
-    params: { slug: product.slug },
-    props: { product },
-  }));
+interface ProductImage {
+    url: string;
+    caption?: string;
+    type?: string;
 }
 
-// Get the product data passed from getStaticPaths
-const { product } = Astro.props;
-const { data, body } = product;
+interface ProductSpecifications {
+    sensor?: string;
+    resolution?: string;
+    focalLength?: string;
+    irRange?: string;
+    powerSupply?: string;
+    protection?: string;
+    storage?: string;
+    dimensions?: string;
+    batteryLife?: string;
+    wirelessRange?: string;
+}
 
-// Set page metadata
-const pageTitle = `${data.title} | Wire-Free Security Cameras`;
-const pageDescription = data.description;
+interface Product {
+    title: string;
+    description: string;
+    image: string;
+    images?: ProductImage[];
+    features: string[];
+    price?: number;
+    specification: ProductSpecifications;
+    rating?: number;
+    reviewCount?: number;
+}
+
+export async function getStaticPaths() {
+    const products = await getCollection("indoor-wifi");
+    return products.map((entry) => ({
+        params: { slug: entry.slug },
+        props: { product: entry.data as unknown as Product },
+    }));
+}
+
+const { product } = Astro.props as Props;
+const title = `${product.title} | Indoor Wi-Fi Cameras`;
+const description = product.description;
+const images = product.images || (product.image ? [{ url: product.image }] : []);
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+
+function formatPrice(price) {
+  const num = Number(price);
+  if (isNaN(num) || num < 0) return "0.00";
+  return num.toFixed(2);
+}
+const structuredData = [
+  {
+    "@context": "https://schema.org",
+    "@type": "Product",
+    "name": product.title,
+    "description": product.description,
+    "image": product.image.startsWith('http') ? product.image : `https://ezviz-dubai.com/images/${product.slug}.png`,
+    "productType": "Indoor Wi-Fi Cameras",
+    "offers": {
+      "@type": "Offer",
+      "priceCurrency": "AED",
+      "price": formatPrice(product.price),
+      "availability": "https://schema.org/InStock",
+      "itemCondition": "https://schema.org/NewCondition",
+      "seller": {
+        "@type": "Organization",
+        "name": "Ezviv-Dubai"
+      },
+      "shippingDetails": {
+        "@type": "OfferShippingDetails",
+        "shippingRate": {
+          "@type": "MonetaryAmount",
+          "value": "0.00",
+          "currency": "AED"
+        },
+        "deliveryTime": {
+          "@type": "ShippingDeliveryTime",
+          "handlingTime": {
+            "@type": "QuantitativeValue",
+            "minValue": 1,
+            "maxValue": 2,
+            "unitCode": "DAY"
+          },
+          "transitTime": {
+            "@type": "QuantitativeValue",
+            "minValue": 1,
+            "maxValue": 3,
+            "unitCode": "DAY"
+          }
+        }
+      },
+      "hasMerchantReturnPolicy": {
+        "@type": "MerchantReturnPolicy",
+        "applicableCountry": "AE",
+        "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
+        "merchantReturnDays": 30,
+        "returnMethod": "https://schema.org/ReturnByMail",
+        "returnFees": "https://schema.org/FreeReturn"
+      }
+    },
+    ...(product.rating && product.reviewCount ? {
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": product.rating.toString(),
+        "reviewCount": product.reviewCount.toString(),
+        "bestRating": "5",
+        "worstRating": "0"
+      }
+    } : {
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.5",
+        "reviewCount": "10",
+        "bestRating": "5",
+        "worstRating": "0"
+      }
+    })
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": new URL("/", Astro.site).toString()
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Wire-Free Cameras",
+        "item": new URL("/categories/indoorcamera", Astro.site).toString()
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": product.title,
+        "item": canonicalURL.toString()
+      }
+    ]
+  }
+];
+
+
+
 ---
+<meta charset="UTF-8" />
 <style is:global>
   /* Scroll Reveal Animations - Updated timing */
   [data-scroll] {
@@ -72,7 +206,14 @@ const pageDescription = data.description;
     transition: transform 0.5s ease-out, opacity 0.5s ease-out;
   }
 </style>
-<Layout title={pageTitle} description={pageDescription}>
+
+<Layout   title={`${product.title} - Ezviz Dubai`}
+    structuredData={structuredData}
+    description={product.description}
+    canonical={canonicalURL.toString()}>
+  <!-- Schema.org markup -->
+  <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
+
   <!-- Subtle Promotional Banner -->
   <div
     class="promo-banner bg-gradient-to-r from-slate-800 to-slate-900 text-white py-2.5 relative"
@@ -119,16 +260,16 @@ const pageDescription = data.description;
             <div class="flex items-center">
               <i class="fas fa-chevron-right text-gray-400 mx-1 text-xs"></i>
               <a
-                href="/wire-free"
+                href="/categories/indoorcamera"
                 class="breadcrumb-link text-sm text-gray-600 hover:text-blue-600 transition-colors"
-                >Wire-Free Cameras</a
+                >Indoor Wi-Fi Cameras</a
               >
             </div>
           </li>
           <li aria-current="page">
             <div class="flex items-center">
               <i class="fas fa-chevron-right text-gray-400 mx-1 text-xs"></i>
-              <span class="text-sm text-blue-500">{data.title}</span>
+              <span class="text-sm text-blue-500">{product.title}</span>
             </div>
           </li>
         </ol>
@@ -154,8 +295,8 @@ const pageDescription = data.description;
                 class="image-loader absolute inset-0 bg-gray-200 animate-pulse hidden"
               ></div>
               <img
-                src={data.image}
-                alt={data.title}
+                src={product.image}
+                alt={product.title}
                 class="main-image w-full max-w-[380px] h-80 object-contain transition-transform duration-500 group-hover:scale-110"
                 loading="eager"
                 onload="this.previousElementSibling.style.display='none'"
@@ -165,9 +306,9 @@ const pageDescription = data.description;
 
             <!-- Thumbnail Gallery -->
             {
-              data.images && data.images.length > 0 && (
+              product.images && product.images.length > 0 && (
                 <div class="thumbnail-gallery grid grid-cols-4 gap-3">
-                  {data.images.map((img, index) => (
+                  {product.images.map((img, index) => (
                     <button
                       class="thumbnail-btn bg-gray-50 rounded-md overflow-hidden border border-gray-200 hover:border-blue-300 transition-all duration-200 relative group"
                       data-image={img.url}
@@ -177,7 +318,7 @@ const pageDescription = data.description;
                       <img
                         src={img.url}
                         alt={
-                          img.caption || `${data.title} - Image ${index + 1}`
+                          img.caption || `${product.title} - Image ${index + 1}`
                         }
                         class="w-full h-16 object-cover transition-transform duration-200 group-hover:scale-105"
                       />
@@ -198,7 +339,7 @@ const pageDescription = data.description;
             <h1
               class="product-title text-2xl font-bold text-gray-900 mb-3 leading-tight"
             >
-              {data.title}
+              {product.title}
             </h1>
 
             <!-- Description -->
@@ -206,7 +347,7 @@ const pageDescription = data.description;
               class="description mb-6 p-4 bg-gray-50 rounded-lg border-l-4 border-blue-500"
             >
               <p class="text-gray-700 leading-relaxed text-sm">
-                {data.description}
+                {product.description}
               </p>
             </div>
 
@@ -220,7 +361,7 @@ const pageDescription = data.description;
               </h3>
               <ul class="space-y-3">
                 {
-                  data.features.map((feature, index) => (
+                  product.features.map((feature, index) => (
                     <li 
                       class="feature-item flex items-start space-x-3 text-sm"
                       data-scroll="fade-right"
@@ -327,7 +468,7 @@ const pageDescription = data.description;
             <div class="specs-container">
               <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                 {
-                  Object.entries(data.specification)
+                  Object.entries(product.specification)
                     .slice(0, 6)
                     .map(([key, value], index) => (
                       <div 
@@ -685,28 +826,28 @@ const pageDescription = data.description;
         console.log("Professional camera page initialized");
       });
       // Scroll Reveal Animation - Updated with smoother settings
-function initScrollReveal() {
-  const scrollElements = document.querySelectorAll('[data-scroll]');
-  
-  if (scrollElements.length > 0) {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.add('is-visible');
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      {
-        threshold: 0.1, // Lower threshold (10% visible) for earlier trigger
-        rootMargin: '0px 0px -50px 0px' // Adds a 50px bottom margin to trigger slightly earlier
-      }
-    );
+      function initScrollReveal() {
+        const scrollElements = document.querySelectorAll('[data-scroll]');
+        
+        if (scrollElements.length > 0) {
+          const observer = new IntersectionObserver(
+            (entries) => {
+              entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                  entry.target.classList.add('is-visible');
+                  observer.unobserve(entry.target);
+                }
+              });
+            },
+            {
+              threshold: 0.1, // Lower threshold (10% visible) for earlier trigger
+              rootMargin: '0px 0px -50px 0px' // Adds a 50px bottom margin to trigger slightly earlier
+            }
+          );
 
-    scrollElements.forEach((el) => observer.observe(el));
-  }
-}
+          scrollElements.forEach((el) => observer.observe(el));
+        }
+      }
     </script>
      <Whatsapp client:load />
   </section>

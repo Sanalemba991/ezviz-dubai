@@ -10,27 +10,27 @@ interface CarouselItem {
 
 const items: CarouselItem[] = [
   {
-    title: "Wire Free Cameras",
-    description: "EZVIZ wire-free cameras offer simple, battery-powered security with HD video and motion detection.",
+    title: "Wire-Free Cameras",
+    description: "EZVIZ Wire-Free cameras offer simple, battery-powered security with HD video and motion detection.",
     ctaText: "Explore Wire Free Cameras",
-    desktopImage: "/images/Banner/Banner (1).jpg",
-    mobileImage: "/images/Banner/Banner (1).jpg",
+    desktopImage: "/images/Banner/Wire Free Camera.png",
+    mobileImage: "/images/Banner/Wire Free Camera1.png",
     link: "/categories/wireFree"
   },
   {
-    title: "Outdoor Cameras",
-    description: "EZVIZ outdoor Wi-Fi cameras offer HD video, motion detection, and weatherproof protection.",
+    title: "Outdoor Wi-FI Cameras",
+    description: "EZVIZ Outdoor Wi-Fi cameras offer HD video, motion detection, and weatherproof protection.",
     ctaText: "Explore Outdoor Cameras",
-    desktopImage: "/images/Banner/Banner (2).jpg",
-    mobileImage: "/images/Banner/Banner (2).jpg",
+    desktopImage: "/images/Banner/Outdoor Camera.png",
+    mobileImage: "/images/Banner/Outdoor Camera1.png",
     link: "/categories/outdoorcamera"
   },
   {
-    title: "Indoor Cameras",
-    description: "EZVIZ indoor cameras offer HD video, two-way audio, and smart motion detection for home monitoring.",
+    title: "Indoor Wi-Fi Cameras",
+    description: "EZVIZ Indoor Wi-Fi cameras offer HD video, two-way audio, and smart motion detection for home monitoring.",
     ctaText: "Explore Indoor Cameras",
-    desktopImage: "/images/Banner/Banner (3).jpg",
-    mobileImage: "/images/Banner/Banner (3).jpg",
+    desktopImage: "/images/Banner/Indoor Camera.png",
+    mobileImage: "/images/Banner/Indoor Camera1.png",
     link: "/categories/indoorcamera"
   }
 ];
@@ -405,29 +405,37 @@ const items: CarouselItem[] = [
     position: absolute;
     top: 50%;
     transform: translateY(-50%);
-    width: 60px;
-    height: 60px;
-    background: rgba(255, 255, 255, 0.1);
-    border: 2px solid rgba(255, 255, 255, 0.2);
-    border-radius: 50%;
-    color: white;
+    width: 50px;
+    height: 50px;
+    background: transparent;
+    border: none;
+    color: rgba(255, 255, 255, 0.6);
     cursor: pointer;
     display: flex;
     align-items: center;
     justify-content: center;
     transition: all 0.3s ease;
-    backdrop-filter: blur(10px);
     z-index: 10;
+    opacity: 0;
+  }
+
+  .carousel-container:hover .nav-button {
+    opacity: 1;
   }
 
   .nav-button svg {
-    width: 24px;
-    height: 24px;
+    width: 28px;
+    height: 28px;
+    stroke-width: 2.5;
   }
 
   .nav-button:hover {
-    background: rgba(255, 255, 255, 0.2);
-    border-color: rgba(255, 255, 255, 0.4);
+    color: #3b82f6;
+    transform: translateY(-50%) scale(1.2);
+  }
+
+  .nav-button:active {
+    color: #1d4ed8;
     transform: translateY(-50%) scale(1.1);
   }
 
@@ -442,8 +450,8 @@ const items: CarouselItem[] = [
   /* Mobile Responsive */
   @media (max-width: 768px) {
     .carousel-container {
-      height: 100vh;
-      min-height: 500px;
+      height: 60vh;
+      min-height: 400px;
     }
 
     .desktop-image {
@@ -452,6 +460,8 @@ const items: CarouselItem[] = [
 
     .mobile-image {
       display: block;
+      object-fit: cover;
+      object-position: center;
     }
 
     .slide-content {
@@ -474,13 +484,13 @@ const items: CarouselItem[] = [
     }
 
     .nav-button {
-      width: 50px;
-      height: 50px;
+      width: 40px;
+      height: 40px;
     }
 
     .nav-button svg {
-      width: 20px;
-      height: 20px;
+      width: 24px;
+      height: 24px;
     }
 
     .nav-prev {
@@ -503,6 +513,11 @@ const items: CarouselItem[] = [
   }
 
   @media (max-width: 480px) {
+    .carousel-container {
+      height: 50vh;
+      min-height: 350px;
+    }
+
     .slide-title {
       font-size: 2rem;
     }
@@ -565,8 +580,8 @@ const items: CarouselItem[] = [
     }
 
     function prevSlide() {
-      const next = (currentSlide + 1) % slides.length;
-      updateSlide(next);
+      const prev = (currentSlide - 1 + slides.length) % slides.length;
+      updateSlide(prev);
     }
 
     function startAutoSlide() {

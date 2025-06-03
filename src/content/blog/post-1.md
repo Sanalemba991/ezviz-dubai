@@ -7,7 +7,7 @@ role: "Strategic Marketing Manager"
 authorImage: "/public/images/shajid.png"
 authorImageAlt: "Avatar Description"
 pubDate: 2024-02-06
-cardImage: "/public/images/digish.png"
+cardImage: "/public/images/blog/1.png"
 cardImageAlt: "Top view mechanical tools arrangement"
 readTime: 4
 tags: ["Security", "Technology", "Solution" ]
