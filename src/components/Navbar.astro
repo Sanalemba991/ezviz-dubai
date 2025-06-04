@@ -648,6 +648,10 @@
       );
     }
 
+    function isBlogActive(path) {
+      return path === "/blog" || path.startsWith("/blog/");
+    }
+
     document.querySelectorAll(".nav-link, .mobile-nav-link").forEach((link) => {
       link.classList.remove("active");
       link.removeAttribute("aria-current");
@@ -661,6 +665,9 @@
           link.classList.add("active");
           link.setAttribute("aria-current", "page");
         }
+      } else if (link.textContent?.trim() === "Blog" && isBlogActive(path)) {
+        link.classList.add("active");
+        link.setAttribute("aria-current", "page");
       } else if (href && href === path) {
         link.classList.add("active");
         link.setAttribute("aria-current", "page");
@@ -675,6 +682,9 @@
           link.classList.add("active");
           link.setAttribute("aria-current", "page");
         }
+      } else if (link.textContent?.trim() === "Blog" && isBlogActive(path)) {
+        link.classList.add("active");
+        link.setAttribute("aria-current", "page");
       } else if (href && href === path) {
         link.classList.add("active");
         link.setAttribute("aria-current", "page");
