@@ -38,6 +38,7 @@ interface Product {
     specification: ProductSpecifications;
     rating?: number;
     reviewCount?: number;
+    slug: string;
 }
 
 export async function getStaticPaths() {

@@ -383,7 +383,7 @@
         </a>
         <!-- Google Maps -->
         <a
-          href="https://maps.app.goo.gl/mNyeLkP4vC2Hs6xm7"
+          href="https://www.google.com/maps?q=25.262528,55.290111&hl=en&z=16"
           target="_blank"
           rel="noopener"
           class="text-white hover:text-green-400 transition-colors duration-200 flex items-center"
@@ -499,19 +499,19 @@
 
           <div class="hidden pl-6 mt-2 space-y-3 bg-cyan-900/50 rounded-lg p-3 ml-2" id="mobile-smart-home-menu">
             <a
-              href="/categories/wireFree"
+              href="/categories/smartentry"
               class="text-white hover:text-cyan-300 font-medium block py-2 text-sm"
-              >Home Sensors</a
+              >Smart Entry</a
             >
             <a
-              href="/categories/outdoorcamera"
+              href="/categories/homeappliances"
               class="text-white hover:text-cyan-300 font-medium block py-2 text-sm"
               >Smart Home Appliances</a
             >
             <a
-              href="/categories/indoorcamera"
+              href="/categories/homesensor"
               class="text-white hover:text-cyan-300 font-medium block py-2 text-sm"
-              >Smart Entry</a
+              >Home Sensors</a
             >
             <div class="pt-2 mt-2 border-t border-gray-600">
               <a
@@ -792,6 +792,15 @@
       font-size: 0.875rem;
     }
   }
+
+  @keyframes dropdownFadeIn {
+  from { opacity: 0; transform: translateY(-10px);}
+  to { opacity: 1; transform: translateY(0);}
+}
+#mobile-products-menu,
+#mobile-smart-home-menu {
+  animation: dropdownFadeIn 0.3s ease;
+}
 </style>
 
 <script>

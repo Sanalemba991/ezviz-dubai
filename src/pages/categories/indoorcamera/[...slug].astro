@@ -64,7 +64,7 @@ const structuredData = [
     "@type": "Product",
     "name": product.title,
     "description": product.description,
-    "image": product.image.startsWith('http') ? product.image : `https://ezviz-dubai.com/images/${product.slug}.png`,
+    "image": product.image.startsWith('http') ? product.image : `https://ezviz-dubai.com/images/${Astro.params.slug}.png`,
     "productType": "Indoor Wi-Fi Cameras",
     "offers": {
       "@type": "Offer",
