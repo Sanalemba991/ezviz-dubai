@@ -15,10 +15,12 @@
           class="md:hidden text-white mr-4"
           aria-label="Toggle menu"
           id="mobile-menu-button"
+          type="button"
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
-            class="h-6 w-6"
+            class="h-6 w-6 transition-transform duration-300"
+            id="mobile-menu-icon"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -27,7 +29,8 @@
               stroke-linecap="round"
               stroke-linejoin="round"
               stroke-width="2"
-              d="M4 6h16M4 12h16M4 18h16"></path>
+              d="M4 6h16M4 12h16M4 18h16"
+            ></path>
           </svg>
         </button>
 
@@ -801,6 +804,42 @@
 #mobile-smart-home-menu {
   animation: dropdownFadeIn 0.3s ease;
 }
+
+/* Mobile menu open animation */
+.mobile-nav-container {
+  max-height: 0;
+  opacity: 0;
+  transition: max-height 0.4s cubic-bezier(0.4,0,0.2,1), opacity 0.3s;
+}
+.mobile-nav-container.show {
+  max-height: 600px;
+  opacity: 1;
+}
+.mobile-nav-content {
+  transform: translateY(-20px);
+  opacity: 0;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.mobile-nav-container.show .mobile-nav-content {
+  transform: translateY(0);
+  opacity: 1;
+  transition-delay: 0.1s;
+}
+/* Mobile dropdown animation */
+.mobile-dropdown-content {
+  max-height: 0;
+  opacity: 0;
+  transform: translateY(-10px);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.mobile-dropdown-content.show {
+  max-height: 300px;
+  opacity: 1;
+  transform: translateY(0);
+}
+.mobile-dropdown-arrow-rotate {
+  transform: rotate(180deg);
+}
 </style>
 
 <script>
@@ -983,5 +1022,72 @@
     if (mobileMenu && !mobileMenu.classList.contains("hidden") && touchStartY - touchEndY > 50) {
       mobileMenu.classList.add("hidden");
     }
+  });
+
+  document.addEventListener('DOMContentLoaded', function() {
+    const mobileMenuButton = document.getElementById('mobile-menu-button');
+    const mobileMenu = document.getElementById('mobile-menu');
+    const mobileMenuIcon = document.getElementById('mobile-menu-icon');
+    const mobileProductsButton = document.getElementById('mobile-products-button');
+    const mobileProductsMenu = document.getElementById('mobile-products-menu');
+    const mobileProductsArrow = document.getElementById('mobile-products-arrow');
+    const mobileSmartHomeButton = document.getElementById('mobile-smart-home-button');
+    const mobileSmartHomeMenu = document.getElementById('mobile-smart-home-menu');
+    const mobileSmartHomeArrow = document.getElementById('mobile-smart-home-arrow');
+
+    // Mobile menu toggle with animation
+    if (mobileMenuButton && mobileMenu) {
+      mobileMenuButton.addEventListener('click', function() {
+        mobileMenu.classList.toggle('show');
+        // Animate hamburger icon
+        if (mobileMenu.classList.contains('show')) {
+          mobileMenuIcon.style.transform = 'rotate(90deg)';
+        } else {
+          mobileMenuIcon.style.transform = 'rotate(0deg)';
+        }
+      });
+    }
+
+    // Mobile products dropdown toggle
+    if (mobileProductsButton && mobileProductsMenu && mobileProductsArrow) {
+      mobileProductsButton.addEventListener('click', function(e) {
+        e.stopPropagation();
+        mobileProductsMenu.classList.toggle('show');
+        mobileProductsArrow.classList.toggle('mobile-dropdown-arrow-rotate');
+      });
+    }
+
+    // Mobile smart home dropdown toggle
+    if (mobileSmartHomeButton && mobileSmartHomeMenu && mobileSmartHomeArrow) {
+      mobileSmartHomeButton.addEventListener('click', function(e) {
+        e.stopPropagation();
+        mobileSmartHomeMenu.classList.toggle('show');
+        mobileSmartHomeArrow.classList.toggle('mobile-dropdown-arrow-rotate');
+      });
+    }
+
+    // Close mobile menu when clicking outside
+    document.addEventListener('click', function(event) {
+      if (!event.target.closest('header')) {
+        if (mobileMenu) {
+          mobileMenu.classList.remove('show');
+        }
+        if (mobileMenuIcon) {
+          mobileMenuIcon.style.transform = 'rotate(0deg)';
+        }
+        if (mobileProductsMenu) {
+          mobileProductsMenu.classList.remove('show');
+        }
+        if (mobileProductsArrow) {
+          mobileProductsArrow.classList.remove('mobile-dropdown-arrow-rotate');
+        }
+        if (mobileSmartHomeMenu) {
+          mobileSmartHomeMenu.classList.remove('show');
+        }
+        if (mobileSmartHomeArrow) {
+          mobileSmartHomeArrow.classList.remove('mobile-dropdown-arrow-rotate');
+        }
+      }
+    });
   });
 </script>
