@@ -2,9 +2,9 @@
 slug: UV-C Air Purifier
 title: "UV-C Air Purifier"
 description: "Enjoy cleaner, healthier air"
-image: "/images/wifi-free/BC1-B1.png"
+image: "/images/smarthome/UV-C.png"
 images:
-  - url: "/images/wifi-free/BC1-B1.png"
+  - url: "/images/smarthome/UV-C.png"
     caption: "Front view"
 
 features:

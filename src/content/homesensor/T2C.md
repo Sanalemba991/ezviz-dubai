@@ -2,9 +2,9 @@
 slug: T2C Open Close Sensor
 title: "T2C Open Close Sensor"
 description: "A sensor that checks doors and windows to protect you."
-image: "/images/wifi-free/BC1-B1.png"
+image: "/images/Homeappliance/T2C.png"
 images:
-  - url: "/images/wifi-free/BC1-B1.png"
+  - url: "/images/Homeappliance/TC2.png"
     caption: "Front view"
 
 features:

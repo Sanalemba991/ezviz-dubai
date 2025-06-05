@@ -2,9 +2,9 @@
 slug: RC3 Plus
 title: "RC3 Plus"
 description: "Easy automatic cleaning"
-image: "/images/wifi-free/BC1-B1.png"
+image: "/images/smarthome/RC3 Plus.png"
 images:
-  - url: "/images/wifi-free/BC1-B1.png"
+  - url: "/images/smarthome/RC3 Plus.png"
     caption: "Front view"
 
 features:

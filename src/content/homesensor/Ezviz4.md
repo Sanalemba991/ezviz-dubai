@@ -2,9 +2,9 @@
 slug: Ezviz 4-Piece Home Sensor Kit
 title: "Ezviz 4-Piece Home Sensor Kit"
 description: "A carefully thought-out solution for a safer home."
-image: "/images/wifi-free/BC1-B1.png"
+image: "/images/Homeappliance/Ezviz 4-piece.png"
 images:
-  - url: "/images/wifi-free/BC1-B1.png"
+  - url: "/images/Homeappliance/Ezviz 4-piece.png"
     caption: "Front view"
 
 features:

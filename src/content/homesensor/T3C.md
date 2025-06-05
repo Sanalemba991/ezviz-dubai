@@ -2,9 +2,9 @@
 slug: T3C Smart Button
 title: "T3C Smart Button"
 description: "Superior control with a simple tap."
-image: "/images/wifi-free/BC1-B1.png"
+image: "/images/Homeappliance/T3C.png"
 images:
-  - url: "/images/wifi-free/BC1-B1.png"
+  - url: "/images/Homeappliance/T3C.png"
     caption: "Front view"
 
 features:

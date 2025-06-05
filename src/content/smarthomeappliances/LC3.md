@@ -2,9 +2,9 @@
 slug: LC3
 title: "LC3"
 description: "Smart Security Camera with Wall Light"
-image: "/images/wifi-free/BC1-B1.png"
+image: "/images/wifi-free/LC3.png"
 images:
-  - url: "/images/wifi-free/BC1-B1.png"
+  - url: "/images/smarthome/LC3.png"
     caption: "Front view"
 
 features:

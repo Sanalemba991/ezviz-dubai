@@ -2,9 +2,9 @@
 slug: EZVIZ 400W Solar Starter Kit
 title: "EZVIZ 400W Solar Starter Kit"
 description: Green home energy, now easy and efficient"
-image: "/images/wifi-free/BC1-B1.png"
+image: "/images/smarthome/Ezviz 400w.png"
 images:
-  - url: "/images/wifi-free/BC1-B1.png"
+  - url: "/images/smarthome/Ezviz 400w.png"
     caption: "Front view"
 
 features:

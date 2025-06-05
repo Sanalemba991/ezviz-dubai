@@ -2,9 +2,9 @@
 slug: RH1
 title: "RH1"
 description: "Cordless wet and dry vacuum cleaner"
-image: "/images/wifi-free/BC1-B1.png"
+image: "/images/smarthome/RH1.png"
 images:
-  - url: "/images/wifi-free/BC1-B1.png"
+  - url: "/images/smarthome/RH1.png"
     caption: "Front view"
 
 features:

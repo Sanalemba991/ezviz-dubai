@@ -2,9 +2,9 @@
 slug: T1C PIR Motion Sensor
 title: "T1C PIR Motion Sensor"
 description: "Know when there is activity in the house."
-image: "/images/wifi-free/BC1-B1.png"
+image: "/images/Homeappliance/T1C PIR.png"
 images:
-  - url: "/images/wifi-free/BC1-B1.png"
+  - url: "/images/Homeappliance/T1C PIR.png"
     caption: "Front view"
 
 features:

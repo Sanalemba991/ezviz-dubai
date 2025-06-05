@@ -2,9 +2,9 @@
 slug: RE5 Plus
 title: "RE5 Plus"
 description: "Easy and elegant cleaning"
-image: "/images/wifi-free/BC1-B1.png"
+image: "/images/smarthome/RE5 Plus.png"
 images:
-  - url: "/images/wifi-free/BC1-B1.png"
+  - url: "/images/smarthome/RE5 Plus.png"
     caption: "Front view"
 
 features:

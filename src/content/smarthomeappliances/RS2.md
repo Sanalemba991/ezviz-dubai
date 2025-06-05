@@ -2,9 +2,9 @@
 slug: RS2
 title: "RS2"
 description: "Robotic mop and vacuum set"
-image: "/images/wifi-free/BC1-B1.png"
+image: "/images/smarthome/RS2.png"
 images:
-  - url: "/images/wifi-free/BC1-B1.png"
+  - url: "/images/smarthome/RS2.png"
     caption: "Front view"
 
 features:

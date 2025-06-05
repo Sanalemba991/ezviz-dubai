@@ -2,9 +2,9 @@
 slug: EB250A Air Purifier
 title: "EB250A Air Purifier"
 description: "Clean air keeps you healthy and active."
-image: "/images/wifi-free/BC1-B1.png"
+image: "/images/smarthome/EB250A Aie.jpg"
 images:
-  - url: "/images/wifi-free/BC1-B1.png"
+  - url: "/images/smarthome/EB250A Aie.jpg"
     caption: "Front view"
 
 features:
