@@ -1,7 +1,7 @@
 ---
 slug: DP2C
 title: "DP2C"
-description: "Wireless doorbell with peephole"
+description: "Smart wireless doorbell with peephole"
 image: "/images/smartentry/DP2C.png"
 images:
   - url: "/images/smartentry/DP2C.png"

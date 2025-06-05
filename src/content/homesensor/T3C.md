@@ -1,7 +1,7 @@
 ---
 slug: T3C Smart Button
 title: "T3C Smart Button"
-description: "Superior control with a simple tap."
+description: "Superior control achieved with a simple tap."
 image: "/images/Homeappliance/T3C.png"
 images:
   - url: "/images/Homeappliance/T3C.png"

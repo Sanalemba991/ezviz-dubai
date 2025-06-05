@@ -1,7 +1,7 @@
 ---
 slug: DB2
 title: "DB2"
-description: "Battery-Powered Video Doorbell Kit"
+description: "Secure Battery-Powered Video Doorbell Kit"
 image: "/images/smartentry/DB2.png"
 images:
   - url: "/images/smartentry/DB2.png"

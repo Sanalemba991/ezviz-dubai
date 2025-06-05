@@ -2,8 +2,8 @@
 import Layout from "../layouts/Layout.astro";
 import "../styles/global.css";
 import Whatsapp from "../components/Whatsapp";
-const title = "UNV Camera Distributor in Dubai, UAE ";
-const description = "Authorized UNV security camera distributor in Dubai & UAE. Meet our expert team providing top-quality surveillance solutions with professional installation support.";
+const title = "Ezviz Camera Distributor in Dubai, UAE ";
+const description = "Authorized Ezviz security camera distributor in Dubai & UAE. Meet our expert team providing top-quality surveillance solutions with professional installation support.";
 const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
 
 
@@ -233,13 +233,17 @@ const structuredData = {
         <p class="text-xl text-slate-300 leading-relaxed mb-8 max-w-lg slide-up delay-200">
           Trusted by thousands of businesses and homeowners across the UAE for comprehensive security solutions and professional service excellence.
         </p>
-        <div class="flex flex-col sm:flex-row gap-4 slide-up delay-300">
+        <div class="flex flex-col sm:flex-row gap-4 slide-up delay-300"
+          onclick="window.location.href='/contact'">
           <button class="bg-blue-600 hover:bg-blue-700 text-white px-8 py-4 rounded-lg font-semibold transition-colors btn-hover">
             Request Consultation
           </button>
-          <button class="border border-slate-600 hover:bg-slate-800 text-white px-8 py-4 rounded-lg font-semibold transition-colors btn-hover">
-            View Products
-          </button>
+          <button 
+  class="border border-slate-600 hover:bg-slate-800 text-white px-8 py-4 rounded-lg font-semibold transition-colors btn-hover"
+  onclick="window.location.href='/product'"
+>
+  View Products
+</button>
         </div>
       </div>
       <div class="grid grid-cols-2 gap-6">

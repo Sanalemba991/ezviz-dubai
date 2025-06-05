@@ -37,7 +37,7 @@ const structuredData = {
         description: product.data.description,
         // Fixed: Use absolute URL or placeholder for valid image
         image: product.data.image.startsWith('http') ? product.data.image : `https://ezviz-dubai.com/images/${product.slug}.png`,
-        url: new URL(`/categories/wireFree/${product.slug}`, Astro.site).toString(),
+        url: new URL(`/categories/smartentry/${product.slug}`, Astro.site).toString(),
         offers: {
           "@type": "Offer",
           priceCurrency: "AED",

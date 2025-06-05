@@ -4,7 +4,7 @@ title: "T2C Open Close Sensor"
 description: "A sensor that checks doors and windows to protect you."
 image: "/images/Homeappliance/T2C.png"
 images:
-  - url: "/images/Homeappliance/TC2.png"
+  - url: "/images/Homeappliance/T2C.png"
     caption: "Front view"
 
 features:

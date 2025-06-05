@@ -1,7 +1,7 @@
 ---
 slug: RH2
 title: "RH2"
-description: "Smart cordless wet and dry vacuum cleaner"
+description: "Smart wet and dry vacuum cleaner"
 image: "/images/smarthome/RH2.png"
 images:
   - url: "/images/smarthome/RH2.png"

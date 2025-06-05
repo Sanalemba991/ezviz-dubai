@@ -1,7 +1,7 @@
 ---
 slug: DL01S
 title: "DL01S"
-description: "smart lock"
+description: "Wireless doorbell peephole smart lock"
 image: "/images/smartentry/DL01S.png"
 images:
   - url: "/images/smartentry/DL01S.png"

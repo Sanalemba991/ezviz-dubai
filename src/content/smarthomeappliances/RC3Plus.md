@@ -1,7 +1,7 @@
 ---
 slug: RC3 Plus
 title: "RC3 Plus"
-description: "Easy automatic cleaning"
+description: "Easy automatic cleaning with technology"
 image: "/images/smarthome/RC3 Plus.png"
 images:
   - url: "/images/smarthome/RC3 Plus.png"

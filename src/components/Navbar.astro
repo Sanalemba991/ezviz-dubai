@@ -896,8 +896,7 @@
         path.startsWith("/categories/smartentry") ||
         path.startsWith("/categories/smarthomeappliances") ||
         path.startsWith("/categories/homesensor") ||
-        path.startsWith("/categories/homeappliances") ||
-        path.startsWith("/categories/homesensor") // <-- Add this line
+        path.startsWith("/categories/homeappliances")
       );
     }
 
@@ -914,12 +913,12 @@
       const href = link.getAttribute("href");
       const text = link.textContent?.trim();
 
-      if (link.classList.contains("products-link") && text === "Security Cameras") {
+      if (link.classList.contains("products-link") && text.replace(/\s+/g, " ") === "Security Cameras") {
         if (isProductActive(path)) {
           link.classList.add("active");
           link.setAttribute("aria-current", "page");
         }
-      } else if (link.classList.contains("products-link") && text === "Smart  Home") {
+      } else if (link.classList.contains("products-link") && text.replace(/\s+/g, " ").includes("Smart Home")) {
         if (isSmartHomeActive(path)) {
           link.classList.add("active");
           link.setAttribute("aria-current", "page");
@@ -937,12 +936,12 @@
       const href = link.getAttribute("href");
       const text = link.textContent?.trim();
 
-      if (link.classList.contains("mobile-products-link") && text === "Seccurity Cameras") {
+      if (link.classList.contains("mobile-products-link") && text.replace(/\s+/g, " ") === "Seccurity Cameras") {
         if (isProductActive(path)) {
           link.classList.add("active");
           link.setAttribute("aria-current", "page");
         }
-      } else if (link.classList.contains("mobile-products-link") && text === "Smart Home") {
+      } else if (link.classList.contains("mobile-products-link") && text.replace(/\s+/g, " ").includes("Smart Home")) {
         if (isSmartHomeActive(path)) {
           link.classList.add("active");
           link.setAttribute("aria-current", "page");
@@ -1068,7 +1067,7 @@
 
     // Close mobile menu when clicking outside
     document.addEventListener('click', function(event) {
-      if (!event.target.closest('header')) {
+      if (!(event.target instanceof Element && event.target.closest('header'))) {
         if (mobileMenu) {
           mobileMenu.classList.remove('show');
         }
