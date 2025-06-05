@@ -25,6 +25,87 @@ const wifiFreeCollection = defineCollection({
     price: z.string().optional(),
   }),
 });
+const smartEntrycollection=defineCollection({
+  type: 'content',
+  schema: z.object({
+    title: z.string(),
+    description: z.string().optional(),
+    image: z.string().optional(),
+    images: z.array(
+      z.object({
+        url: z.string(),
+        caption: z.string().optional(),
+      })
+    ).optional(),
+    features: z.array(z.string()).optional(),
+    specification: z.object({
+      model: z.string(),
+      image_sensor: z.string(),
+      lens: z.string(),
+      maximum_accuracy: z.string(),
+      framerate: z.string(),
+      Ingress_Protection_Degree: z.string(),
+      size: z.string(),
+      battery: z.string(),
+    }).optional(),
+    price: z.string().optional(),
+  }),
+});
+const smartHomeAppliancesCollection=defineCollection({
+  type: 'content',
+  schema: z.object({
+    title: z.string(),
+    description: z.string().optional(),
+    image: z.string().optional(),
+    images: z.array(
+      z.object({
+        url: z.string(),
+        caption: z.string().optional(),
+      })
+    ).optional(),
+    features: z.array(z.string()).optional(),
+    specification: z.object({
+      model: z.string(),
+      interface: z.string(),
+      power_source: z.string(),
+      energy_consumption: z.string(),
+      network_port: z.string(),
+      dimensions: z.string(),
+      package_size: z.string(),
+      net_weight: z.string(),    
+    }).optional(),
+    price: z.string().optional(),
+  }),
+});
+const homeSensorCollection=defineCollection({
+  type: 'content',
+  schema: z.object({
+    title: z.string(),
+    description: z.string().optional(),
+    image: z.string().optional(),
+    images: z.array(
+      z.object({
+        url: z.string(),
+        caption: z.string().optional(),
+      })
+    ).optional(),
+    features: z.array(z.string()).optional(),
+    specification: z.object({
+      model: z.string(),
+      interface: z.string(),
+      power_source: z.string(),
+      energy_consumption: z.string(),
+      network_port: z.string(),
+      dimensions: z.string(),
+       package_size: z.string(),
+       net_weight: z.string(),
+     
+    }).optional(),
+    price: z.string().optional(),
+  }),
+});
+
+
 const outdoorWifiFreeCollection = defineCollection({
   type: 'content',
   schema: z.object({
@@ -98,4 +179,7 @@ export const collections = {
   'wire-free': wifiFreeCollection,
   'outdoor-wifi': outdoorWifiFreeCollection,
   'indoor-wifi': indoorWifiFreeCollection,
+  'smartentry': smartEntrycollection,
+  'smarthomeappliances': smartHomeAppliancesCollection,
+  'homesensor': homeSensorCollection,
 };
