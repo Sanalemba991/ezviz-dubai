@@ -2,9 +2,9 @@
 slug: EP3x Pro
 title: "EP3x Pro"
 description: "Double protection, half the problem"
-image: "/images/smartentry/Ep3xPro.png"
+image: "/images/smartentry/EP3xPro.png"
 images:
-  - url: "/images/smartentry/Ep3xPro.png"
+  - url: "/images/smartentry/EP3xPro.png"
     caption: "Front view"
 
 features:

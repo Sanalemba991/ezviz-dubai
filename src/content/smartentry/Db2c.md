@@ -2,9 +2,9 @@
 slug: DB2C
 title: "DB2C"
 description: "Never miss a knock on your door, wherever you are."
-image: "/images/smartentry/DB2C.png"
+image: "/images/smartentry/DB2C.jpg"
 images:
-  - url: "/images/smartentry/DB2C.png"
+  - url: "/images/smartentry/DB2C.jpg"
     caption: "Front view"
 
 features:

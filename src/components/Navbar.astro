@@ -222,7 +222,7 @@
               <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4 lg:gap-6">
                 <!-- Wire-Free Cameras -->
                 <a
-                  href="/categories/wireFree"
+                  href="/categories/smartentry"
                   class="product-item group/item block text-center p-3 lg:p-4 rounded-xl"
                 >
                   <div
@@ -248,7 +248,7 @@
                 <!-- Outdoor Wi-Fi Cameras -->
 
                 <a
-                  href="/categories/outdoorcamera"
+                  href="/categories/homeappliances"
                   class="product-item group/item block text-center p-3 lg:p-4 rounded-xl"
                 >
                   <div
@@ -266,7 +266,7 @@
                   Smart Home Appliances
                   </h4>
                   <p
-                    class="product-desc text-xs text-gray-600 mt-1 transition-all duration-300 group-hover:item:text-gray-800 hidden lg:block"
+                    class="product-desc text-xs text-gray-600 mt-1 transition-all duration-300 group-hover/item:text-gray-800 hidden lg:block"
                   >
                     Weatherproof exterior protection
                   </p>
@@ -274,7 +274,7 @@
                 <!-- Indoor Wi-Fi Cameras -->
 
                 <a
-                  href="/categories/indoorcamera"
+                  href="/categories/homesensor"
                   class="product-item group/item block text-center p-3 lg:p-4 rounded-xl"
                 >
                   <div
@@ -304,7 +304,7 @@
                 class="flex justify-center mt-6 lg:mt-8 pt-4 lg:pt-6 border-t border-gray-200"
               >
                 <a
-                  href="/product"
+                  href="/product2"
                   class="view-all-btn inline-flex items-center px-6 lg:px-8 py-2 lg:py-3 bg-gradient-to-r from-cyan-600 to-cyan-700 text-white font-semibold text-sm lg:text-base rounded-lg hover:from-cyan-700 hover:to-cyan-800 transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl"
                 >
                   View All Products
@@ -515,7 +515,7 @@
             >
             <div class="pt-2 mt-2 border-t border-gray-600">
               <a
-                href="/product"
+                href="/product2"
                 class="text-cyan-300 hover:text-cyan-200 font-semibold block py-2 text-sm"
                 >View All Products →</a
               >
@@ -832,10 +832,24 @@
         path === "/products" ||
         path.startsWith("/product/") ||
         path.startsWith("/products/") ||
-        path.startsWith("/categories/") ||
+        path.startsWith("/categories/wireFree") ||
+        path.startsWith("/categories/outdoorcamera") ||
+        path.startsWith("/categories/indoorcamera") ||
         path.startsWith("/wifi-free/") ||
         path.startsWith("/outdoor-wifi/") ||
         path.startsWith("/indoor-wifi/")
+      );
+    }
+
+    function isSmartHomeActive(path) {
+      return (
+        path === "/product2" ||
+        path.startsWith("/product2") ||
+        path.startsWith("/categories/smartentry") ||
+        path.startsWith("/categories/smarthomeappliances") ||
+        path.startsWith("/categories/homesensor") ||
+        path.startsWith("/categories/homeappliances") ||
+        path.startsWith("/categories/homesensor") // <-- Add this line
       );
     }
 
@@ -850,13 +864,19 @@
 
     document.querySelectorAll(".nav-link").forEach((link) => {
       const href = link.getAttribute("href");
+      const text = link.textContent?.trim();
 
-      if (link.classList.contains("products-link")) {
+      if (link.classList.contains("products-link") && text === "Security Cameras") {
         if (isProductActive(path)) {
           link.classList.add("active");
           link.setAttribute("aria-current", "page");
         }
-      } else if (link.textContent?.trim() === "Blog" && isBlogActive(path)) {
+      } else if (link.classList.contains("products-link") && text === "Smart  Home") {
+        if (isSmartHomeActive(path)) {
+          link.classList.add("active");
+          link.setAttribute("aria-current", "page");
+        }
+      } else if (text === "Blog" && isBlogActive(path)) {
         link.classList.add("active");
         link.setAttribute("aria-current", "page");
       } else if (href && href === path) {
@@ -867,13 +887,19 @@
 
     document.querySelectorAll(".mobile-nav-link").forEach((link) => {
       const href = link.getAttribute("href");
+      const text = link.textContent?.trim();
 
-      if (link.classList.contains("mobile-products-link")) {
+      if (link.classList.contains("mobile-products-link") && text === "Seccurity Cameras") {
         if (isProductActive(path)) {
           link.classList.add("active");
           link.setAttribute("aria-current", "page");
         }
-      } else if (link.textContent?.trim() === "Blog" && isBlogActive(path)) {
+      } else if (link.classList.contains("mobile-products-link") && text === "Smart Home") {
+        if (isSmartHomeActive(path)) {
+          link.classList.add("active");
+          link.setAttribute("aria-current", "page");
+        }
+      } else if (text === "Blog" && isBlogActive(path)) {
         link.classList.add("active");
         link.setAttribute("aria-current", "page");
       } else if (href && href === path) {

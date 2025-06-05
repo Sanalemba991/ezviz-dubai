@@ -4,11 +4,12 @@ import { getCollection } from 'astro:content';
 import "../../styles/global.css";
 import Whatsapp from "../../components/Whatsapp";
 
-const products = await getCollection('outdoor-wifi');
-const title = "Outdoor Wi-FI Cameras | Ezviz Dubai Authorized Distributor";
+const products = await getCollection('smartentry');
+const title = "Smart Entry Solutions | Ezviz Dubai Authorized Distributor";
 const description = "High-performance surveillance solutions";
-const canonicalURL = new URL("/categories/outdoorcamera", Astro.site);
+const canonicalURL = new URL("/categories/smartentry", Astro.site);
 
+// Schema.org markup
 function formatPrice(price) {
   const num = Number(price);
   if (isNaN(num) || num < 0) return "0.00";
@@ -27,7 +28,7 @@ const structuredData = {
   url: canonicalURL,
   mainEntity: {
     "@type": "ItemList",
-    itemListElement: (await getCollection('outdoor-wifi')).map((product, index) => ({
+    itemListElement: (await getCollection('smartentry')).map((product, index) => ({
       "@type": "ListItem",
       position: index + 1,
       item: {
@@ -36,7 +37,7 @@ const structuredData = {
         description: product.data.description,
         // Fixed: Use absolute URL or placeholder for valid image
         image: product.data.image.startsWith('http') ? product.data.image : `https://ezviz-dubai.com/images/${product.slug}.png`,
-        url: new URL(`/categories/outdoorcamera/${product.slug}`, Astro.site).toString(),
+        url: new URL(`/categories/wireFree/${product.slug}`, Astro.site).toString(),
         offers: {
           "@type": "Offer",
           priceCurrency: "AED",
@@ -95,7 +96,6 @@ const structuredData = {
   }
 };
 ---
-<meta charset="UTF-8" />
 <Layout  title={title} 
     description={description}
     structuredData={structuredData}
@@ -696,15 +696,16 @@ const structuredData = {
 }
 
 @media (max-width: 640px) {
-    .search-area-mobile-margin {
-      margin-top: 1.5rem;
+        .search-area-mobile-margin {
+            margin-top: 1.5rem;
+        }
+        .mobile-hero-gap {
+            margin-bottom: 1.5rem;
+        }
     }
-    .mobile-hero-gap {
-      margin-bottom: 1.5rem;
-    }
-  }
 </style>
-  <section class="relative w-screen overflow-hidden flex items-center min-h-[60vh] bg-gradient-to-br from-gray-800 to-gray-700 ml-[calc(50%-50vw)] md:min-h-[70vh] lg:min-h-[80vh] xl:min-h-[600px] mobile-hero-gap">
+<meta charset="UTF-8" />
+    <section class="relative w-screen overflow-hidden flex items-center min-h-[60vh] bg-gradient-to-br from-gray-800 to-gray-700 ml-[calc(50%-50vw)] md:min-h-[70vh] lg:min-h-[80vh] xl:min-h-[600px] mobile-hero-gap">
   <!-- Background image with parallax effect -->
   <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1557804506-669a67965ba0?w=1920&h=1080&fit=crop')] bg-cover bg-center bg-no-repeat bg-fixed opacity-15 scale-110 motion-safe:animate-[float_6s_ease-in-out_infinite] md:opacity-12 md:scale-105 md:bg-scroll"></div>
   
@@ -713,10 +714,10 @@ const structuredData = {
       <!-- Hero Content -->
       <div class="hero-content">
         <h1 class="text-4xl md:text-5xl lg:text-6xl xl:text-7xl mt-10 font-bold leading-tight mb-4 text-white">
-          Outdoor Wi-Fi <span class="text-blue-400 inline-block motion-safe:animate-[glow_2s_ease-in-out_infinite_alternate]">Cameras</span>
+          Smart <span class="text-blue-400 inline-block motion-safe:animate-[glow_2s_ease-in-out_infinite]">Entry</span>
         </h1>
         <p class="text-base md:text-lg lg:text-xl text-gray-300 mb-8 max-w-[90%] md:max-w-[85%] lg:max-w-[80%] leading-relaxed">
-          Professional-grade wireless surveillance systems with advanced AI detection, 4K resolution, and enterprise-level security features.
+        Discover smart entry solutions, intelligent cleaning appliances, and advanced home sensors designed for a safer, smarter, and more convenient home.
         </p>
         
         <!-- Responsive Buttons -->
@@ -750,21 +751,20 @@ const structuredData = {
       <!-- Hero Image - Desktop Only -->
       <div class="hidden lg:block opacity-0 motion-safe:animate-[slideInRight_1s_ease-out_forwards] motion-reduce:opacity-100">
         <div class="relative w-full h-full min-h-[400px] overflow-hidden rounded-2xl shadow-[0_25px_50px_-12px_rgba(0,0,0,0.4)] border-2 border-white/10 motion-safe:animate-[float_3s_ease-in-out_infinite] xl:min-h-[450px]">
-          <img 
+           <img 
             src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&h=600&fit=crop" 
             alt="Professional Security Camera"
             class="w-full h-full object-cover object-center transition-all duration-800 brightness-110 contrast-110 hover:scale-105 hover:brightness-120 hover:contrast-120 hover:saturate-110"
             loading="lazy"
           />
           <div class="absolute bottom-5 right-5 bg-gradient-to-br from-blue-500 to-blue-700 text-white px-4 py-2 rounded-lg font-bold text-sm shadow-[0_8px_25px_rgba(59,130,246,0.4)] border-2 border-white/20 transition-all duration-400 z-20 hover:-translate-y-1 hover:scale-[1.05] hover:shadow-[0_12px_35px_rgba(59,130,246,0.6)]">
-            Professional Grade
+            Smart Entry Solution
           </div>
         </div>
       </div>
     </div>
   </div>
 </section>
-
     <!-- Main Content Section -->
     <section class="relative sm:py-32">
         <!-- Background Elements -->
@@ -793,20 +793,20 @@ const structuredData = {
 
                 <!-- Filter Buttons -->
                 <div class="flex flex-wrap justify-center gap-4">
-                    <button class="filter-btn px-6 py-3 t rounded-full font-medium transform hover:scale-105 transition-all duration-300 shadow-lg" data-filter="all">
+                    <button class="filter-btn px-6 py-3 rounded-full font-medium transform hover:scale-105 transition-all duration-300 shadow-lg" data-filter="all">
                         <i class="fas fa-th-large mr-2"></i>All Products
                     </button>
-                    <button class="filter-btn px-6 py-3 rounded-full font-medium transform hover:scale-105 transition-all duration-300 shadow-lg" data-filter="b">
-                        <i class="fas fa-battery-full mr-2"></i>B Series
-                    </button>
-                    <button class="filter-btn px-6 py-3 rounded-full font-medium transform hover:scale-105 transition-all duration-300 shadow-lg" data-filter="c">
-                        <i class="fas fa-sync-alt mr-2"></i>C Series
+                    <button class="filter-btn px-6 py-3 rounded-full font-medium transform hover:scale-105 transition-all duration-300 shadow-lg" data-filter="d">
+                        <i class="fas fa-battery-full mr-2"></i>D Series
                     </button>
                     <button class="filter-btn px-6 py-3 rounded-full font-medium transform hover:scale-105 transition-all duration-300 shadow-lg" data-filter="e">
-                        <i class="fas fa-cloud-sun mr-2"></i>E Series
+                        <i class="fas fa-sync-alt mr-2"></i>E Series
                     </button>
                     <button class="filter-btn px-6 py-3 rounded-full font-medium transform hover:scale-105 transition-all duration-300 shadow-lg" data-filter="h">
-                        <i class="fas fa-brain mr-2"></i>H Series
+                        <i class="fas fa-cloud-sun mr-2"></i>H Series
+                    </button>
+                    <button class="filter-btn px-6 py-3 rounded-full font-medium transform hover:scale-105 transition-all duration-300 shadow-lg" data-filter="y">
+                        <i class="fas fa-brain mr-2"></i>Y Series
                     </button>
                 </div>
 
@@ -831,7 +831,7 @@ const structuredData = {
             <div id="products" class="products-grid grid grid-cols-1 gap-8 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
                 {products.map((product, index) => (
                     <a 
-                        href={`/categories/outdoorcamera/${product.slug}`}
+                        href={`/categories/smartentry/${product.slug}`}
                         class="product-card category-item"
                         data-name={product.data.title.toLowerCase()}
                         style={`animation-delay: ${index * 100}ms`}
@@ -940,7 +940,7 @@ const structuredData = {
                         const category = item.dataset.category || '';
 
                         // Only allow names that start with b, c, e, or h
-                        const allowed = ['b', 'c', 'e', 'h'];
+                        const allowed = ['D', 'c', 'e', 'h'];
                         const startsWithAllowed = allowed.some(letter => name.startsWith(letter));
 
                         // Filter logic
@@ -1044,20 +1044,17 @@ const structuredData = {
                     const category = item.dataset.category || '';
 
                     // Only allow names that start with b, c, e, or h
-                    const allowed = ['b', 'c', 'e', 'h'];
+                    const allowed = ['d', 'e', 'h', 'y'];
                     const startsWithAllowed = allowed.some(letter => name.startsWith(letter));
 
                     // Filter logic
                     let show = false;
 
                     if (activeFilter === 'all') {
-                        // Show all allowed products matching search
                         show = startsWithAllowed && name.includes(searchTerm);
                     } else if (allowed.includes(activeFilter)) {
-                        // Show only products starting with the selected letter and matching search
                         show = name.startsWith(activeFilter) && name.includes(searchTerm);
                     } else {
-                        // Fallback (should not happen)
                         show = name.includes(searchTerm);
                     }
 
