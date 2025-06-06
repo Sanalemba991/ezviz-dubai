@@ -12,7 +12,7 @@
       <div class="flex items-center">
         <!-- Mobile Menu Button (hidden on desktop) -->
         <button
-          class="md:hidden text-white mr-4"
+          class="lg:hidden text-white mr-4"
           aria-label="Toggle menu"
           id="mobile-menu-button"
           type="button"
@@ -47,7 +47,7 @@
       </div>
 
       <!-- Desktop Navigation -->
-      <nav class="hidden md:flex items-center space-x-8">
+      <nav class="hidden lg:flex items-center space-x-8">
         <a
           href="/"
           class="nav-link text-white hover:text-gray-400 font-medium transition-colors duration-200"
@@ -408,7 +408,7 @@
 
     <!-- Mobile Navigation (hidden by default) -->
     <nav
-      class="md:hidden hidden py-4 border-t border-gray-700"
+      class="lg:hidden hidden py-4 border-t border-gray-700"
       id="mobile-menu"
     >
       <div class="flex flex-col space-y-4">
@@ -839,6 +839,32 @@
 }
 .mobile-dropdown-arrow-rotate {
   transform: rotate(180deg);
+}
+
+/* Tablet: Show dropdowns on hover for md and up, hide on mobile */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .dropdown-menu {
+    display: block !important;
+    position: absolute !important;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.3s, visibility 0.3s;
+  }
+  .dropdown-parent:hover .dropdown-menu,
+  .dropdown-parent:focus-within .dropdown-menu {
+    opacity: 1 !important;
+    visibility: visible !important;
+    pointer-events: auto;
+    z-index: 1000;
+  }
+  .dropdown-parent .dropdown-arrow {
+    transition: transform 0.3s;
+  }
+  .dropdown-parent:hover .dropdown-arrow,
+  .dropdown-parent:focus-within .dropdown-arrow {
+    transform: rotate(180deg);
+  }
 }
 </style>
 
