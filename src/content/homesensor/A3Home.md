@@ -1,6 +1,6 @@
 ---
 slug: A3 Home Gateway
-title: "A3 HOme Gateway"
+title: "A3 Home Gateway"
 description: "It is the hub for your connected and protected home."
 image: "/images/Homeappliance/A3Home.png"
 images:
