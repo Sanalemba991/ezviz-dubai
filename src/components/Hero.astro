@@ -37,24 +37,24 @@ const items: CarouselItem[] = [
     title: "Smart Entry Solutions",
     description: "Secure your home with EZVIZ smart door locks and video doorbells for convenient, keyless entry and real-time monitoring.",
     ctaText: "Explore Smart Entry",
-    desktopImage: "/images/Banner/SmartEntry.png",
-    mobileImage: "/images/Banner/SmartEntry1.png",
+    desktopImage: "/images/Banner/Ezviz Banner 1.jpg",
+    mobileImage: "/images/Banner/Ezviz mobile baner 1.jpg",
     link: "/categories/smartentry"
   },
   {
     title: "Home Sensors",
     description: "Protect your property with EZVIZ motion, door/window, and environmental sensors for instant alerts and peace of mind.",
     ctaText: "Explore Home Sensors",
-    desktopImage: "/images/Banner/HomeSensor.png",
-    mobileImage: "/images/Banner/HomeSensor1.png",
+    desktopImage: "/images/Banner/Ezviz banner 2.jpg",
+    mobileImage: "/images/Banner/Ezviz mobile baner 2.jpg",
     link: "/categories/homesensor"
   },
   {
     title: "Smart Home Appliances",
     description: "Upgrade your lifestyle with EZVIZ smart plugs, switches, and appliances for energy savings and remote control.",
     ctaText: "Explore Smart Appliances",
-    desktopImage: "/images/Banner/HomeAppliances.png",
-    mobileImage: "/images/Banner/HomeAppliances1.png",
+    desktopImage: "/images/Banner/Ezviz banner 3.jpg",
+    mobileImage: "/images/Banner/Ezviz mobile baner 3.jpg",
     link: "/categories/homeappliances"
   }
 ];
@@ -118,7 +118,7 @@ const items: CarouselItem[] = [
         "url": "/categories/smartentry",
         "image": {
           "@type": "ImageObject",
-          "url": "/images/Banner/SmartEntry.png"
+          "url": "/images/Banner/Ezviz Banner 1.jpg"
         }
       }
     },
@@ -132,7 +132,7 @@ const items: CarouselItem[] = [
         "url": "/categories/homesensor",
         "image": {
           "@type": "ImageObject",
-          "url": "/images/Banner/HomeSensor.png"
+          "url": "/images/Banner/Ezviz banner 2.jpg"
         }
       }
     },
@@ -146,7 +146,7 @@ const items: CarouselItem[] = [
         "url": "/categories/homeappliances",
         "image": {
           "@type": "ImageObject",
-          "url": "/images/Banner/HomeAppliances.png"
+          "url": "/images/Banner/Ezviz banner 3.jpg"
         }
       }
     }
@@ -607,9 +607,15 @@ const items: CarouselItem[] = [
     let autoSlideInterval;
     let isTransitioning = false;
 
-    function updateSlide(index) {
+    // Helper to update slide with custom transition time
+    function updateSlide(index, transitionTime = 2000) {
       if (isTransitioning) return;
       isTransitioning = true;
+
+      // Set transition duration for all slides
+      slides.forEach(slide => {
+        slide.style.transitionDuration = (transitionTime / 1000) + 's';
+      });
 
       // Hide all slides
       slides.forEach(slide => {
@@ -621,14 +627,12 @@ const items: CarouselItem[] = [
         dot.classList.toggle('active', i === index);
       });
 
-      // Show new slide with delay for smooth transition
       setTimeout(() => {
         slides[index].classList.add('active');
         currentSlide = index;
-        
         setTimeout(() => {
           isTransitioning = false;
-        }, 2000); // changed from 300 to 2000 for 2s transition
+        }, transitionTime);
       }, 100);
 
       resetAutoSlide();
@@ -636,16 +640,24 @@ const items: CarouselItem[] = [
 
     function nextSlide() {
       const next = (currentSlide + 1) % slides.length;
-      updateSlide(next);
+      // Fast transition for button
+      updateSlide(next, 300);
     }
 
     function prevSlide() {
       const prev = (currentSlide - 1 + slides.length) % slides.length;
-      updateSlide(prev);
+      // Fast transition for button
+      updateSlide(prev, 300);
+    }
+
+    function autoSlide() {
+      const next = (currentSlide + 1) % slides.length;
+      // Smooth transition for auto
+      updateSlide(next, 2000);
     }
 
     function startAutoSlide() {
-      autoSlideInterval = setInterval(nextSlide, 6000);
+      autoSlideInterval = setInterval(autoSlide, 6000);
     }
 
     function resetAutoSlide() {
@@ -655,7 +667,7 @@ const items: CarouselItem[] = [
 
     // Event listeners
     dots.forEach((dot, index) => {
-      dot.addEventListener('click', () => updateSlide(index));
+      dot.addEventListener('click', () => updateSlide(index, 2000));
     });
 
     if (prevBtn) prevBtn.addEventListener('click', prevSlide);
@@ -703,7 +715,7 @@ const items: CarouselItem[] = [
     });
 
     // Initialize
-    updateSlide(0);
+    updateSlide(0, 0);
     startAutoSlide();
 
     // Intersection Observer for performance
