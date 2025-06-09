@@ -2,8 +2,7 @@
 import Navbar from "../components/Navbar.astro";
 import { SEO } from "astro-seo";
 import Footer from "~/components/Footer.astro";
-
-// import GoogleAnalytics from "../components/GoogleAnalytics.astro";
+import GoogleAnalytics from "~/components/GoogleAnalytics.astro";
 
 // Fallback for site and pathname to prevent "Invalid URL" error
 const site = Astro.site ?? "https://ezviz-dubai.com";
@@ -22,7 +21,7 @@ const { title, description, structuredData, keywords } = Astro.props;
     <link rel="sitemap" href="/sitemap-index.xml" />
     <meta name="robots" content="index, follow" />
     <link rel="icon" type="image/png/jpg" href="/favicon.jpg" />
-    {/* <GoogleAnalytics /> */}
+     <GoogleAnalytics /> 
     {
       structuredData && (
         <script
