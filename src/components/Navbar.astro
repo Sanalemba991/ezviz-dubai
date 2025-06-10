@@ -896,8 +896,13 @@
       arrow?.classList.toggle("rotate-180");
     });
 
+  // Active page highlighting
   document.addEventListener("DOMContentLoaded", () => {
-    const path = window.location.pathname.replace(/\/$/, "") || "/";
+    // Normalize path: remove trailing slash except for root
+    let path = window.location.pathname;
+    if (path.length > 1 && path.endsWith("/")) {
+      path = path.slice(0, -1);
+    }
 
     function isProductActive(path) {
       return (
@@ -935,7 +940,12 @@
     });
 
     document.querySelectorAll(".nav-link").forEach((link) => {
-      const href = (link.getAttribute("href") || "").replace(/\/$/, "") || "/";
+      const hrefRaw = link.getAttribute("href");
+      // Normalize href
+      let href = hrefRaw;
+      if (href && href.length > 1 && href.endsWith("/")) {
+        href = href.slice(0, -1);
+      }
       const text = link.textContent?.trim();
 
       if (link.classList.contains("products-link") && text.replace(/\s+/g, " ") === "Security Cameras") {
@@ -951,14 +961,18 @@
       } else if (text === "Blog" && isBlogActive(path)) {
         link.classList.add("active");
         link.setAttribute("aria-current", "page");
-      } else if (href === path) {
+      } else if (href && href === path) {
         link.classList.add("active");
         link.setAttribute("aria-current", "page");
       }
     });
 
     document.querySelectorAll(".mobile-nav-link").forEach((link) => {
-      const href = (link.getAttribute("href") || "").replace(/\/$/, "") || "/";
+      const hrefRaw = link.getAttribute("href");
+      let href = hrefRaw;
+      if (href && href.length > 1 && href.endsWith("/")) {
+        href = href.slice(0, -1);
+      }
       const text = link.textContent?.trim();
 
       if (link.classList.contains("mobile-products-link") && text.replace(/\s+/g, " ") === "Seccurity Cameras") {
@@ -974,7 +988,7 @@
       } else if (text === "Blog" && isBlogActive(path)) {
         link.classList.add("active");
         link.setAttribute("aria-current", "page");
-      } else if (href === path) {
+      } else if (href && href === path) {
         link.classList.add("active");
         link.setAttribute("aria-current", "page");
       }
