@@ -5,29 +5,26 @@ import Whatsapp from "../../components/Whatsapp";
 
 const title = "Smart Home | Surveillance Solutions";
 const description =
-  "Explore our comprehensive range of surveillance solutions including Smart Entry, Smart Hom Appliancese and Home Sensors .";
-const canonicalURL = new URL("/product2", Astro.site);
+  "Explore our comprehensive range of surveillance solutions including Smart Entry, Smart Home Appliances and Home Sensors.";
+const canonicalURL = "https://ezviz-dubai.com/product2";
 const categories = [
   {
     title: "Smart Entry",
-    description:
-      "Smart door devices for secure entry monitoring.",
+    description: "Smart door devices for secure entry monitoring.",
     imageUrl: "/images/smartentry/DB2.png",
     href: "/categories/smartentry",
     icon: "video",
   },
   {
     title: "Smart Home Appliances",
-    description:
-      "Robotic vacuums and smart appliances for easy home cleaning.",
+    description: "Robotic vacuums and smart appliances for easy home cleaning.",
     imageUrl: "/images/smarthome/RS2.png",
     href: "/categories/homeappliances",
     icon: "camera",
   },
   {
     title: "Home Sensors",
-    description:
-      "Motion, entry, and environmental sensors for home safety.",
+    description: "Motion, entry, and environmental sensors for home safety.",
     imageUrl: "/images/Homeappliance/Ezviz 4-piece.png",
     href: "/categories/homesensor",
     icon: "rotate-cw",
@@ -38,7 +35,7 @@ const structuredData = {
   "@type": "CollectionPage",
   "name": title,
   "description": description,
-  "url": canonicalURL.toString(),
+  "url": canonicalURL,
   "breadcrumb": {
     "@type": "BreadcrumbList",
     "itemListElement": [
@@ -46,13 +43,13 @@ const structuredData = {
         "@type": "ListItem",
         "position": 1,
         "name": "Home",
-        "item": Astro.site.toString(),
+        "item": "https://ezviz-dubai.com/",
       },
       {
         "@type": "ListItem",
         "position": 2,
         "name": "Categories",
-        "item": canonicalURL.toString(),
+        "item": canonicalURL,
       },
     ],
   },
@@ -65,8 +62,8 @@ const structuredData = {
         "@type": "Product",
         "name": category.title,
         "description": category.description,
-        "url": new URL(category.href, Astro.site).toString(),
-        "image": new URL(category.imageUrl, Astro.site).toString(),
+        "url": `https://ezviz-dubai.com${category.href}`,
+        "image": `https://ezviz-dubai.com${category.imageUrl}`,
         "aggregateRating": {
           "@type": "AggregateRating",
           "ratingValue": "4.5",

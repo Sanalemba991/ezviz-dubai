@@ -21,9 +21,8 @@ const structuredData = {
       "url": "https://ezviz-dubai.com",
       "logo": {
         "@type": "ImageObject",
-        "@id": `${Astro.url.origin}/images/logo.png`,
-        "url": `${Astro.url.origin}/images/logo.png`,
-  
+        "@id": "https://ezviz-dubai.com/images/logo.png",
+        "url": "https://ezviz-dubai.com/images/logo.png",
         "caption": "ezvizdubai",
         "inLanguage": "en-US",
         "width": 1000,
@@ -47,8 +46,8 @@ const structuredData = {
     },
     {
       "@type": "ImageObject",
-      "@id": `${Astro.url.origin}/images/logo.png`,
-      "url": `${Astro.url.origin}/images/logo.png`,
+      "@id": "https://ezviz-dubai.com/images/logo.png",
+      "url": "https://ezviz-dubai.com/images/logo.png",
       "width": 200,
       "height": 200,
       "inLanguage": "en-US"
@@ -68,7 +67,7 @@ const structuredData = {
         "@id": "https://ezviz-dubai.com/#website"
       },
       "primaryImageOfPage": {
-        "@id": `${Astro.url.origin}/images/logo.png`,
+        "@id": "https://ezviz-dubai.com/images/logo.png"
       },
       "inLanguage": "en-US"
     },
@@ -96,7 +95,7 @@ const structuredData = {
       },
       "image": {
         "@type": "ImageObject",
-        "url":  `${Astro.url.origin}/images/logo.png`,
+        "url": "https://ezviz-dubai.com/images/logo.png",
         "width": 1200,
         "height": 630,
         "caption": "Ezviz Dubai Authorized Distributor"
@@ -115,12 +114,12 @@ const structuredData = {
   canonicalUrl={Astro.url.href}
   ogTitle={title}
   ogDescription={description}
-  ogImage={`${Astro.url.origin}/images/logo.png`}
+  ogImage="https://ezviz-dubai.com/images/logo.png"
   ogUrl={Astro.url.href}
   twitterCard="summary_large_image">
   <Hero />
   <Products />
   <Details />
   <Ezviz />
-   <Whatsapp client:load />
+  <Whatsapp client:load />
 </Layout>

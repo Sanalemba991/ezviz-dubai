@@ -7,18 +7,13 @@ import Whatsapp from "../../components/Whatsapp";
 const products = await getCollection('indoor-wifi');
 const title = "Indoor Wi-FI Cameras | Ezviz Dubai Authorized Distributor";
 const description = "High-performance surveillance solutions";
-const canonicalURL = new URL("/categories/indoorcamera", Astro.site);
+const canonicalURL = "https://ezviz-dubai.com/categories/indoorcamera"; // Changed to absolute URL
 
-// Helper to ensure price is a valid string with two decimals
 function formatPrice(price) {
   const num = Number(price);
   if (isNaN(num) || num < 0) return "0.00";
   return num.toFixed(2);
 }
-
-
-// Schema.org markup
-// Replace the existing structuredData object with this fixed version:
 
 const structuredData = {
   "@context": "https://schema.org",
@@ -28,33 +23,32 @@ const structuredData = {
   url: canonicalURL,
   mainEntity: {
     "@type": "ItemList",
-    itemListElement: (await getCollection('indoor-wifi')).map((product, index) => ({
+    itemListElement: products.map((product, index) => ({
       "@type": "ListItem",
       position: index + 1,
       item: {
         "@type": "Product",
         name: product.data.title,
         description: product.data.description,
-        // Fixed: Use absolute URL or placeholder for valid image
-        image: product.data.image.startsWith('http') ? product.data.image : `https://ezviz-dubai.com/images/${product.slug}.png`,
-        url: new URL(`/categories/indoorcamera/${product.slug}`, Astro.site).toString(),
+        image: product.data.image.startsWith('http')
+          ? product.data.image
+          : `https://ezviz-dubai.com/images/${product.slug}.png`,
+        url: `https://ezviz-dubai.com/categories/indoorcamera/${product.slug}`,
         offers: {
           "@type": "Offer",
           priceCurrency: "AED",
           price: formatPrice(product.data.price),
           availability: "https://schema.org/InStock",
           itemCondition: "https://schema.org/NewCondition",
-          // Fixed: Added seller information
           seller: {
             "@type": "Organization",
-            name: "Ezviv-Dubai" // Replace with your store name
+            name: "Ezviz-Dubai"
           },
-          // Fixed: Added shipping details
           shippingDetails: {
             "@type": "OfferShippingDetails",
             shippingRate: {
               "@type": "MonetaryAmount",
-              value: "0.00", // Free shipping or set your rate
+              value: "0.00",
               currency: "AED"
             },
             deliveryTime: {
@@ -73,7 +67,6 @@ const structuredData = {
               }
             }
           },
-          // Fixed: Added return policy
           hasMerchantReturnPolicy: {
             "@type": "MerchantReturnPolicy",
             applicableCountry: "AE",
@@ -85,12 +78,11 @@ const structuredData = {
         },
         aggregateRating: {
           "@type": "AggregateRating",
-          ratingValue: ((product.data as any).rating || "4.5").toString(),
-          reviewCount: ((product.data as any).reviewCount || "10").toString(),
+          ratingValue: (product.data.rating || "4.5").toString(),
+          reviewCount: (product.data.reviewCount || "10").toString(),
           bestRating: "5",
           worstRating: "0"
         },
-       
       }
     }))
   }

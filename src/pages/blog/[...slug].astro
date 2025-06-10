@@ -33,7 +33,7 @@ const formatDate = (date: Date) => {
 // SEO meta data
 const title = `${post.data.title} | Ezviz Dubai Blog`;
 const description = post.data.description;
-const canonicalUrl = new URL(`/blog/${post.slug}`, Astro.site);
+const canonicalUrl = `https://ezviz-dubai.com/blog/${post.slug}`; // Use absolute URL
 
 // Get related posts (excluding current post)
 const allPosts = await getCollection("blog");
@@ -47,26 +47,26 @@ const structuredData = {
   "@type": "BlogPosting",
   "headline": post.data.title,
   "description": description,
-  "url": canonicalUrl.toString(),
-  "image": `${Astro.site}${post.data.cardImage.src}`,
+  "url": canonicalUrl,
+  "image": `https://ezviz-dubai.com${post.data.cardImage.src}`,
   "datePublished": post.data.pubDate,
   "dateModified": post.data.pubDate, // Update if you have modified date
   "author": {
     "@type": "Person",
     "name": post.data.author || "Ezviz Dubai",
-    "url": Astro.site
+    "url": "https://ezviz-dubai.com/"
   },
   "publisher": {
     "@type": "Organization",
     "name": "Ezviz Dubai",
     "logo": {
       "@type": "ImageObject",
-      "url": `${Astro.site}/images/logo.png` // Update with your logo path
+      "url": "https://ezviz-dubai.com/images/logo.png"
     }
   },
   "mainEntityOfPage": {
     "@type": "WebPage",
-    "@id": canonicalUrl.toString()
+    "@id": canonicalUrl
   },
   "keywords": post.data.tags?.join(", ") || "",
   "articleBody": post.data.contents.join(" ")

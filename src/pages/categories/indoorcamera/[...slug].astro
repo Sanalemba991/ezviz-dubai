@@ -3,7 +3,8 @@
 import Layout from "./../../../layouts/Layout.astro";
 import { getCollection } from 'astro:content';
 import "./../../../styles/global.css";
-import Whatsapp from "./../../../components/Whatsapp";;
+import Whatsapp from "./../../../components/Whatsapp";
+
 type Props = {
     product: Product;
 };
@@ -37,6 +38,7 @@ interface Product {
     specification: ProductSpecifications;
     rating?: number;
     reviewCount?: number;
+    slug: string;
 }
 
 export async function getStaticPaths() {
@@ -48,10 +50,8 @@ export async function getStaticPaths() {
 }
 
 const { product } = Astro.props as Props;
-const title = `${product.title} | Indoor Wi-Fi Cameras`;
-const description = product.description;
 const images = product.images || (product.image ? [{ url: product.image }] : []);
-const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const canonicalURL = `https://ezviz-dubai.com/categories/indoorcamera/${product.slug}`; // Use absolute URL
 
 function formatPrice(price) {
   const num = Number(price);
@@ -64,7 +64,7 @@ const structuredData = [
     "@type": "Product",
     "name": product.title,
     "description": product.description,
-    "image": product.image.startsWith('http') ? product.image : `https://ezviz-dubai.com/images/${Astro.params.slug}.png`,
+    "image": product.image.startsWith('http') ? product.image : `https://ezviz-dubai.com/images/${product.slug}.png`,
     "productType": "Indoor Wi-Fi Cameras",
     "offers": {
       "@type": "Offer",
@@ -74,7 +74,7 @@ const structuredData = [
       "itemCondition": "https://schema.org/NewCondition",
       "seller": {
         "@type": "Organization",
-        "name": "Ezviv-Dubai"
+        "name": "Ezviz-Dubai"
       },
       "shippingDetails": {
         "@type": "OfferShippingDetails",
@@ -108,23 +108,13 @@ const structuredData = [
         "returnFees": "https://schema.org/FreeReturn"
       }
     },
-    ...(product.rating && product.reviewCount ? {
-      "aggregateRating": {
-        "@type": "AggregateRating",
-        "ratingValue": product.rating.toString(),
-        "reviewCount": product.reviewCount.toString(),
-        "bestRating": "5",
-        "worstRating": "0"
-      }
-    } : {
-      "aggregateRating": {
-        "@type": "AggregateRating",
-        "ratingValue": "4.5",
-        "reviewCount": "10",
-        "bestRating": "5",
-        "worstRating": "0"
-      }
-    })
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": (product.rating || 4.5).toString(),
+      "reviewCount": (product.reviewCount || 10).toString(),
+      "bestRating": "5",
+      "worstRating": "0"
+    }
   },
   {
     "@context": "https://schema.org",
@@ -134,26 +124,27 @@ const structuredData = [
         "@type": "ListItem",
         "position": 1,
         "name": "Home",
-        "item": new URL("/", Astro.site).toString()
+        "item": "https://ezviz-dubai.com/"
       },
       {
         "@type": "ListItem",
         "position": 2,
-        "name": "Wire-Free Cameras",
-        "item": new URL("/categories/indoorcamera", Astro.site).toString()
+        "name": "Indoor Wi-Fi Cameras",
+        "item": "https://ezviz-dubai.com/categories/indoorcamera"
       },
       {
         "@type": "ListItem",
         "position": 3,
         "name": product.title,
-        "item": canonicalURL.toString()
+        "item": canonicalURL
       }
     ]
   }
 ];
 
-
-
+// Set page metadata
+const pageTitle = `${product.title} | Indoor Wi-Fi Cameras`;
+const pageDescription = product.description;
 ---
 <meta charset="UTF-8" />
 <style is:global>

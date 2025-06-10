@@ -7,7 +7,7 @@ import Whatsapp from "../../components/Whatsapp";
 // Fetch blog posts dynamically from the 'blog' collection
 const allPosts = await getCollection("blog");
 
-// Limit the posts to only 2
+// Limit the posts to only 6
 const posts = allPosts.slice(0, 6); 
 
 // Format date helper
@@ -22,7 +22,7 @@ const formatDate = (date: Date) => {
 // SEO meta data
 const title = "Ezviz Dubai Blogs | Ezviz Camera Dubai Insights";
 const description = "Explore our latest blog posts on surveillance technology, CCTV trends, and security solutions from Ezviz Dubai in Dubai.";
-const canonicalUrl = new URL("/blog", Astro.site);
+const canonicalUrl = "https://ezviz-dubai.com/blog"; // Use absolute URL
 
 
 // JSON-LD Structured Data
@@ -31,18 +31,18 @@ const structuredData = {
   "@type": "Blog",
   "name": title,
   "description": description,
-  "url": canonicalUrl.toString(),
+  "url": canonicalUrl,
   "inLanguage": "en-US",
   "isPartOf": {
     "@type": "WebSite",
-    "url": Astro.site
+    "url": "https://ezviz-dubai.com"
   },
   "blogPosts": posts.map(post => ({
     "@type": "BlogPosting",
     "headline": post.data.title,
     "description": post.data.description || description,
-    "url": `${Astro.site}/blog/${post.slug}`,
-    "image": `${Astro.site}${post.data.cardImage.src}`,
+    "url": `https://ezviz-dubai.com/blog/${post.slug}`,
+    "image": `https://ezviz-dubai.com${post.data.cardImage.src}`,
     "datePublished": post.data.pubDate,
     "author": {
       "@type": "Person",
@@ -53,7 +53,7 @@ const structuredData = {
       "name": "Ezviz Dubai",
       "logo": {
         "@type": "ImageObject",
-        "url": `${Astro.site}/images/logo.png` // Update with your logo path
+        "url": "https://ezviz-dubai.com/images/logo.png"
       }
     }
   }))

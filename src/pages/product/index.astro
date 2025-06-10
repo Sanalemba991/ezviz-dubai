@@ -3,10 +3,10 @@ import Layout from "../../layouts/Layout.astro";
 import "../../styles/global.css";
 import Whatsapp from "../../components/Whatsapp";
 
-const title = "Security Camaeras | Surveillance Solutions";
+const title = "Security Cameras | Surveillance Solutions";
 const description =
-  "Explore our comprehensive range of surveillance solutions including Wire-Free Cameras, Outdoor Wi-Fi Cameras and Indoor Wi-Fi Cameras .";
-const canonicalURL = new URL("/product", Astro.site);
+  "Explore our comprehensive range of surveillance solutions including Wire-Free Cameras, Outdoor Wi-Fi Cameras and Indoor Wi-Fi Cameras.";
+const canonicalURL = "https://ezviz-dubai.com/product";
 const categories = [
   {
     title: "Wire-Free Cameras",
@@ -28,7 +28,7 @@ const categories = [
     title: "Indoor Wi-Fi Cameras",
     description:
       "Indoor Wi-Fi Cameras offer wide coverage, zoom, and robust stability.",
-    imageUrl: "/images//indoor-wifi/C1C-B.png",
+    imageUrl: "/images/indoor-wifi/C1C-B.png",
     href: "/categories/indoorcamera",
     icon: "rotate-cw",
   },
@@ -38,7 +38,7 @@ const structuredData = {
   "@type": "CollectionPage",
   "name": title,
   "description": description,
-  "url": canonicalURL.toString(),
+  "url": canonicalURL,
   "breadcrumb": {
     "@type": "BreadcrumbList",
     "itemListElement": [
@@ -46,13 +46,13 @@ const structuredData = {
         "@type": "ListItem",
         "position": 1,
         "name": "Home",
-        "item": Astro.site.toString(),
+        "item": "https://ezviz-dubai.com/",
       },
       {
         "@type": "ListItem",
         "position": 2,
         "name": "Categories",
-        "item": canonicalURL.toString(),
+        "item": canonicalURL,
       },
     ],
   },
@@ -65,8 +65,8 @@ const structuredData = {
         "@type": "Product",
         "name": category.title,
         "description": category.description,
-        "url": new URL(category.href, Astro.site).toString(),
-        "image": new URL(category.imageUrl, Astro.site).toString(),
+        "url": `https://ezviz-dubai.com${category.href}`,
+        "image": `https://ezviz-dubai.com${category.imageUrl}`,
         "aggregateRating": {
           "@type": "AggregateRating",
           "ratingValue": "4.5",

@@ -5,7 +5,7 @@ import Whatsapp from "../components/Whatsapp";
 const title = "Ezviz Camera Distributor in Dubai, UAE ";
 const description =
   "Authorized Ezviz security camera and solutions distributor in Dubai & UAE. Meet our expert team providing top-quality surveillance solutions with professional installation support.";
-const canonicalUrl = new URL(Astro.url.pathname, Astro.site);
+const canonicalUrl = "https://ezviz-dubai.com/aboutus";
 
 const structuredData = {
   "@context": "https://schema.org",
@@ -17,9 +17,8 @@ const structuredData = {
       url: "https://ezviz-dubai.com",
       logo: {
         "@type": "ImageObject",
-        "@id": `${Astro.url.origin}/images/logo.png`,
-        url: `${Astro.url.origin}/images/logo.png`,
-
+        "@id": "https://ezviz-dubai.com/images/logo.png",
+        url: "https://ezviz-dubai.com/images/logo.png",
         caption: "Ezviz Dubai Distributor",
         inLanguage: "en-US",
         width: 1000,
@@ -34,19 +33,19 @@ const structuredData = {
       name: "Ezviz Security Cameras Dubai | Ezviz Dubai",
       description: description,
       publisher: {
-        "@id": "https://ezviz-dubai/#organization",
+        "@id": "https://ezviz-dubai.com/#organization",
       },
       inLanguage: "en-US",
       potentialAction: {
         "@type": "SearchAction",
-        target: "https://ezviz-dubai/search?q={search_term_string}",
+        target: "https://ezviz-dubai.com/search?q={search_term_string}",
         "query-input": "required name=search_term_string",
       },
     },
     {
       "@type": "WebPage",
-      "@id": `${canonicalUrl}#webpage`,
-      url: canonicalUrl.toString(),
+      "@id": "https://ezviz-dubai.com/aboutus#webpage",
+      url: "https://ezviz-dubai.com/aboutus",
       name: title,
       description: description,
       isPartOf: {
@@ -57,12 +56,12 @@ const structuredData = {
       },
       inLanguage: "en-US",
       breadcrumb: {
-        "@id": `${canonicalUrl}#breadcrumb`,
+        "@id": "https://ezviz-dubai.com/aboutus#breadcrumb",
       },
     },
     {
       "@type": "BreadcrumbList",
-      "@id": `${canonicalUrl}#breadcrumb`,
+      "@id": "https://ezviz-dubai.com/aboutus#breadcrumb",
       itemListElement: [
         {
           "@type": "ListItem",
@@ -74,19 +73,19 @@ const structuredData = {
           "@type": "ListItem",
           position: 2,
           name: "About Us",
-          item: canonicalUrl.toString(),
+          item: "https://ezviz-dubai.com/aboutus",
         },
       ],
     },
     {
       "@type": "AboutPage",
-      "@id": `${canonicalUrl}#aboutpage`,
-      url: canonicalUrl.toString(),
+      "@id": "https://ezviz-dubai.com/aboutus#aboutpage",
+      url: "https://ezviz-dubai.com/aboutus",
       name: "About Ezviz Dubai Distributor - Ezviz Dubai",
       description:
         "Learn about our expert team and company providing Ezviz security camera solutions in Dubai and across UAE. Authorized distributor with professional installation services.",
       isPartOf: {
-        "@id": `${canonicalUrl}#webpage`,
+        "@id": "https://ezviz-dubai.com/aboutus#webpage",
       },
       inLanguage: "en-US",
     },

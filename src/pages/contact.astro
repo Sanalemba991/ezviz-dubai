@@ -4,7 +4,8 @@ import "../styles/global.css";
 import Whatsapp from "../components/Whatsapp";
 const title = "Authorized Ezviz Camera Supplier & Distributor in Dubai, Sharjah & UAE | Contact Us";
 const description = "Contact Ezviz Dubai  - Your trusted Ezviz camera distributor in UAE. Get expert support for CCTV solutions in Dubai, Sharjah & across UAE.";
-const canonicalUrl = new URL(Astro.url.pathname, Astro.site).toString();
+const canonicalUrl = "https://ezviz-dubai.com/contact"; // Use your real canonical URL
+
 const structuredData = {
   "@context": "https://schema.org",
   "@type": "ContactPage",
@@ -18,7 +19,7 @@ const structuredData = {
         "@type": "ListItem",
         "position": 1,
         "name": "Home",
-        "item": `${Astro.site}`
+        "item": "https://ezviz-dubai.com/"
       },
       {
         "@type": "ListItem",
@@ -34,7 +35,7 @@ const structuredData = {
     "url": "https://ezviz-dubai.com",
     "logo": {
       "@type": "ImageObject",
-      "url": `${Astro.url.origin}/images/logo.png`,
+      "url": "https://ezviz-dubai.com/images/logo.png",
       "width": 1000,
       "height": 375
     },
@@ -54,7 +55,6 @@ const structuredData = {
         "addressCountry": "AE"
       }
     },
-  
   }
 };
 
@@ -66,7 +66,7 @@ const openGraph = {
   siteName: "Ezviz Dubai ",
   images: [
     {
-      url: `${Astro.url.origin}/images/logo.png`, // Replace with actual image
+      url: "https://ezviz-dubai.com/images/logo.png",
       width: 1200,
       height: 630,
       alt: "Contact Ezviz Authorized Distributor in Dubai"
@@ -83,7 +83,7 @@ const twitterCard = {
   description: description,
   site: "@YourTwitterHandle",
   creator: "@YourTwitterHandle", 
-  image: `${Astro.url.origin}/images/logo.png` 
+  image: "https://ezviz-dubai.com/images/logo.png"
 };
 ---
 <meta charset="UTF-8" />

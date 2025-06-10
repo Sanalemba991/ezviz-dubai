@@ -896,9 +896,8 @@
       arrow?.classList.toggle("rotate-180");
     });
 
-  // Active page highlighting
   document.addEventListener("DOMContentLoaded", () => {
-    const path = window.location.pathname;
+    const path = window.location.pathname.replace(/\/$/, "") || "/";
 
     function isProductActive(path) {
       return (
@@ -936,7 +935,7 @@
     });
 
     document.querySelectorAll(".nav-link").forEach((link) => {
-      const href = link.getAttribute("href");
+      const href = (link.getAttribute("href") || "").replace(/\/$/, "") || "/";
       const text = link.textContent?.trim();
 
       if (link.classList.contains("products-link") && text.replace(/\s+/g, " ") === "Security Cameras") {
@@ -952,14 +951,14 @@
       } else if (text === "Blog" && isBlogActive(path)) {
         link.classList.add("active");
         link.setAttribute("aria-current", "page");
-      } else if (href && href === path) {
+      } else if (href === path) {
         link.classList.add("active");
         link.setAttribute("aria-current", "page");
       }
     });
 
     document.querySelectorAll(".mobile-nav-link").forEach((link) => {
-      const href = link.getAttribute("href");
+      const href = (link.getAttribute("href") || "").replace(/\/$/, "") || "/";
       const text = link.textContent?.trim();
 
       if (link.classList.contains("mobile-products-link") && text.replace(/\s+/g, " ") === "Seccurity Cameras") {
@@ -975,7 +974,7 @@
       } else if (text === "Blog" && isBlogActive(path)) {
         link.classList.add("active");
         link.setAttribute("aria-current", "page");
-      } else if (href && href === path) {
+      } else if (href === path) {
         link.classList.add("active");
         link.setAttribute("aria-current", "page");
       }

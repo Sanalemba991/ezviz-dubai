@@ -49,12 +49,14 @@ export async function getStaticPaths() {
 }
 const { product } = Astro.props as Props;
 const images = product.images || (product.image ? [{ url: product.image }] : []);
-const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const canonicalURL = `https://ezviz-dubai.com/categories/wireFree/${product.slug}`; // Use absolute URL
+
 function formatPrice(price) {
   const num = Number(price);
   if (isNaN(num) || num < 0) return "0.00";
   return num.toFixed(2);
 }
+
 const structuredData = [
   {
     "@context": "https://schema.org",
@@ -71,7 +73,7 @@ const structuredData = [
       "itemCondition": "https://schema.org/NewCondition",
       "seller": {
         "@type": "Organization",
-        "name": "Ezviv-Dubai"
+        "name": "Ezviz-Dubai"
       },
       "shippingDetails": {
         "@type": "OfferShippingDetails",
@@ -105,23 +107,13 @@ const structuredData = [
         "returnFees": "https://schema.org/FreeReturn"
       }
     },
-    ...(product.rating && product.reviewCount ? {
-      "aggregateRating": {
-        "@type": "AggregateRating",
-        "ratingValue": product.rating.toString(),
-        "reviewCount": product.reviewCount.toString(),
-        "bestRating": "5",
-        "worstRating": "0"
-      }
-    } : {
-      "aggregateRating": {
-        "@type": "AggregateRating",
-        "ratingValue": "4.5",
-        "reviewCount": "10",
-        "bestRating": "5",
-        "worstRating": "0"
-      }
-    })
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": (product.rating || 4.5).toString(),
+      "reviewCount": (product.reviewCount || 10).toString(),
+      "bestRating": "5",
+      "worstRating": "0"
+    }
   },
   {
     "@context": "https://schema.org",
@@ -131,19 +123,19 @@ const structuredData = [
         "@type": "ListItem",
         "position": 1,
         "name": "Home",
-        "item": new URL("/", Astro.site).toString()
+        "item": "https://ezviz-dubai.com/"
       },
       {
         "@type": "ListItem",
         "position": 2,
         "name": "Wire-Free Cameras",
-        "item": new URL("/categories/wireFree", Astro.site).toString()
+        "item": "https://ezviz-dubai.com/categories/wireFree"
       },
       {
         "@type": "ListItem",
         "position": 3,
         "name": product.title,
-        "item": canonicalURL.toString()
+        "item": canonicalURL
       }
     ]
   }
