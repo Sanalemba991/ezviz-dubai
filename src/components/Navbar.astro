@@ -904,13 +904,30 @@
       path = path.slice(0, -1);
     }
 
+    // Debug logging for production
+    console.log('Current path:', path);
+
     function isProductActive(path) {
+      const productPaths = [
+        "/product",
+        "/products",
+        "/categories/wireFree",
+        "/categories/wirefree", // lowercase version
+        "/categories/outdoorcamera",
+        "/categories/indoorcamera"
+      ];
+      
+      // Check exact matches first
+      if (productPaths.includes(path)) {
+        return true;
+      }
+      
+      // Check startsWith patterns
       return (
-        path === "/product" ||
-        path === "/products" ||
         path.startsWith("/product/") ||
         path.startsWith("/products/") ||
         path.startsWith("/categories/wireFree") ||
+        path.startsWith("/categories/wirefree") ||
         path.startsWith("/categories/outdoorcamera") ||
         path.startsWith("/categories/indoorcamera") ||
         path.startsWith("/wifi-free/") ||
@@ -920,9 +937,21 @@
     }
 
     function isSmartHomeActive(path) {
+      const smartHomePaths = [
+        "/product2",
+        "/categories/smartentry",
+        "/categories/homeappliances",
+        "/categories/homesensor"
+      ];
+      
+      // Check exact matches first
+      if (smartHomePaths.includes(path)) {
+        return true;
+      }
+      
+      // Check startsWith patterns
       return (
-        path === "/product2" ||
-        path.startsWith("/product2") ||
+        path.startsWith("/product2/") ||
         path.startsWith("/categories/smartentry") ||
         path.startsWith("/categories/smarthomeappliances") ||
         path.startsWith("/categories/homesensor") ||
@@ -934,14 +963,19 @@
       return path === "/blog" || path.startsWith("/blog/");
     }
 
+    // Clear all active states first
     document.querySelectorAll(".nav-link, .mobile-nav-link").forEach((link) => {
       link.classList.remove("active");
       link.removeAttribute("aria-current");
     });
 
+    // Debug logging
+    console.log('Product active:', isProductActive(path));
+    console.log('Smart Home active:', isSmartHomeActive(path));
+
+    // Desktop navigation
     document.querySelectorAll(".nav-link").forEach((link) => {
       const hrefRaw = link.getAttribute("href");
-      // Normalize href
       let href = hrefRaw;
       if (href && href.length > 1 && href.endsWith("/")) {
         href = href.slice(0, -1);
@@ -952,11 +986,13 @@
         if (isProductActive(path)) {
           link.classList.add("active");
           link.setAttribute("aria-current", "page");
+          console.log('Security Cameras activated');
         }
       } else if (link.classList.contains("products-link") && text.replace(/\s+/g, " ").includes("Smart Home")) {
         if (isSmartHomeActive(path)) {
           link.classList.add("active");
           link.setAttribute("aria-current", "page");
+          console.log('Smart Home activated');
         }
       } else if (text === "Blog" && isBlogActive(path)) {
         link.classList.add("active");
@@ -964,9 +1000,11 @@
       } else if (href && href === path) {
         link.classList.add("active");
         link.setAttribute("aria-current", "page");
+        console.log('Exact match activated for:', href);
       }
     });
 
+    // Mobile navigation
     document.querySelectorAll(".mobile-nav-link").forEach((link) => {
       const hrefRaw = link.getAttribute("href");
       let href = hrefRaw;
