@@ -7,7 +7,7 @@ import sitemap from "@astrojs/sitemap";
 import robotsTxt from 'astro-robots-txt';
 
 export default defineConfig({
-  site: 'http://localhost:3000',
+  site: 'https://ezviz-dubai.com',
   integrations: [tailwind({applyBaseStyles: false}), 
     sitemap(), 
     robotsTxt(),
