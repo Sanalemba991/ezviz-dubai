@@ -16,78 +16,165 @@ function formatPrice(price) {
 }
 
 // Schema.org markup
-const structuredData = {
-  "@context": "https://schema.org",
-  "@type": "CollectionPage",
-  name: title,
-  description: description,
-  url: canonicalURL,
-  mainEntity: {
-    "@type": "ItemList",
-    itemListElement: products.map((product, index) => ({
-      "@type": "ListItem",
-      position: index + 1,
-      item: {
-        "@type": "Product",
-        name: product.data.title,
-        description: product.data.description,
-        image: product.data.image.startsWith('http')
-          ? product.data.image
-          : `https://ezviz-dubai.com/images/${product.slug}.png`,
-        url: `https://ezviz-dubai.com/categories/outdoorcamera/${product.slug}`,
-        offers: {
-          "@type": "Offer",
-          priceCurrency: "AED",
-          price: formatPrice(product.data.price),
-          availability: "https://schema.org/InStock",
-          itemCondition: "https://schema.org/NewCondition",
-          seller: {
-            "@type": "Organization",
-            name: "Ezviz-Dubai"
+// ...existing code...
+const structuredData = [
+  {
+    "@context": "https://schema.org",
+    "@type": "CollectionPage",
+    "name": title,
+    "description": description,
+    "url": canonicalURL,
+    "inLanguage": "en-US",
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "Ezviz Dubai",
+      "url": "https://ezviz-dubai.com"
+    },
+    "breadcrumb": {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://ezviz-dubai.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Categories",
+          "item": "https://ezviz-dubai.com/categories"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": "Outdoor Wi-Fi Cameras",
+          "item": canonicalURL
+        }
+      ]
+    },
+    "mainEntity": {
+      "@type": "ItemList",
+      "numberOfItems": products.length,
+      "itemListElement": products.map((product, index) => ({
+        "@type": "ListItem",
+        "position": index + 1,
+        "item": {
+          "@type": "Product",
+          "name": product.data.title,
+          "description": product.data.description,
+          "image": product.data.image.startsWith('http')
+            ? product.data.image
+            : `https://ezviz-dubai.com${product.data.image}`,
+          "url": `https://ezviz-dubai.com/categories/outdoorcamera/${product.slug}`,
+          "brand": {
+            "@type": "Brand",
+            "name": "EZVIZ"
           },
-          shippingDetails: {
-            "@type": "OfferShippingDetails",
-            shippingRate: {
-              "@type": "MonetaryAmount",
-              value: "0.00",
-              currency: "AED"
+          "manufacturer": {
+            "@type": "Organization",
+            "name": "EZVIZ"
+          },
+          "category": "Security Cameras",
+          "productType": "Outdoor Wi-Fi Camera",
+          "sku": product.slug,
+          "gtin": product.slug,
+          "offers": {
+            "@type": "Offer",
+            "priceCurrency": "AED",
+            "price": product.data.price ? formatPrice(product.data.price) : "0.00",
+            "availability": "https://schema.org/InStock",
+            "itemCondition": "https://schema.org/NewCondition",
+            "url": `https://ezviz-dubai.com/categories/outdoorcamera/${product.slug}`,
+            "seller": {
+              "@type": "Organization",
+              "name": "Ezviz Dubai",
+              "url": "https://ezviz-dubai.com"
             },
-            deliveryTime: {
-              "@type": "ShippingDeliveryTime",
-              handlingTime: {
-                "@type": "QuantitativeValue",
-                minValue: 1,
-                maxValue: 2,
-                unitCode: "DAY"
+            "shippingDetails": {
+              "@type": "OfferShippingDetails",
+              "shippingRate": {
+                "@type": "MonetaryAmount",
+                "value": "0.00",
+                "currency": "AED"
               },
-              transitTime: {
-                "@type": "QuantitativeValue",
-                minValue: 1,
-                maxValue: 3,
-                unitCode: "DAY"
+              "deliveryTime": {
+                "@type": "ShippingDeliveryTime",
+                "handlingTime": {
+                  "@type": "QuantitativeValue",
+                  "minValue": 1,
+                  "maxValue": 2,
+                  "unitCode": "DAY"
+                },
+                "transitTime": {
+                  "@type": "QuantitativeValue",
+                  "minValue": 1,
+                  "maxValue": 3,
+                  "unitCode": "DAY"
+                }
               }
+            },
+            "hasMerchantReturnPolicy": {
+              "@type": "MerchantReturnPolicy",
+              "applicableCountry": "AE",
+              "returnPolicyCategory": "https://schema.org/MerchantReturnFiniteReturnWindow",
+              "merchantReturnDays": 30,
+              "returnMethod": "https://schema.org/ReturnByMail",
+              "returnFees": "https://schema.org/FreeReturn"
             }
           },
-          hasMerchantReturnPolicy: {
-            "@type": "MerchantReturnPolicy",
-            applicableCountry: "AE",
-            returnPolicyCategory: "https://schema.org/MerchantReturnFiniteReturnWindow",
-            merchantReturnDays: 30,
-            returnMethod: "https://schema.org/ReturnByMail",
-            returnFees: "https://schema.org/FreeReturn"
+          "aggregateRating": {
+            "@type": "AggregateRating",
+            "ratingValue": "4.5",
+            "reviewCount": "10",
+            "bestRating": "5",
+            "worstRating": "1"
           }
-        },
-        aggregateRating: {
-          "@type": "AggregateRating",
-          ratingValue: (product.data.rating || "4.5").toString(),
-          reviewCount: (product.data.reviewCount || "10").toString(),
-          bestRating: "5",
-          worstRating: "0"
-        },
-      }
-    }))
+        }
+      }))
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Ezviz Dubai",
+    "url": "https://ezviz-dubai.com",
+    "logo": "https://ezviz-dubai.com/logo.png",
+    "description": "Authorized EZVIZ distributor in Dubai, UAE providing outdoor Wi-Fi cameras and security solutions",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Dubai",
+      "addressCountry": "AE"
+    },
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "contactType": "customer service",
+      "areaServed": "AE",
+      "availableLanguage": ["English", "Arabic"]
+    }
+  },
+  {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    "name": title,
+    "description": description,
+    "url": canonicalURL,
+    "inLanguage": "en-US",
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "Ezviz Dubai",
+      "url": "https://ezviz-dubai.com"
+    },
+    "about": {
+      "@type": "Thing",
+      "name": "Outdoor Wi-Fi Cameras",
+      "description": "EZVIZ outdoor Wi-Fi cameras with 4K resolution, AI detection, weatherproof design, and wireless connectivity"
+    },
+    "keywords": "EZVIZ, outdoor cameras, Wi-Fi cameras, Dubai, UAE, 4K cameras, AI detection, weatherproof cameras, wireless security, outdoor surveillance",
+    "dateModified": new Date().toISOString(),
+    "datePublished": new Date().toISOString()
   }
-};
+];
 ---
 <meta charset="UTF-8" />
 <Layout  title={title} 

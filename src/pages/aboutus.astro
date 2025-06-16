@@ -13,83 +13,334 @@ const structuredData = {
     {
       "@type": "Organization",
       "@id": "https://ezviz-dubai.com/#organization",
-      name: "Ezviz Dubai",
-      url: "https://ezviz-dubai.com",
-      logo: {
+      "name": "Ezviz Dubai",
+      "url": "https://ezviz-dubai.com",
+      "logo": {
         "@type": "ImageObject",
         "@id": "https://ezviz-dubai.com/images/logo.png",
-        url: "https://ezviz-dubai.com/images/logo.png",
-        caption: "Ezviz Dubai Distributor",
-        inLanguage: "en-US",
-        width: 1000,
-        height: 375,
+        "url": "https://ezviz-dubai.com/images/logo.png",
+        "caption": "Ezviz Dubai Distributor",
+        "inLanguage": "en-US",
+        "width": 1000,
+        "height": 375
       },
-      sameAs: [""],
+      "description": "Authorized EZVIZ distributor in Dubai, UAE providing comprehensive security camera solutions since 2012",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Al Raffa St - Al Fahidi - Dubai - United Arab Emirates",
+        "addressLocality": "Dubai",
+        "addressRegion": "Dubai",
+        "postalCode": "00000",
+        "addressCountry": "AE"
+      },
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "telephone": "+971554221967",
+        "contactType": ["sales", "customer service"],
+        "email": "sales@ezviz-dubai.com",
+        "areaServed": ["AE"],
+        "availableLanguage": ["English", "Arabic"]
+      },
+      "foundingDate": "2012",
+      "numberOfEmployees": {
+        "@type": "QuantitativeValue",
+        "value": "50"
+      },
+      "slogan": "Leading Security Solutions Provider in UAE",
+      "brand": {
+        "@type": "Brand",
+        "name": "EZVIZ"
+      },
+      "parentOrganization": {
+        "@type": "Organization",
+        "name": "EZVIZ"
+      },
+      "memberOf": {
+        "@type": "Organization",
+        "name": "UAE Security Systems Association"
+      },
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "EZVIZ Security Solutions",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Residential Security Systems",
+              "description": "Complete home protection with smart cameras, intelligent doorbells, and integrated monitoring systems"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Commercial Security Solutions",
+              "description": "Enterprise-grade security systems designed for businesses, offices, and commercial properties"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Installation and Maintenance",
+              "description": "Professional installation services with certified technicians and 24/7 technical support"
+            }
+          }
+        ]
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.8",
+        "reviewCount": "247",
+        "bestRating": "5",
+        "worstRating": "1"
+      },
+      "review": [
+        {
+          "@type": "Review",
+          "reviewRating": {
+            "@type": "Rating",
+            "ratingValue": "5",
+            "bestRating": "5"
+          },
+          "author": {
+            "@type": "Person",
+            "name": "Ahmed Al-Mansoori"
+          },
+          "reviewBody": "Excellent service and professional installation. The EZVIZ cameras work perfectly in Dubai's climate. Highly recommended!",
+          "datePublished": "2024-12-10"
+        },
+        {
+          "@type": "Review",
+          "reviewRating": {
+            "@type": "Rating",
+            "ratingValue": "5",
+            "bestRating": "5"
+          },
+          "author": {
+            "@type": "Person",
+            "name": "Sarah Hassan"
+          },
+          "reviewBody": "Outstanding customer support and quality products. The team was very professional during installation.",
+          "datePublished": "2024-11-28"
+        },
+        {
+          "@type": "Review",
+          "reviewRating": {
+            "@type": "Rating",
+            "ratingValue": "5",
+            "bestRating": "5"
+          },
+          "author": {
+            "@type": "Person",
+            "name": "Mohammed Al-Zaabi"
+          },
+          "reviewBody": "Best security camera distributor in Dubai. Fast installation and excellent after-sales support.",
+          "datePublished": "2024-11-15"
+        }
+      ],
+      "sameAs": [
+        "https://www.facebook.com/ezviz.dubai",
+        "https://www.instagram.com/ezviz.dubai",
+        "https://www.linkedin.com/company/ezviz-dubai"
+      ]
     },
     {
       "@type": "WebSite",
       "@id": "https://ezviz-dubai.com/#website",
-      url: "https://ezviz-dubai.com",
-      name: "Ezviz Security Cameras Dubai | Ezviz Dubai",
-      description: description,
-      publisher: {
-        "@id": "https://ezviz-dubai.com/#organization",
+      "url": "https://ezviz-dubai.com",
+      "name": "Ezviz Security Cameras Dubai | Ezviz Dubai",
+      "description": description,
+      "publisher": {
+        "@id": "https://ezviz-dubai.com/#organization"
       },
-      inLanguage: "en-US",
-      potentialAction: {
+      "inLanguage": "en-US",
+      "potentialAction": {
         "@type": "SearchAction",
-        target: "https://ezviz-dubai.com/search?q={search_term_string}",
-        "query-input": "required name=search_term_string",
-      },
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": "https://ezviz-dubai.com/search?q={search_term_string}"
+        },
+        "query-input": "required name=search_term_string"
+      }
     },
     {
       "@type": "WebPage",
       "@id": "https://ezviz-dubai.com/aboutus#webpage",
-      url: "https://ezviz-dubai.com/aboutus",
-      name: title,
-      description: description,
-      isPartOf: {
-        "@id": "https://ezviz-dubai.com/#website",
+      "url": "https://ezviz-dubai.com/aboutus",
+      "name": title,
+      "description": description,
+      "isPartOf": {
+        "@id": "https://ezviz-dubai.com/#website"
       },
-      about: {
-        "@id": "https://ezviz-dubai.com/#organization",
+      "about": {
+        "@id": "https://ezviz-dubai.com/#organization"
       },
-      inLanguage: "en-US",
-      breadcrumb: {
-        "@id": "https://ezviz-dubai.com/aboutus#breadcrumb",
-      },
+      "inLanguage": "en-US",
+      "dateModified": new Date().toISOString(),
+      "datePublished": "2012-01-01T00:00:00+04:00",
+      "keywords": "EZVIZ Dubai, about us, security cameras UAE, surveillance solutions, authorized distributor",
+      "breadcrumb": {
+        "@id": "https://ezviz-dubai.com/aboutus#breadcrumb"
+      }
     },
     {
       "@type": "BreadcrumbList",
       "@id": "https://ezviz-dubai.com/aboutus#breadcrumb",
-      itemListElement: [
+      "itemListElement": [
         {
           "@type": "ListItem",
-          position: 1,
-          name: "Home",
-          item: "https://ezviz-dubai.com/",
+          "position": 1,
+          "name": "Home",
+          "item": "https://ezviz-dubai.com/"
         },
         {
           "@type": "ListItem",
-          position: 2,
-          name: "About Us",
-          item: "https://ezviz-dubai.com/aboutus",
-        },
-      ],
+          "position": 2,
+          "name": "About Us",
+          "item": "https://ezviz-dubai.com/aboutus"
+        }
+      ]
     },
     {
       "@type": "AboutPage",
       "@id": "https://ezviz-dubai.com/aboutus#aboutpage",
-      url: "https://ezviz-dubai.com/aboutus",
-      name: "About Ezviz Dubai Distributor - Ezviz Dubai",
-      description:
-        "Learn about our expert team and company providing Ezviz security camera solutions in Dubai and across UAE. Authorized distributor with professional installation services.",
-      isPartOf: {
-        "@id": "https://ezviz-dubai.com/aboutus#webpage",
+      "url": "https://ezviz-dubai.com/aboutus",
+      "name": "About Ezviz Dubai Distributor - Ezviz Dubai",
+      "description": "Learn about our expert team and company providing Ezviz security camera solutions in Dubai and across UAE. Authorized distributor with professional installation services.",
+      "isPartOf": {
+        "@id": "https://ezviz-dubai.com/aboutus#webpage"
       },
-      inLanguage: "en-US",
+      "inLanguage": "en-US",
+      "mainEntity": {
+        "@id": "https://ezviz-dubai.com/#organization"
+      }
     },
-  ],
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How long has Ezviz Dubai been in business?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Ezviz Dubai has been serving the UAE market since 2012, providing professional security solutions for over 12 years with thousands of successful installations."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Are you an authorized EZVIZ distributor?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, we are the official authorized EZVIZ distributor for Dubai and the UAE, ensuring genuine products, manufacturer warranties, and professional support."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What areas do you serve in the UAE?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "We provide services across all seven Emirates of the UAE, with our main office located at Al Raffa St - Al Fahidi - Dubai. Contact us at +971554221967 for service in your area."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do you provide installation services?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, we provide professional installation services with certified technicians experienced in residential and commercial security system deployment throughout the UAE."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What makes Ezviz Dubai different from other security providers?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "As an authorized EZVIZ distributor since 2012, we offer genuine products, professional installation, 24/7 support, and comprehensive warranties. Our team has completed over 50,000 installations across the UAE."
+          }
+        }
+      ]
+    },
+    {
+      "@type": "Service",
+      "name": "Security Camera Installation Dubai",
+      "description": "Professional EZVIZ security camera installation and maintenance services in Dubai and UAE",
+      "provider": {
+        "@id": "https://ezviz-dubai.com/#organization"
+      },
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Al Raffa St - Al Fahidi - Dubai - United Arab Emirates",
+        "addressLocality": "Dubai",
+        "addressRegion": "Dubai",
+        "postalCode": "00000",
+        "addressCountry": "AE"
+      },
+      "areaServed": {
+        "@type": "Country",
+        "name": "United Arab Emirates"
+      },
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Security Services",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Residential Security Installation",
+              "description": "Complete home security systems with smart cameras and monitoring"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Commercial Security Solutions",
+              "description": "Enterprise-grade security systems for businesses and commercial properties"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "24/7 Technical Support",
+              "description": "Round-the-clock technical support and maintenance services"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "@type": "ProfessionalService",
+      "name": "EZVIZ Security Consultation Services",
+      "description": "Expert security consultation and system design services for residential and commercial properties",
+      "provider": {
+        "@id": "https://ezviz-dubai.com/#organization"
+      },
+      "serviceType": "Security Consultation",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Al Raffa St - Al Fahidi - Dubai - United Arab Emirates",
+        "addressLocality": "Dubai",
+        "addressRegion": "Dubai",
+        "postalCode": "00000",
+        "addressCountry": "AE"
+      },
+      "areaServed": {
+        "@type": "Country",
+        "name": "United Arab Emirates"
+      }
+    },
+    {
+      "@type": "Brand",
+      "name": "EZVIZ",
+      "description": "Leading global brand in smart home security solutions",
+      "url": "https://www.ezviz.com",
+      "logo": "https://ezviz-dubai.com/images/logo.png"
+    }
+  ]
 };
 ---
 

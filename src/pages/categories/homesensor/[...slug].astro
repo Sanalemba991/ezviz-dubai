@@ -51,7 +51,7 @@ export async function getStaticPaths() {
 
 const { product } = Astro.props as Props;
 const images = product.images || (product.image ? [{ url: product.image }] : []);
-const canonicalURL = `https://ezviz-dubai.com/categories/homesensor/${product.slug}`; // Use absolute URL
+const canonicalURL = new URL(Astro.url.pathname, Astro.site)
 
 function formatPrice(price) {
   const num = Number(price);
@@ -64,17 +64,30 @@ const structuredData = [
     "@type": "Product",
     "name": product.title,
     "description": product.description,
-    "image": product.image.startsWith('http') ? product.image : `https://ezviz-dubai.com/images/${product.slug}.png`,
-    "productType": "Home Sensors",
+    "image": product.image.startsWith('http') ? product.image : `https://ezviz-dubai.com${product.image}`,
+    "brand": {
+      "@type": "Brand",
+      "name": "EZVIZ"
+    },
+    "manufacturer": {
+      "@type": "Organization",
+      "name": "EZVIZ"
+    },
+    "category": "Home Sensors",
+    "productType": "Smart Home Sensor",
+    "sku": product.slug,
+    "gtin": product.slug,
     "offers": {
       "@type": "Offer",
       "priceCurrency": "AED",
-      "price": formatPrice(product.price),
+      "price": product.price ? formatPrice(product.price) : "0.00",
       "availability": "https://schema.org/InStock",
       "itemCondition": "https://schema.org/NewCondition",
+      "url": canonicalURL,
       "seller": {
         "@type": "Organization",
-        "name": "Ezviz-Dubai"
+        "name": "Ezviz Dubai",
+        "url": "https://ezviz-dubai.com"
       },
       "shippingDetails": {
         "@type": "OfferShippingDetails",
@@ -113,7 +126,7 @@ const structuredData = [
       "ratingValue": (product.rating || 4.5).toString(),
       "reviewCount": (product.reviewCount || 10).toString(),
       "bestRating": "5",
-      "worstRating": "0"
+      "worstRating": "1"
     }
   },
   {
@@ -199,13 +212,12 @@ const pageDescription = product.description;
 </style>
 
 <meta charset="UTF-8" />
-<Layout   title={`${product.title} - Ezviz Dubai`}
-    structuredData={structuredData}
-    description={product.description}
-    canonical={canonicalURL.toString()}>
-  <!-- Schema.org markup -->
-  <script type="application/ld+json" set:html={JSON.stringify(structuredData)} />
-
+<Layout   
+  title={`${product.title} - Ezviz Dubai`}
+  structuredData={structuredData}
+  description={product.description}
+  canonical={canonicalURL.toString()}
+>
   <!-- Subtle Promotional Banner -->
   <div
     class="promo-banner bg-gradient-to-r from-slate-800 to-slate-900 text-white py-2.5 relative"

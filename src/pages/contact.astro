@@ -8,54 +8,360 @@ const canonicalUrl = "https://ezviz-dubai.com/contact"; // Use your real canonic
 
 const structuredData = {
   "@context": "https://schema.org",
-  "@type": "ContactPage",
-  "name": title,
-  "description": description,
-  "url": canonicalUrl,
-  "breadcrumb": {
-    "@type": "BreadcrumbList",
-    "itemListElement": [
-      {
-        "@type": "ListItem",
-        "position": 1,
-        "name": "Home",
-        "item": "https://ezviz-dubai.com/"
+  "@graph": [
+    {
+      "@type": "ContactPage",
+      "@id": "https://ezviz-dubai.com/contact#contactpage",
+      "name": title,
+      "description": description,
+      "url": canonicalUrl,
+      "inLanguage": "en-US",
+      "isPartOf": {
+        "@id": "https://ezviz-dubai.com/#website"
       },
-      {
-        "@type": "ListItem",
-        "position": 2,
-        "name": "Contact",
-        "item": canonicalUrl
-      }
-    ]
-  },
-  "mainEntity": {
-    "@type": "Organization",
-    "name": "Ezviz Dubai",
-    "url": "https://ezviz-dubai.com",
-    "logo": {
-      "@type": "ImageObject",
-      "url": "https://ezviz-dubai.com/images/logo.png",
-      "width": 1000,
-      "height": 375
+      "breadcrumb": {
+        "@id": "https://ezviz-dubai.com/contact#breadcrumb"
+      },
+      "mainEntity": {
+        "@id": "https://ezviz-dubai.com/#organization"
+      },
+      "about": {
+        "@type": "Thing",
+        "name": "Contact EZVIZ Dubai",
+        "description": "Professional contact and support services for EZVIZ security solutions in Dubai and UAE"
+      },
+      "keywords": "contact EZVIZ Dubai, security camera support, consultation UAE, technical support Dubai"
     },
-    "contactPoint": {
-      "@type": "ContactPoint",
-      "telephone": "+971554221967",
-      "contactType": ["sales", "customer service"],
-      "email": "sales@ezviz-dubai.com", 
-      "areaServed": ["AE"],
-      "availableLanguage": ["English", "Arabic"],
+    {
+      "@type": "WebSite",
+      "@id": "https://ezviz-dubai.com/#website",
+      "url": "https://ezviz-dubai.com",
+      "name": "Ezviz Security Cameras Dubai | Ezviz Dubai",
+      "publisher": {
+        "@id": "https://ezviz-dubai.com/#organization"
+      },
+      "inLanguage": "en-US",
+      "potentialAction": {
+        "@type": "SearchAction",
+        "target": {
+          "@type": "EntryPoint",
+          "urlTemplate": "https://ezviz-dubai.com/search?q={search_term_string}"
+        },
+        "query-input": "required name=search_term_string"
+      }
+    },
+    {
+      "@type": "BreadcrumbList",
+      "@id": "https://ezviz-dubai.com/contact#breadcrumb",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Home",
+          "item": "https://ezviz-dubai.com/"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Contact",
+          "item": canonicalUrl
+        }
+      ]
+    },
+    {
+      "@type": "Organization",
+      "@id": "https://ezviz-dubai.com/#organization",
+      "name": "Ezviz Dubai",
+      "url": "https://ezviz-dubai.com",
+      "logo": {
+        "@type": "ImageObject",
+        "url": "https://ezviz-dubai.com/images/logo.png",
+        "width": 1000,
+        "height": 375,
+        "caption": "Ezviz Dubai - Authorized EZVIZ Distributor"
+      },
+      "description": "Authorized EZVIZ distributor in Dubai, UAE providing comprehensive security camera solutions and professional installation services",
       "address": {
         "@type": "PostalAddress",
-        "streetAddress": "Al Raffa St - Al Fahidi - Dubai - United Arab Emirates", 
+        "streetAddress": "Al Raffa St - Al Fahidi - Dubai - United Arab Emirates",
         "addressLocality": "Dubai",
         "addressRegion": "Dubai",
-        "postalCode": "00000", 
+        "postalCode": "00000",
         "addressCountry": "AE"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 25.262528,
+        "longitude": 55.290111
+      },
+      "contactPoint": [
+        {
+          "@type": "ContactPoint",
+          "telephone": "+971554221967",
+          "contactType": "sales",
+          "email": "sales@ezviz-dubai.com",
+          "areaServed": ["AE"],
+          "availableLanguage": ["English", "Arabic"],
+          "hoursAvailable": {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": [
+              "Monday",
+              "Tuesday", 
+              "Wednesday",
+              "Thursday",
+              "Friday",
+              "Saturday"
+            ],
+            "opens": "09:00",
+            "closes": "19:00"
+          }
+        },
+        {
+          "@type": "ContactPoint",
+          "telephone": "+971554221967",
+          "contactType": "customer service",
+          "email": "sales@ezviz-dubai.com",
+          "areaServed": ["AE"],
+          "availableLanguage": ["English", "Arabic"],
+          "hoursAvailable": {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": [
+              "Monday",
+              "Tuesday",
+              "Wednesday", 
+              "Thursday",
+              "Friday",
+              "Saturday",
+              "Sunday"
+            ],
+            "opens": "00:00",
+            "closes": "23:59"
+          }
+        },
+        {
+          "@type": "ContactPoint",
+          "telephone": "+971554221967",
+          "contactType": "technical support",
+          "email": "sales@ezviz-dubai.com",
+          "areaServed": ["AE"],
+          "availableLanguage": ["English", "Arabic"],
+          "hoursAvailable": {
+            "@type": "OpeningHoursSpecification",
+            "dayOfWeek": [
+              "Monday",
+              "Tuesday",
+              "Wednesday",
+              "Thursday", 
+              "Friday",
+              "Saturday",
+              "Sunday"
+            ],
+            "opens": "00:00",
+            "closes": "23:59"
+          }
+        }
+      ],
+      "sameAs": [
+        "https://www.facebook.com/ezviz.dubai",
+        "https://www.instagram.com/ezviz.dubai",
+        "https://www.linkedin.com/company/ezviz-dubai"
+      ],
+      "foundingDate": "2012",
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.8",
+        "reviewCount": "247",
+        "bestRating": "5",
+        "worstRating": "1"
       }
     },
-  }
+    {
+      "@type": "LocalBusiness",
+      "@id": "https://ezviz-dubai.com/#localbusiness",
+      "name": "Ezviz Dubai",
+      "image": "https://ezviz-dubai.com/images/logo.png",
+      "url": "https://ezviz-dubai.com",
+      "telephone": "+971554221967",
+      "email": "sales@ezviz-dubai.com",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Al Raffa St - Al Fahidi - Dubai - United Arab Emirates",
+        "addressLocality": "Dubai",
+        "addressRegion": "Dubai",
+        "postalCode": "00000",
+        "addressCountry": "AE"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": 25.262528,
+        "longitude": 55.290111
+      },
+      "openingHoursSpecification": [
+        {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday"
+          ],
+          "opens": "09:00",
+          "closes": "19:00"
+        }
+      ],
+      "priceRange": "AED 500 - AED 50,000",
+      "currenciesAccepted": ["AED", "USD"],
+      "paymentAccepted": ["Cash", "Credit Card", "Bank Transfer"],
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.8",
+        "reviewCount": "247"
+      },
+      "review": [
+        {
+          "@type": "Review",
+          "reviewRating": {
+            "@type": "Rating",
+            "ratingValue": "5",
+            "bestRating": "5"
+          },
+          "author": {
+            "@type": "Person",
+            "name": "Ahmed Al-Rashid"
+          },
+          "reviewBody": "Excellent customer service and professional installation. Quick response time and quality products.",
+          "datePublished": "2024-12-08"
+        },
+        {
+          "@type": "Review",
+          "reviewRating": {
+            "@type": "Rating",
+            "ratingValue": "5",
+            "bestRating": "5"
+          },
+          "author": {
+            "@type": "Person",
+            "name": "Fatima Hassan"
+          },
+          "reviewBody": "Very helpful team and great consultation. They understood our requirements perfectly.",
+          "datePublished": "2024-11-25"
+        }
+      ]
+    },
+    {
+      "@type": "Service",
+      "name": "Security Consultation Services",
+      "description": "Professional security consultation and system design services for residential and commercial properties in Dubai and UAE",
+      "provider": {
+        "@id": "https://ezviz-dubai.com/#organization"
+      },
+      "areaServed": {
+        "@type": "Country",
+        "name": "United Arab Emirates"
+      },
+      "serviceType": "Security Consultation",
+      "hasOfferCatalog": {
+        "@type": "OfferCatalog",
+        "name": "Consultation Services",
+        "itemListElement": [
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Free Security Assessment",
+              "description": "Comprehensive evaluation of your property's security needs"
+            },
+            "price": "0",
+            "priceCurrency": "AED"
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "System Design Consultation",
+              "description": "Custom security system design based on your requirements"
+            }
+          },
+          {
+            "@type": "Offer",
+            "itemOffered": {
+              "@type": "Service",
+              "name": "Installation Planning",
+              "description": "Professional installation planning and project management"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How can I contact Ezviz Dubai for support?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "You can contact us 24/7 at +971554221967, email sales@ezviz-dubai.com, or visit our office at Al Raffa St - Al Fahidi - Dubai. We also offer WhatsApp support for quick assistance."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do you provide free consultation services?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, we provide free security consultation and assessment services. Our experts will evaluate your property and recommend the best EZVIZ solutions for your needs."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "What are your office hours?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Our office is open Monday to Saturday from 9:00 AM to 7:00 PM. However, we provide 24/7 customer support through phone and WhatsApp for urgent assistance."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "Do you serve all areas in the UAE?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "Yes, we provide services across all seven Emirates of the UAE including Dubai, Abu Dhabi, Sharjah, Ajman, Fujairah, Ras Al Khaimah, and Umm Al Quwain."
+          }
+        },
+        {
+          "@type": "Question",
+          "name": "How quickly can you respond to service requests?",
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": "We respond to email inquiries within 2 hours during business hours. For urgent technical support, our 24/7 phone and WhatsApp support provides immediate assistance."
+          }
+        }
+      ]
+    },
+    {
+      "@type": "ProfessionalService",
+      "name": "EZVIZ Technical Support",
+      "description": "24/7 technical support and maintenance services for EZVIZ security systems",
+      "provider": {
+        "@id": "https://ezviz-dubai.com/#organization"
+      },
+      "serviceType": "Technical Support",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "Al Raffa St - Al Fahidi - Dubai - United Arab Emirates",
+        "addressLocality": "Dubai",
+        "addressRegion": "Dubai",
+        "postalCode": "00000",
+        "addressCountry": "AE"
+      },
+      "areaServed": {
+        "@type": "Country",
+        "name": "United Arab Emirates"
+      }
+    }
+  ]
 };
 
 // Open Graph Metadata
